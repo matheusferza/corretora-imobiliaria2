@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Imovel {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  location    String
+  price       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  photos      Foto[]
+}
+
+model Usuario {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String?
+  password  String
+  role      String   @default("user")
+  createdAt DateTime @default(now())
+}
+
+model Contrato {
+  id        String   @id @default(cuid())
+  imovelId  String
+  usuarioId String
+  startAt   DateTime
+  endAt     DateTime?
+  value     Int
+
+  Imovel  Imovel  @relation(fields: [imovelId], references: [id])
+  Usuario Usuario @relation(fields: [usuarioId], references: [id])
+}
+
+model Foto {
+  id       String @id @default(cuid())
+  url      String
+  imovelId String
+  Imovel   Imovel @relation(fields: [imovelId], references: [id])
+}

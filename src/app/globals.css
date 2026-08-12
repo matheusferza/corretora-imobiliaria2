@@ -1,26 +1,110 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f5ef;
+  --surface: #ffffff;
+  --surface-muted: #f1ebe1;
+  --ink: #242126;
+  --ink-soft: #6f6870;
+  --plum: #35104f;
+  --plum-bright: #4a1768;
+  --gold: #b58a3a;
+  --gold-light: #d8bd82;
+  --line: rgba(53, 16, 79, 0.14);
+  --motion-enter: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-foreground: var(--ink);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-cormorant);
 }
 
 body {
   background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--ink);
+  font-family: var(--font-manrope), Arial, sans-serif;
+}
+
+* {
+  border-color: var(--line);
+}
+
+::selection {
+  background: var(--gold-light);
+  color: var(--plum);
+}
+
+.shell {
+  margin-inline: auto;
+  max-width: 1280px;
+  padding-inline: 1.5rem;
+}
+
+.display {
+  font-family: var(--font-cormorant), Georgia, serif;
+  letter-spacing: -0.035em;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.interactive {
+  transition:
+    background-color 180ms var(--motion-ui),
+    border-color 180ms var(--motion-ui),
+    box-shadow 180ms var(--motion-ui),
+    color 180ms var(--motion-ui),
+    opacity 180ms var(--motion-ui),
+    transform 180ms var(--motion-ui);
+}
+
+.interactive:active {
+  transform: scale(0.97);
+}
+
+.fade-up {
+  animation: fade-up 520ms var(--motion-enter) both;
+}
+
+.fade-up-delay {
+  animation: fade-up 520ms 100ms var(--motion-enter) both;
+}
+
+@keyframes fade-up {
+  from {
+    filter: blur(4px);
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .shell {
+    padding-inline: 3rem;
+  }
 }
