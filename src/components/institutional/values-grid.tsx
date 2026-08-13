@@ -1,4 +1,4 @@
-import { ShieldCheck, Eye, UserCheck, Award, Heart } from "lucide-react";
+import { ShieldCheck, Eye, UserCheck, Award, Heart, Sparkles, CheckCircle2 } from "lucide-react";
 
 interface ValueItem {
   icon: React.ElementType;
@@ -9,28 +9,33 @@ interface ValueItem {
 const values: ValueItem[] = [
   {
     icon: ShieldCheck,
-    title: "Confiança e Segurança",
-    description: "Cada contrato e negociação é conduzido com o máximo rigor jurídico e transparência documental para garantir a tranquilidade do proprietário e do morador.",
+    title: "Honestidade",
+    description: "Honestidade acima de qualquer negociação.",
+  },
+  {
+    icon: Heart,
+    title: "Respeito",
+    description: "Respeito às pessoas e ao patrimônio de cada cliente.",
   },
   {
     icon: Eye,
-    title: "Transparência Total",
-    description: "Informações objetivas sobre valores, taxas, prestação de contas e vistorias sem surpresas ou entrelinhas.",
+    title: "Transparência",
+    description: "Transparência em todas as etapas.",
+  },
+  {
+    icon: Award,
+    title: "Organização & Excelência",
+    description: "Organização e compromisso com a excelência.",
   },
   {
     icon: UserCheck,
     title: "Atendimento Humano",
-    description: "Uma empresa familiar onde você fala com pessoas reais que conhecem cada detalhe do seu imóvel e compreendem suas necessidades.",
+    description: "Atendimento humano e personalizado.",
   },
   {
-    icon: Award,
-    title: "Experiência Regional",
-    description: "Mais de três décadas de conhecimento profundo sobre a dinâmica imobiliária de Balneário Camboriú e Camboriú.",
-  },
-  {
-    icon: Heart,
-    title: "Compromisso Patrimonial",
-    description: "Tratamos o seu imóvel com o mesmo cuidado e zelo com que cuidamos do nosso próprio patrimônio.",
+    icon: Sparkles,
+    title: "Inovação",
+    description: "Aprendizado contínuo e inovação.",
   },
 ];
 
