@@ -177,3 +177,57 @@ model PaginaSite {
 
   @@index([isPublished, sortOrder])
 }
+
+enum TipoLead {
+  ANUNCIAR
+  ALUGAR
+  COMPRAR
+  CONTATO
+}
+
+enum StatusLead {
+  NOVO
+  EM_ATENDIMENTO
+  CONCLUIDO
+  ARQUIVADO
+}
+
+model Lead {
+  id              String     @id @default(cuid())
+  name            String
+  email           String
+  phone           String
+  type            TipoLead   @default(CONTATO)
+  subject         String?
+  message         String?
+  propertyAddress String?
+  propertyType    String?
+  status          StatusLead @default(NOVO)
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+
+  @@index([type, status])
+}
+
+model PostBlog {
+  id                 String   @id @default(cuid())
+  slug               String   @unique
+  title              String
+  summary            String
+  content            String   @db.Text
+  category           String
+  coverImage         String?
+  authorName         String   @default("Corretora Val")
+  readingTimeMinutes Int      @default(5)
+  isFeatured         Boolean  @default(false)
+  isPublished        Boolean  @default(true)
+  publishedAt        DateTime @default(now())
+  seoTitle           String?
+  seoDescription     String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@index([isPublished, category])
+  @@index([isFeatured])
+}
+

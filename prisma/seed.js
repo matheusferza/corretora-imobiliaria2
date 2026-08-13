@@ -181,6 +181,75 @@ const pages = [
   },
 ];
 
+const posts = [
+  {
+    slug: "guia-de-investimento-imobiliario-balneario-camboriu",
+    title: "Guia de Investimento Imobiliário em Balneário Camboriú para 2026",
+    summary: "Descubra por que a cidade possui um dos metros quadrados mais valorizados do Brasil e como escolher a melhor oportunidade.",
+    category: "Investimentos",
+    authorName: "Corretora Val",
+    readingTimeMinutes: 6,
+    isFeatured: true,
+    coverImage: "/uploads/investimento-bc.jpg",
+    content: `Balneário Camboriú continua se consolidando como o polo imobiliário de maior liquidez e valorização do litoral catarinense. Para investidores que buscam segurança patrimonial e rentabilidade acima da média nacional, a cidade oferece um ecossistema único.
+
+### 1. Valorização Histórica
+Nos últimos cinco anos, imóveis na quadra mar e frente mar registraram valorizações anuais consistentes. A infraestrutura urbana moderna, aliada aos investimentos públicos em alargamento da faixa de areia e saneamento, atrai investidores de todo o país.
+
+### 2. Rentabilidade com Locação de Temporada
+Imóveis bem localizados em Balneário Camboriú apresentam altíssima taxa de ocupação nos meses de alta temporada (novembro a março), garantindo um yield anual atrativo para quem busca renda passiva.
+
+### 3. Como Escolher a Melhor Oportunidade
+Ao analisar um imóvel para investimento na região, considere:
+- **Localização:** Imóveis na Barra Sul e Centro possuem demanda perene.
+- **Tipologia:** Apartamentos de 2 e 3 suítes com vaga privativa têm a maior liquidez de revenda.
+- **Documentação:** Garantir que o imóvel esteja 100% regularizado com matrícula individualizada.`,
+    seoTitle: "Investimento Imobiliário em Balneário Camboriú (2026) | Corretora Val",
+    seoDescription: "Guia completo de investimento e valorização imobiliária em Balneário Camboriú com a experiência da Corretora Val.",
+  },
+  {
+    slug: "dicas-para-preparar-seu-imovel-para-locacao-anual",
+    title: "5 Dicas Essenciais para Preparar seu Imóvel para Locação Anual",
+    summary: "Aumente a atratividade do seu patrimônio e garanta bons inquilinos com pequenas adequações estratégicas.",
+    category: "Alugar",
+    authorName: "Corretora Val",
+    readingTimeMinutes: 4,
+    isFeatured: false,
+    coverImage: "/uploads/preparar-imovel.jpg",
+    content: `Alugar um imóvel com agilidade e valor justo exige preparação prévia. Inquilinos qualificados buscam unidades bem conservadas, funcionais e com documentação transparente.
+
+### 1. Revisão Hidráulica e Elétrica
+Antes de anunciar, certifique-se de que torneiras, chuveiros, tomadas e disjuntores estejam operando perfeitamente. Pequenos reparos evitam desgastes no início do contrato.
+
+### 2. Pintura Neutra e Iluminação
+Paredes pintadas com cores neutras (off-white ou bege claro) ampliam visualmente os ambientes e agradam a todos os perfis de moradores.
+
+### 3. Gestão Profissional de Imóveis
+Contar com uma administração imobiliária experiente garante vistoria detalhada de entrada e saída, análise rigorosa de crédito e segurança no recebimento dos aluguéis.`,
+    seoTitle: "Como Preparar seu Imóvel para Locação Anual | Corretora Val",
+    seoDescription: "Dicas práticas da Corretora Val para valorizar seu imóvel e conquistar os melhores inquilinos em Balneário Camboriú.",
+  },
+  {
+    slug: "morar-em-camboriu-qualidade-de-vida-e-tranquilidade",
+    title: "Morar em Camboriú: Qualidade de Vida, Natureza e Proximidade do Mar",
+    summary: "Conheça as vantagens de residir na cidade vizinha a Balneário Camboriú, combinando tranquilidade e excelente custo-benefício.",
+    category: "Comprar",
+    authorName: "Corretora Val",
+    readingTimeMinutes: 5,
+    isFeatured: false,
+    coverImage: "/uploads/morar-camboriu.jpg",
+    content: `Camboriú vem se destacando como uma excelente alternativa para famílias que desejam espaço, tranquilidade e custos de moradia mais acessíveis, sem abrir mão da proximidade de Balneário Camboriú.
+
+### Espaço Familiar e Bairros Planejados
+A cidade oferece opções de casas em loteamentos abertos e condomínios fechados cercados por áreas verdes, ideais para quem busca quintal, espaço para pets e convivência em comunidade.
+
+### Custo-Benefício Atraente
+O valor do metro quadrado em Camboriú permite adquirir imóveis com área privativa significativamente maior do que na área praiana vizinha.`,
+    seoTitle: "Morar em Camboriú: Vantagens e Imóveis | Corretora Val",
+    seoDescription: "Saiba por que Camboriú é uma excelente escolha para morar bem perto do mar em SC.",
+  },
+];
+
 async function main() {
   const adminEmail = "admin@example.com";
   const hash = await bcrypt.hash("senha123", 10);
@@ -217,6 +286,14 @@ async function main() {
       where: { code: property.code },
       update: property,
       create: property,
+    });
+  }
+
+  for (const post of posts) {
+    await prisma.postBlog.upsert({
+      where: { slug: post.slug },
+      update: post,
+      create: post,
     });
   }
 
