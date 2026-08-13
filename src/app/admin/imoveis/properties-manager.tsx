@@ -67,6 +67,7 @@ export function AdminPropertiesManager() {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
+  const [photos, setPhotos] = useState<Array<{ url: string; path?: string; alt?: string; position?: number; isCover?: boolean }>>([]);
 
   const loadProperties = useCallback(async () => {
     setLoading(true);
@@ -93,7 +94,7 @@ export function AdminPropertiesManager() {
     setMessage(null);
 
     const price = Number(draft.price);
-    const payload = {
+    const payload: any = {
       code: draft.code.trim().toUpperCase(),
       slug: draft.slug || toSlug(draft.title),
       title: draft.title,
@@ -105,6 +106,10 @@ export function AdminPropertiesManager() {
       ...(draft.purpose === "LOCACAO_ANUAL" ? { monthlyRent: price } : {}),
       ...(draft.purpose === "TEMPORADA" ? { dailyRate: price } : {}),
     };
+
+    if (photos.length > 0) {
+      payload.photos = photos.map((p, i) => ({ url: p.url, alt: p.alt ?? null, position: i, isCover: !!p.isCover }));
+    }
 
     try {
       const response = await fetch("/api/imoveis", {
@@ -122,6 +127,7 @@ export function AdminPropertiesManager() {
       }
 
       setDraft(initialDraft);
+      setPhotos([]);
       setMessage("Imóvel cadastrado com sucesso.");
       await loadProperties();
     } catch (error) {
@@ -340,6 +346,49 @@ export function AdminPropertiesManager() {
               />
               Exibir como destaque na Home
             </label>
+            <div className="grid gap-2">
+              <div className="flex gap-2 items-center">
+                <input
+                  id="photos"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={async (e) => {
+                    const files = Array.from(e.currentTarget.files || []);
+                    if (files.length === 0) return;
+                    setMessage('Enviando imagens...');
+                    try {
+                      for (const f of files) {
+                        const form = new FormData();
+                        form.append('file', f, f.name);
+                        const resp = await fetch('/api/uploads', { method: 'POST', body: form });
+                        const body = await resp.json();
+                        if (!resp.ok) throw new Error(body.error || 'Upload falhou');
+                        setPhotos((prev) => [...prev, { url: body.url, path: body.path }]);
+                      }
+                    } catch (err) {
+                      setMessage(err instanceof Error ? err.message : 'Erro no upload');
+                    } finally {
+                      setMessage(null);
+                    }
+                  }}
+                />
+                <label htmlFor="photos" className="interactive inline-flex items-center justify-center gap-2 rounded-full border bg-[var(--surface)] px-5 py-3 text-sm font-bold text-[var(--plum)]">
+                  Selecionar imagens
+                </label>
+                <span className="text-sm text-white/75">Arraste e solte ou selecione até 12 imagens.</span>
+              </div>
+              <div className="flex gap-2 flex-wrap">
+                {photos.map((p, idx) => (
+                  <div key={idx} className="relative w-24 h-16 bg-white rounded overflow-hidden">
+                    <img src={p.url} alt={p.alt || `Foto ${idx+1}`} className="w-full h-full object-cover" />
+                    <button type="button" onClick={() => setPhotos((s) => s.filter((_, i) => i !== idx))} className="absolute top-1 right-1 bg-white/80 rounded-full px-1 text-xs">✕</button>
+                    <button type="button" onClick={() => setPhotos((s) => s.map((it, i) => ({ ...it, isCover: i === idx })))} className="absolute bottom-1 left-1 bg-white/80 rounded-full px-1 text-xs">Capa</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <button
               className="interactive mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[var(--gold)] px-5 py-3 text-sm font-extrabold text-[var(--plum)] hover:bg-[var(--gold-light)] disabled:cursor-wait disabled:opacity-70"
               disabled={submitting}

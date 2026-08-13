@@ -4,6 +4,8 @@ import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 import { ZodError, z } from "zod";
+import { revalidatePath } from 'next/cache';
+import { getStorageProvider } from '@/lib/storage';
 
 const purposes = ["VENDA", "LOCACAO_ANUAL", "TEMPORADA"] as const;
 const statuses = [
@@ -103,12 +105,9 @@ function errorResponse(error: unknown) {
     }
   }
 
-  // In dev, include stack trace in response to aid debugging (do not enable in production)
-  if (process.env.NODE_ENV !== "production" && error instanceof Error) {
-    return NextResponse.json(
-      { error: "Internal server error", message: error.message, stack: error.stack },
-      { status: 500 },
-    );
+  // Log error server-side; return a generic 500 to the client to avoid leaking internals
+  if (error instanceof Error) {
+    console.error('API /api/imoveis internal error:', error);
   }
 
   return NextResponse.json({ error: "Internal server error" }, { status: 500 });
@@ -148,8 +147,33 @@ export async function POST(req: Request) {
   }
 
   try {
-    const data = propertySchema.parse(await req.json());
+    const body = await req.json();
+    const data = propertySchema.parse(body);
     const created = await prisma.imovel.create({ data });
+
+    // handle photos if provided in payload (uploaded earlier via /api/uploads)
+    if (Array.isArray(body.photos) && body.photos.length > 0) {
+      try {
+        const photosToCreate = body.photos.map((p: any, i: number) => ({
+          url: p.url,
+          alt: p.alt ?? null,
+          position: typeof p.position === 'number' ? p.position : i,
+          isCover: !!p.isCover,
+          imovelId: created.id,
+        }));
+        await prisma.foto.createMany({ data: photosToCreate });
+      } catch (e) {
+        console.error('Creating photos failed:', e);
+      }
+    }
+
+    try {
+      // on-demand revalidation for public listing and individual page
+      revalidatePath('/imoveis');
+      if (created.slug) revalidatePath(`/imoveis/${created.slug}`);
+    } catch (e) {
+      console.error('Revalidate after create failed:', e);
+    }
     return NextResponse.json(created, { status: 201 });
   } catch (error) {
     console.error('API /api/imoveis POST error:', error);
@@ -168,6 +192,12 @@ export async function PUT(req: Request) {
   try {
     const data = updateSchema.parse(await req.json());
     const updated = await prisma.imovel.update({ where: { id }, data });
+    try {
+      revalidatePath('/imoveis');
+      if (updated.slug) revalidatePath(`/imoveis/${updated.slug}`);
+    } catch (e) {
+      console.error('Revalidate after update failed:', e);
+    }
     return NextResponse.json(updated);
   } catch (error) {
     console.error('API /api/imoveis PUT error:', error);
@@ -184,10 +214,16 @@ export async function DELETE(req: Request) {
   if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
   try {
-    await prisma.imovel.update({
+    const archived = await prisma.imovel.update({
       where: { id },
       data: { archivedAt: new Date(), status: "ARQUIVADO", isFeatured: false },
     });
+    try {
+      revalidatePath('/imoveis');
+      if (archived.slug) revalidatePath(`/imoveis/${archived.slug}`);
+    } catch (e) {
+      console.error('Revalidate after archive failed:', e);
+    }
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('API /api/imoveis DELETE error:', error);
