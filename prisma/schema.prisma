@@ -7,24 +7,117 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Finalidade {
+  VENDA
+  LOCACAO_ANUAL
+  TEMPORADA
+}
+
+enum StatusImovel {
+  DISPONIVEL
+  RESERVADO
+  EM_NEGOCIACAO
+  ALUGADO
+  VENDIDO
+  INDISPONIVEL
+  ARQUIVADO
+}
+
+enum VisibilidadeEndereco {
+  EXATA
+  APROXIMADA
+}
+
+enum StatusDocumentacao {
+  REGULAR
+  EM_ANDAMENTO
+  PENDENTE
+}
+
+enum MarcadorImovel {
+  DESTAQUE
+  LANCAMENTO
+  OPORTUNIDADE
+  EXCLUSIVIDADE
+  ALTO_PADRAO
+  FRENTE_MAR
+  QUADRA_MAR
+  ESTUDANTE
+  PET_FRIENDLY
+}
+
 model Imovel {
-  id          String   @id @default(cuid())
-  title       String
-  description String?
-  location    String
-  price       Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  photos      Foto[]
+  id                    String                 @id @default(cuid())
+  code                  String                 @unique
+  slug                  String                 @unique
+  title                 String
+  summary               String?
+  description           String?
+  propertyType          String
+  purpose               Finalidade
+  status                StatusImovel           @default(DISPONIVEL)
+  documentationStatus   StatusDocumentacao     @default(REGULAR)
+  city                  String
+  neighborhood          String?
+  address               String?
+  postalCode            String?
+  addressVisibility     VisibilidadeEndereco   @default(APROXIMADA)
+  latitude              Decimal?               @db.Decimal(10, 7)
+  longitude             Decimal?               @db.Decimal(10, 7)
+  salePrice             Int?
+  monthlyRent           Int?
+  condoFee              Int?
+  iptu                  Int?
+  waterFee              Int?
+  gasFee                Int?
+  garbageFee            Int?
+  otherFees             Int?
+  dailyRate             Int?
+  packageRate           Int?
+  cleaningFee           Int?
+  securityDeposit       Int?
+  bedrooms              Int?
+  suites                Int?
+  bathrooms             Int?
+  halfBathrooms         Int?
+  parkingSpaces         Int?
+  privateArea           Int?
+  totalArea             Int?
+  floor                 Int?
+  hasElevator           Boolean                @default(false)
+  hasBalcony            Boolean                @default(false)
+  hasBarbecue           Boolean                @default(false)
+  hasPool               Boolean                @default(false)
+  furnished             Boolean                @default(false)
+  hasAirConditioning    Boolean                @default(false)
+  allowsPets            Boolean                @default(false)
+  hasWifi               Boolean                @default(false)
+  seaView               Boolean                @default(false)
+  oceanFront            Boolean                @default(false)
+  beachBlock            Boolean                @default(false)
+  videoUrl              String?
+  isFeatured            Boolean                @default(false)
+  markers               MarcadorImovel[]
+  internalDocumentsNote String?
+  archivedAt            DateTime?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  photos                Foto[]
+  contratos             Contrato[]
+
+  @@index([purpose, status])
+  @@index([city, neighborhood])
+  @@index([isFeatured])
 }
 
 model Usuario {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String     @id @default(cuid())
+  email     String     @unique
   name      String?
   password  String
-  role      String   @default("user")
-  createdAt DateTime @default(now())
+  role      String     @default("user")
+  createdAt DateTime   @default(now())
+  contratos Contrato[]
 }
 
 model Contrato {
@@ -35,13 +128,52 @@ model Contrato {
   endAt     DateTime?
   value     Int
 
-  Imovel  Imovel  @relation(fields: [imovelId], references: [id])
-  Usuario Usuario @relation(fields: [usuarioId], references: [id])
+  imovel  Imovel  @relation(fields: [imovelId], references: [id])
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
 }
 
 model Foto {
   id       String @id @default(cuid())
   url      String
+  alt      String?
+  position Int    @default(0)
+  isCover  Boolean @default(false)
   imovelId String
-  Imovel   Imovel @relation(fields: [imovelId], references: [id])
+  imovel   Imovel @relation(fields: [imovelId], references: [id], onDelete: Cascade)
+
+  @@index([imovelId, position])
+}
+
+model ConfiguracaoSite {
+  id           String   @id @default("principal")
+  brandName    String   @default("Corretora Val")
+  tagline      String   @default("Confiança que abre portas.")
+  phone        String?
+  whatsapp     String?
+  email        String?
+  address      String?
+  instagramUrl String?
+  creci        String   @default("CRECI/SC 56372-F")
+  updatedAt    DateTime @updatedAt
+}
+
+model PaginaSite {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  navigationLabel String
+  eyebrow        String?
+  title          String
+  heading        String
+  intro          String?
+  body           String?
+  ctaLabel       String?
+  ctaHref        String?
+  seoTitle       String?
+  seoDescription String?
+  isPublished    Boolean  @default(true)
+  sortOrder      Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([isPublished, sortOrder])
 }

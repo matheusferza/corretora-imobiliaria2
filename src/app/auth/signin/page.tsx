@@ -1,22 +1,35 @@
-'use client';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+"use client";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function SignInPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    const res = await signIn('credentials', { redirect: false, email, password });
+    const requestedPath = new URLSearchParams(window.location.search).get(
+      "callbackUrl",
+    );
+    const callbackUrl =
+      requestedPath?.startsWith("/") && !requestedPath.startsWith("//")
+        ? requestedPath
+        : "/admin/imoveis";
+    const res = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+      callbackUrl,
+    });
     if (res?.error) {
       setError(res.error as string);
     } else {
-      router.push('/');
+      router.replace(callbackUrl);
+      router.refresh();
     }
   }
 
@@ -41,7 +54,10 @@ export default function SignInPage() {
             type="password"
             required
           />
-          <button className="rounded-full bg-[var(--plum)] px-4 py-2 text-white" type="submit">
+          <button
+            className="rounded-full bg-[var(--plum)] px-4 py-2 text-white"
+            type="submit"
+          >
             Entrar
           </button>
           {error && <p className="text-sm text-red-600">{error}</p>}

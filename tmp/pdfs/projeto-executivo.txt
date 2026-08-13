@@ -1,0 +1,227 @@
+
+
+===== PAGE 1 =====
+VAL
+CORRETORA DE IMÓVEIS
+PROJETO EXECUTIVO DO SITE
+CORRETORA VAL
+Documento de referência para desenvolvimento, implementação e aceite do site oficial
+Valdete Gonçalves de Melo
+CRECI/SC 56372-F
+Domínio: corretoraval.com.br
+Versão 1.0 • Agosto de 2026
+Confiança que abre portas.
+CORRETORA VAL | PROJETO EXECUTIVO • 1
+
+===== PAGE 2 =====
+Sumário Executivo
+Este Projeto Executivo consolida as definições aprovadas para a Plataforma Digital Corretora Val.
+Seu objetivo é orientar o desenvolvedor quanto ao escopo, arquitetura, sistema de imóveis,
+identidade visual, funcionalidades, infraestrutura, governança, implantação e critérios de aceite.
+ 10.1 Escopo e objetivos
+ 10.2 Mapa definitivo do site
+ 10.3 Sistema de imóveis
+ 10.4 Design e identidade visual
+ 10.5 Funcionalidades
+ 10.6 Hospedagem, domínio e infraestrutura
+ 10.7 Governança digital
+ 10.8 Cronograma de implementação
+ 10.9 Critérios de aceitação
+Identificação do Projeto
+Projeto Site Oficial / Plataforma Digital Corretora Val
+Responsável Valdete Gonçalves de Melo
+CRECI CRECI/SC 56372-F
+Domínio corretoraval.com.br
+Posicionamento Administração, Locação Anual, Temporada e
+Compra e Venda
+Slogan Confiança que abre portas.
+10.1 — Escopo e Objetivos
+Construir um site imobiliário profissional, em WordPress, administrável pela própria Corretora Val,
+capaz de divulgar imóveis, captar proprietários, apresentar serviços, gerar contatos e consolidar a
+autoridade digital da marca.
+Objetivos principais
+ Divulgar imóveis para compra e venda, locação anual e temporada.
+ Apresentar e captar clientes para Administração de Imóveis.
+ Permitir cadastro, edição, destaque, arquivamento e gerenciamento de imóveis pela própria
+Corretora Val.
+ Gerar contatos por WhatsApp, formulários e demais canais.
+ Apresentar a história, autoridade, conteúdos e diferenciais da marca.
+ Trabalhar SEO para Balneário Camboriú, Camboriú e região.
+ Nascer preparado para futuras expansões, incluindo Meu Patrimônio e ValIA.
+Princípio do projeto: o visitante encontra o imóvel com facilidade; o proprietário
+percebe segurança; e a Corretora Val administra o conteúdo sem depender do
+CORRETORA VAL | PROJETO EXECUTIVO • 2
+
+===== PAGE 3 =====
+desenvolvedor.
+Públicos prioritários
+ Proprietários que desejam administrar ou anunciar seus imóveis.
+ Clientes buscando compra de imóveis.
+ Pessoas procurando locação anual.
+ Hóspedes procurando imóveis de temporada.
+ Clientes que buscam orientação e conteúdo imobiliário.
+10.2 — Mapa Definitivo do Site
+Menu principal
+ Home — apresentação, busca, destaques, serviços, autoridade e chamadas para ação.
+ Comprar Imóveis — imóveis à venda, com filtros próprios.
+ Locação Anual — imóveis para aluguel anual.
+ Temporada — imóveis por diária/pacote, com recursos próprios de disponibilidade.
+ Administração de Imóveis — captação de proprietários e explicação do serviço.
+ Quem Somos — história, trajetória, família, missão, valores e livro.
+ Autoridade — experiência, CRECI, especialidades e conteúdos de credibilidade.
+ Memória Viva — história, fotos, bastidores, linha do tempo e trechos do legado.
+ Blog — artigos, dicas, mercado e conteúdos para SEO.
+ Depoimentos — experiências de clientes, quando autorizadas.
+ Contato — WhatsApp, telefone, e-mail, formulário e redes sociais.
+Áreas complementares / evolução
+ Academia Corretora Val
+ Meu Patrimônio — área futura para proprietários
+ ValIA — assistente inteligente
+ Trabalhe Conosco — futuro
+ Parceiros — futuro
+ Histórias que Abrem Portas
+ Comece por Aqui — Comprar, Alugar, Temporada, Administrar meu imóvel
+10.3 — Sistema de Imóveis
+O painel deve ser simples, rápido e adequado à rotina imobiliária, permitindo autonomia total para
+o cadastro e a atualização dos imóveis.
+Campos essenciais
+ Código do imóvel; tipo; finalidade (Venda, Locação Anual, Temporada); status (Disponível,
+Reservado, Em negociação, Alugado, Vendido).
+CORRETORA VAL | PROJETO EXECUTIVO • 3
+
+===== PAGE 4 =====
+ Cidade, bairro, endereço/CEP e opção de exibir apenas localização aproximada.
+ Valores: venda; aluguel; condomínio; IPTU; água; gás; lixo; outras taxas; diária; pacotes; taxa de
+limpeza e caução, quando aplicável.
+ Dormitórios, suítes, banheiros, lavabo, vagas, área privativa/total, andar, elevador, sacada,
+churrasqueira, piscina, mobiliado, ar-condicionado, pet, Wi-Fi, vista mar, frente mar e quadra
+mar.
+ Galeria com múltiplas fotos, escolha da foto principal e reordenação.
+ Descrição completa do imóvel.
+ Vídeo/YouTube e possibilidade futura de tour virtual.
+ Marcadores: Destaque, Lançamento, Oportunidade, Exclusividade, Alto Padrão, Frente Mar,
+Quadra Mar, Estudante e Pet Friendly.
+Operação
+ Cadastrar, editar, duplicar, arquivar e excluir imóveis.
+ Alterar preço e status rapidamente.
+ Selecionar imóveis em destaque na Home.
+ Semáforo interno: disponível, reservado, documentação em andamento, alugado/vendido.
+ Área interna para documentos do imóvel, se tecnicamente viável e protegida do público.
+10.4 — Design e Identidade Visual
+ Marca: Corretora Val — Valdete Gonçalves de Melo — CRECI/SC 56372-F.
+ Conceitos: confiança, elegância, acolhimento, organização, transparência, experiência e
+atendimento humano.
+ Paleta: lilás como cor principal, branco, dourado como destaque, cinzas claros de apoio e textos
+escuros.
+ Estilo: clean, premium, moderno, leve, com espaço em branco e sem poluição visual.
+ Fotografia: priorizar fotos reais, boa luz e alta resolução; evitar imagens genéricas e artificiais.
+ Imóveis como protagonistas; efeitos visuais nunca devem competir com o conteúdo.
+ Responsividade obrigatória em celular, tablet e computador.
+ WhatsApp sempre acessível, sem cobrir conteúdo.
+Regra visual: menos é mais. A identidade deve ser própria; o site não deve copiar o
+layout de outra imobiliária.
+10.5 — Funcionalidades
+ Busca com combinação de filtros: cidade, bairro, preço, dormitórios, suítes, vagas, finalidade e
+diferenciais.
+ Página individual para cada imóvel.
+ WhatsApp com mensagem pré-preenchida contendo o código do imóvel.
+ Compartilhamento e cópia do link do imóvel.
+CORRETORA VAL | PROJETO EXECUTIVO • 4
+
+===== PAGE 5 =====
+ Mapa com localização aproximada quando necessário.
+ Galeria em tela cheia e carregamento otimizado.
+ Imóveis em destaque administráveis pelo painel.
+ Temporada com status Disponível / Reservado / Indisponível.
+ Blog com editor simples.
+ Depoimentos com publicação mediante autorização.
+ Formulários: Quero anunciar meu imóvel; Quero alugar; Quero comprar; Quero falar com a
+Corretora Val.
+ Newsletter, se incluída no escopo técnico.
+ CRM leve ou registro de leads, se tecnicamente viável nesta primeira fase.
+ Preparação para Meu Patrimônio e ValIA em fase futura.
+ SEO básico por página: título, descrição, URL amigável e imagem de compartilhamento.
+ Integrações recomendadas: Google Analytics, Search Console, Maps e Google Business Profile.
+10.6 — Hospedagem, Domínio e Infraestrutura
+ Domínio corretoraval.com.br sob titularidade da Corretora Val.
+ Hospedagem contratada e controlada pela Corretora Val.
+ WordPress e conta administrativa principal sob controle da contratante.
+ Certificado SSL ativo.
+ Backups automáticos e possibilidade de restauração.
+ Imagens otimizadas e bom desempenho em celular.
+ Estrutura que permita migração e continuidade por outro desenvolvedor.
+ E-mails profissionais poderão incluir contato@, locacao@, temporada@ e
+administracao@corretoraval.com.br, conforme plano contratado.
+O desenvolvedor recebe apenas os acessos necessários ao trabalho. A titularidade do
+domínio, hospedagem e contas principais permanece com a Corretora Val.
+10.7 — Governança Digital
+ A Corretora Val é proprietária do domínio, hospedagem, banco de dados, arquivos, contas
+administrativas e conteúdo produzido para o site.
+ Acessos técnicos do desenvolvedor devem ser revogáveis e, quando possível, separados da conta
+principal.
+ Senhas devem ser armazenadas em gerenciador seguro.
+ Alterações relevantes devem ser documentadas.
+ Arquivos institucionais devem compor a Biblioteca Digital Corretora Val.
+ O projeto deve evitar dependência de sistemas proprietários que impeçam futura migração.
+ A arquitetura deve permitir expansão para CRM, área do proprietário/inquilino, assinatura
+eletrônica, novos idiomas e inteligência artificial.
+CORRETORA VAL | PROJETO EXECUTIVO • 5
+
+===== PAGE 6 =====
+10.8 — Cronograma de Implementação
+Fase 1 — Contratação
+Entrega do Projeto Executivo, identidade, domínio, fotos e conteúdos; definição formal do escopo.
+Fase 2 — Desenvolvimento
+Construção das páginas, módulo de imóveis, formulários, integrações e identidade visual.
+Fase 3 — Painel Administrativo
+Configuração e treinamento para cadastro e atualização de imóveis e conteúdos.
+Fase 4 — Testes
+WhatsApp, formulários, celular, computador, velocidade, ortografia, SEO e permissões.
+Fase 5 — Lançamento
+Publicação, primeiros cadastros, divulgação e ativação das ferramentas de mensuração.
+Fase 6 — Primeiros 90 dias
+Acompanhamento de visitas, páginas, imóveis mais acessados e contatos recebidos.
+Padrão de conteúdo dos imóveis
+1. Título atrativo
+2. Resumo
+3. Diferenciais
+4. Distribuição dos ambientes
+5. Localização
+6. Condições
+7. Chamada para contato
+10.9 — Critérios de Aceitação
+O projeto somente será considerado concluído quando os itens contratados estiverem funcionando e
+forem validados pela Corretora Val.
+ ☐ Todas as páginas contratadas publicadas e sem erros.
+ ☐ Painel administrativo entregue com acesso integral.
+ ☐ Cadastro, edição, fotos, preço, status e destaques de imóveis funcionando.
+ ☐ Versão responsiva testada em celular, tablet e computador.
+ ☐ WhatsApp e formulários testados.
+ ☐ SEO básico, sitemap e Search Console configurados quando incluídos no escopo.
+ ☐ SSL ativo e rotina de backup configurada.
+ ☐ Acessos de domínio, hospedagem, WordPress e demais contas entregues à contratante.
+ ☐ Treinamento ou vídeo/manual de uso do painel.
+CORRETORA VAL | PROJETO EXECUTIVO • 6
+
+===== PAGE 7 =====
+ ☐ Arquivos e recursos do projeto organizados.
+ ☐ Aprovação final da Corretora Val.
+Condições da Proposta Viale — referência de contratação
+Conforme orçamento atualizado apresentado pela Viale Company em 11 de agosto de 2026: valor
+total de R$ 990,00; desenvolvimento completo do site em WordPress; painel administrativo para
+cadastro e gerenciamento dos imóveis; prazo estimado de 20 a 25 dias; hospedagem contratada
+separadamente pela contratante; pagamento de 50% na entrada (R$ 495,00) e 50% na entrega final
+(R$ 495,00).
+Recomendação de governança: este Projeto Executivo deve ser apresentado ao desenvolvedor como
+referência do escopo. Funcionalidades futuras ou itens que dependam de licenças/serviços externos
+devem ser identificados antes do início.
+Registro de Revisões
+Versão Data Alteração
+1.0 Agosto/2026 Consolidação das etapas 10.1 a
+10.9 aprovadas; inclusão de
+Compra/Venda.
+CORRETORA VAL — Confiança que abre portas.
+Valdete Gonçalves de Melo
+CRECI/SC 56372-F
+Projeto Executivo do Site — Versão 1.0
+CORRETORA VAL | PROJETO EXECUTIVO • 7

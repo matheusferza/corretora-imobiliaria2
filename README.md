@@ -15,6 +15,23 @@ npm run dev
 
 Abra `http://localhost:3000`.
 
+## Banco de dados e painel
+
+Configure o PostgreSQL sob controle da Corretora Val antes de usar o painel.
+
+```bash
+copy .env.example .env
+# ajuste DATABASE_URL, NEXTAUTH_URL e NEXTAUTH_SECRET no .env
+npm run db:deploy
+npm run seed
+```
+
+O painel está em `http://localhost:3000/admin/imoveis`. O seed de desenvolvimento
+cria o acesso `admin@example.com` com a senha `senha123`; troque essa senha antes
+de qualquer ambiente compartilhado ou de produção.
+
+Observação sobre ambiente Windows/OneDrive: alguns usuários relataram um aviso EPERM ao gerar o cliente Prisma (arquivo em `node_modules/.prisma`) quando o repositório está em pastas sincronizadas pelo OneDrive ou quando antivírus bloqueia arquivos temporários. Se ocorrer `EPERM` durante `npm install` ou `npx prisma generate`, recomenda-se mover o projeto para uma pasta local não sincronizada (por exemplo `C:\repos`), pausar a sincronização do OneDrive para a pasta do projeto, ou configurar exclusões no antivírus. Essa alteração não é obrigatória, mas reduz problemas de desenvolvimento no Windows.
+
 ## Qualidade
 
 ```bash

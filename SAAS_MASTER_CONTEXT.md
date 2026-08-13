@@ -12,6 +12,22 @@ anual e temporada em Balneário Camboriú e Camboriú.
 O primeiro lançamento é **single-tenant** (Corretora Val), mas o modelo de dados
 deve comportar uma futura expansão sem antecipar a complexidade de um SaaS.
 
+## Referência contratual e decisão de plataforma
+
+O escopo funcional de referência é o **Projeto Executivo do Site Corretora Val,
+versão 1.0, agosto de 2026**. A implantação deve ser avaliada e aceita contra os
+critérios desse documento, especialmente o mapa do site, o painel de imóveis, os
+formulários, SEO, governança e entrega de acessos.
+
+O projeto executivo especifica **WordPress administrável pela Corretora Val**,
+enquanto este repositório usa **Next.js + Prisma**. Em 13 de agosto de 2026, a
+contratante aprovou formalmente a continuidade em Next.js, desde que sejam
+entregues autonomia administrativa equivalente, portabilidade de dados, backups,
+acesso integral e ausência de dependência do desenvolvedor.
+
+O acompanhamento detalhado do alinhamento e das entregas está em
+[PROJECT_EXECUTIVE_ALIGNMENT.md](./PROJECT_EXECUTIVE_ALIGNMENT.md).
+
 ## Padrão obrigatório de trabalho
 
 1. Toda demanda deve ter uma GitHub Issue antes de implementação, classificada
@@ -74,21 +90,19 @@ Toda interface deve ser refinada sob ótica de produto sênior e cumprir:
 Os princípios de motion serão aplicados após a skill **Motion Principles** estar
 instalada e disponível no ambiente. Nunca usar movimento apenas como decoração.
 
-## Backlog inicial
+## Plano de implementação alinhado ao Projeto Executivo
 
-| Tipo | Entrega |
+| Fase | Tipo | Entrega |
 | --- | --- |
-| Nova função | Fundação do projeto, CI, padrões de qualidade e proteção da principal |
-| Nova função | Design system e shell do site público responsivo |
-| Nova função | Catálogo público de imóveis com busca e filtros |
-| Nova função | Página individual de imóvel com SEO e contato via WhatsApp |
-| Nova função | Área administrativa com autenticação e perfis |
-| Nova função | CRUD de imóveis, características, status e imagens |
-| Nova função | Formulários de contato e captação de proprietários com gestão de leads |
-| Nova função | Páginas institucionais: Quem Somos, Administração, Locação e Temporada |
-| Nova função | Blog administrável e SEO técnico |
-| Melhoria | Observabilidade, performance budget e endurecimento de segurança |
-| Nova função | Documentos legais revisados pelo jurídico |
+| 0 | Decisão | Aprovar formalmente WordPress ou a exceção arquitetural para Next.js |
+| 1 | Nova função | Fundação: banco, ambiente, backup, SSL, acessos e painel administrativo funcional |
+| 1 | Nova função | Modelo e CRUD completo de imóveis, fotos, status, finalidade, destaque e arquivamento |
+| 2 | Nova função | Catálogos separados de compra, locação anual e temporada, com filtros e busca |
+| 2 | Nova função | Página individual, galeria, WhatsApp com código, compartilhamento, mapa aproximado e SEO |
+| 3 | Nova função | Páginas institucionais, formulários de captação e contato; registro de leads quando viável |
+| 3 | Nova função | Blog, depoimentos autorizados, sitemap, metadados e integrações de mensuração |
+| 4 | Melhoria | Testes de aceite, performance mobile, acessibilidade, treinamento e documentação de entrega |
+| Futuro | Nova função | Meu Patrimônio, ValIA, Academia, parceiros, vagas, idiomas e integrações avançadas |
 
 ## Identidade
 
@@ -97,3 +111,4 @@ instalada e disponível no ambiente. Nunca usar movimento apenas como decoraçã
 - Região: Balneário Camboriú e Camboriú.
 - Fundação/trajetória: padronizar a referência histórica como **1990**.
 
+Nota de progresso: Proteção do painel reforçada com middleware global para /admin/*; a listagem pública de imóveis foi integrada ao banco (revalidate=30s). Consulte o changelog/PR para detalhes e evidências de validação.
