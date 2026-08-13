@@ -21,7 +21,6 @@ export default async function ContatoPage() {
         eyebrow="Canais Diretos"
         title="Vamos conversar?"
         subtitle="Encontre a orientação certa para o seu imóvel com quem conhece Balneário Camboriú e Camboriú em cada detalhe."
-        breadcrumbCurrent="Contato"
       />
 
       <section className="py-16 md:py-24 bg-white">

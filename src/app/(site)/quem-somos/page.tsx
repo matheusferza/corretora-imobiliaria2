@@ -18,7 +18,6 @@ export default function QuemSomosPage() {
         eyebrow="Desde 1990 em Balneário Camboriú"
         title="Mais do que imóveis. Histórias, confiança e patrimônio."
         subtitle="Uma trajetória familiar dedicada a cuidar de imóveis e das vidas de quem escolhe viver ou investir no litoral catarinense."
-        breadcrumbCurrent="Quem Somos"
       />
 
       {/* Our Story & Profile */}

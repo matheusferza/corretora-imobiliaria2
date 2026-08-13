@@ -22,7 +22,6 @@ export default async function BlogPage() {
         eyebrow="Conteúdo & Mercado"
         title="Conteúdos para ajudar você a tomar melhores decisões imobiliárias."
         subtitle="Artigos exclusivos sobre investimentos, tendências de mercado, locação anual e orientações práticas para proprietários e compradores."
-        breadcrumbCurrent="Blog"
       />
 
       <section className="py-16 md:py-24 bg-white">

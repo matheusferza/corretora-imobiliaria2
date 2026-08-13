@@ -18,7 +18,6 @@ export default function MemoriaVivaPage() {
         eyebrow="Nossa História em Fotos e Momentos"
         title="Memória Viva: Uma história construída com pessoas, lugares e sonhos."
         subtitle="Um espaço especial dedicado a preservar a memória da Corretora Val e os marcos que construíram nossa relação com Balneário Camboriú e Camboriú."
-        breadcrumbCurrent="Memória Viva"
       />
 
       {/* Timeline Section */}

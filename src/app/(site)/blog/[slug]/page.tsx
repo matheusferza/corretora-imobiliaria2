@@ -50,7 +50,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         eyebrow={post.category}
         title={post.title}
         subtitle={post.summary}
-        breadcrumbCurrent={post.title}
       />
 
       <section className="py-16 md:py-24 bg-white">

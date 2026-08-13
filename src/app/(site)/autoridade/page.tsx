@@ -36,7 +36,6 @@ export default function AutoridadePage() {
         eyebrow="Confiança & Experiência"
         title="Experiência que transforma negócios imobiliários em decisões seguras."
         subtitle="Conhecimento profundo do mercado catarinense amparado por registro profissional, processos estruturados e reputação construída ao longo de décadas."
-        breadcrumbCurrent="Autoridade"
       />
 
       {/* Stats & Trust Section */}

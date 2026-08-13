@@ -61,7 +61,6 @@ export default function AdministracaoPage() {
         eyebrow="Patrimônio Bem Cuidado"
         title="Seu imóvel merece ser administrado por quem entende."
         subtitle="Há mais de três décadas cuidamos do patrimônio de famílias em Balneário Camboriú e Camboriú com transparência, segurança e atenção dedicada."
-        breadcrumbCurrent="Administração de Imóveis"
       />
 
       {/* Benefits Section */}
