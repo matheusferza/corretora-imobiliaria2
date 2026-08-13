@@ -26,7 +26,7 @@ export function getStorageProvider(): StorageProvider {
     // lazy import local provider to avoid circular issues
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const { LocalStorageProvider: Local } = require("./local");
-    _provider = Local();
+    _provider = Local() as StorageProvider;
   }
-  return _provider;
+  return _provider as StorageProvider;
 }
