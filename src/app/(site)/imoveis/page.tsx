@@ -16,7 +16,14 @@ async function loadProperties(): Promise<PublicProperty[]> {
     where: { archivedAt: null },
     orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
     take: 50,
-    select: { id: true, title: true, city: true, salePrice: true, monthlyRent: true, dailyRate: true },
+    select: {
+      id: true,
+      title: true,
+      city: true,
+      salePrice: true,
+      monthlyRent: true,
+      dailyRate: true,
+    },
   });
 
   return rows.map((r) => ({
@@ -34,12 +41,17 @@ export default async function Imoveis() {
     <main className="shell py-12">
       <div className="max-w-4xl">
         <h1 className="display text-4xl text-[var(--plum)]">Imóveis</h1>
-        <p className="mt-2 text-sm text-[var(--ink-soft)]">Conheça alguns imóveis selecionados pela Corretora Val.</p>
+        <p className="mt-2 text-sm text-[var(--ink-soft)]">
+          Conheça alguns imóveis selecionados pela Corretora Val.
+        </p>
       </div>
 
       <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {properties.length === 0 ? (
-          <p className="text-sm text-[var(--ink-soft)]">Nenhum imóvel disponível no momento. Volte mais tarde ou entre em contato conosco.</p>
+          <p className="text-sm text-[var(--ink-soft)]">
+            Nenhum imóvel disponível no momento. Volte mais tarde ou entre em
+            contato conosco.
+          </p>
         ) : (
           properties.map((p) => (
             <article
@@ -47,11 +59,20 @@ export default async function Imoveis() {
               className="rounded-2xl border bg-[var(--background)] p-4 shadow-[0_2px_8px_rgba(53,16,79,0.04)]"
             >
               <div className="h-36 w-full rounded-md bg-gradient-to-br from-[var(--plum)] to-[var(--plum-bright)]/30" />
-              <h2 className="mt-4 text-lg font-bold text-[var(--plum)]">{p.title}</h2>
+              <h2 className="mt-4 text-lg font-bold text-[var(--plum)]">
+                {p.title}
+              </h2>
               <p className="text-sm text-[var(--ink-soft)]">{p.location}</p>
-              <p className="mt-3 text-base font-extrabold">{p.price != null ? formatPrice(p.price) : 'Sob consulta'}</p>
+              <p className="mt-3 text-base font-extrabold">
+                {p.price != null ? formatPrice(p.price) : "Sob consulta"}
+              </p>
               <div className="mt-4">
-                <Link href={`#/`} className="inline-flex items-center rounded-full bg-[var(--plum)] px-4 py-2 text-sm font-bold text-white">Ver detalhes</Link>
+                <Link
+                  href={`#/`}
+                  className="inline-flex items-center rounded-full bg-[var(--plum)] px-4 py-2 text-sm font-bold text-white"
+                >
+                  Ver detalhes
+                </Link>
               </div>
             </article>
           ))
@@ -60,4 +81,3 @@ export default async function Imoveis() {
     </main>
   );
 }
-

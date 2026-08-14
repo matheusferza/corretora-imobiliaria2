@@ -56,7 +56,10 @@ export async function SiteHeader() {
             </span>
           </span>
         </Link>
-        <nav aria-label="Navegação principal" className="hidden items-center gap-5 xl:flex">
+        <nav
+          aria-label="Navegação principal"
+          className="hidden items-center gap-5 xl:flex"
+        >
           <Link
             className="interactive rounded-sm py-2 text-[0.68rem] font-extrabold tracking-[0.06em] text-[var(--ink)] uppercase hover:text-[var(--plum-bright)]"
             href="/imoveis"
@@ -95,7 +98,11 @@ export async function SiteHeader() {
               href="/imoveis"
             >
               Imóveis
-              <ChevronDown aria-hidden="true" className="-rotate-90 text-[var(--gold)]" size={15} />
+              <ChevronDown
+                aria-hidden="true"
+                className="-rotate-90 text-[var(--gold)]"
+                size={15}
+              />
             </Link>
             {navigation.map((item) => (
               <Link
@@ -104,7 +111,11 @@ export async function SiteHeader() {
                 key={item.slug}
               >
                 {item.label}
-                <ChevronDown aria-hidden="true" className="-rotate-90 text-[var(--gold)]" size={15} />
+                <ChevronDown
+                  aria-hidden="true"
+                  className="-rotate-90 text-[var(--gold)]"
+                  size={15}
+                />
               </Link>
             ))}
           </nav>
@@ -113,4 +124,3 @@ export async function SiteHeader() {
     </header>
   );
 }
-

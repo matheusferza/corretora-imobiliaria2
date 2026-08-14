@@ -13,7 +13,8 @@ const timelineData: TimelineItem[] = [
   {
     year: "1990",
     title: "Primeiros Passos na Imobiliária Gonzaga",
-    description: "Início no mercado imobiliário em Curitiba como secretária, passando pela apresentação de imóveis, realização de vistorias e intermediação entre proprietários e locatários.",
+    description:
+      "Início no mercado imobiliário em Curitiba como secretária, passando pela apresentação de imóveis, realização de vistorias e intermediação entre proprietários e locatários.",
     location: "Curitiba — PR",
     tag: "O Início",
     icon: Home,
@@ -21,14 +22,16 @@ const timelineData: TimelineItem[] = [
   {
     year: "25 Anos",
     title: "Trabalho Honesto & Liderança Social na AMAE",
-    description: "Dedicação como motoboy durante 25 anos para sustentar a família com dignidade, acumulada com a honra de presidir a AMAE (Associação de Apoio à Criança e ao Adolescente com Mobilidade Reduzida e com Câncer).",
+    description:
+      "Dedicação como motoboy durante 25 anos para sustentar a família com dignidade, acumulada com a honra de presidir a AMAE (Associação de Apoio à Criança e ao Adolescente com Mobilidade Reduzida e com Câncer).",
     tag: "Superação & Compromisso",
     icon: Bike,
   },
   {
     year: "2019",
     title: "Recomeço em Balneário Camboriú e Nascimento da Corretora Val",
-    description: "Retorno ao mercado imobiliário já em Balneário Camboriú, reencontrando a vocação essencial e fundando a Corretora Val.",
+    description:
+      "Retorno ao mercado imobiliário já em Balneário Camboriú, reencontrando a vocação essencial e fundando a Corretora Val.",
     location: "Balneário Camboriú — SC",
     tag: "Recomeço",
     icon: Heart,
@@ -36,7 +39,8 @@ const timelineData: TimelineItem[] = [
   {
     year: "Hoje",
     title: "Tradição Familiar na Administração de Patrimônios",
-    description: "Gestão completa em família de administração de imóveis, locação anual, temporada e compra e venda, unindo gerações e construindo relacionamentos duradouros.",
+    description:
+      "Gestão completa em família de administração de imóveis, locação anual, temporada e compra e venda, unindo gerações e construindo relacionamentos duradouros.",
     location: "Balneário Camboriú e Camboriú",
     tag: "Atualidade",
     icon: ShieldCheck,

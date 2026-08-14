@@ -12,7 +12,9 @@ export function SectionTitle({
   align = "left",
 }: SectionTitleProps) {
   return (
-    <div className={`mb-12 ${align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-3xl"}`}>
+    <div
+      className={`mb-12 ${align === "center" ? "text-center mx-auto max-w-3xl" : "max-w-3xl"}`}
+    >
       {eyebrow && (
         <span className="mb-2 block text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase">
           {eyebrow}

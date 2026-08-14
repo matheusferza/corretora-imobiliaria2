@@ -33,7 +33,7 @@ export async function GET(request: Request) {
     console.error("Erro ao buscar posts do blog:", error);
     return NextResponse.json(
       { error: "Erro ao buscar posts" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

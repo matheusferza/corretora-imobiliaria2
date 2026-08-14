@@ -15,9 +15,11 @@ const fallbackSettings = {
 };
 
 export async function getSiteSettings() {
-  return (await prisma.configuracaoSite.findUnique({
-    where: { id: "principal" },
-  })) ?? fallbackSettings;
+  return (
+    (await prisma.configuracaoSite.findUnique({
+      where: { id: "principal" },
+    })) ?? fallbackSettings
+  );
 }
 
 export async function getPage(slug: string) {

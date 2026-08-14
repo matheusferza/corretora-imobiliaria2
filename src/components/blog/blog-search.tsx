@@ -3,7 +3,14 @@
 import { Search } from "lucide-react";
 import { useState } from "react";
 
-const categories = ["Todos", "Investimentos", "Alugar", "Comprar", "Mercado", "Temporada"];
+const categories = [
+  "Todos",
+  "Investimentos",
+  "Alugar",
+  "Comprar",
+  "Mercado",
+  "Temporada",
+];
 
 interface BlogSearchProps {
   onSearch: (query: string, category: string) => void;
@@ -28,7 +35,10 @@ export function BlogSearch({ onSearch }: BlogSearchProps) {
     <div className="space-y-6">
       {/* Search Input */}
       <div className="relative max-w-xl">
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--ink-soft)]" size={18} />
+        <Search
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--ink-soft)]"
+          size={18}
+        />
         <input
           type="text"
           value={query}

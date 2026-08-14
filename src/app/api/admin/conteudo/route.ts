@@ -16,7 +16,10 @@ const settingsSchema = z.object({
 });
 
 const pageSchema = z.object({
-  slug: z.string().trim().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+  slug: z
+    .string()
+    .trim()
+    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
   navigationLabel: z.string().trim().min(2).max(40),
   eyebrow: z.string().trim().max(80).nullable(),
   title: z.string().trim().min(3).max(160),
@@ -79,6 +82,9 @@ export async function PUT(request: Request) {
     if (error instanceof ZodError) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }

@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export function PropertyOwnerForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,7 +44,9 @@ export function PropertyOwnerForm() {
       form.reset();
     } catch (err: any) {
       setStatus("error");
-      setErrorMessage(err.message || "Ocorreu um erro ao enviar. Tente novamente.");
+      setErrorMessage(
+        err.message || "Ocorreu um erro ao enviar. Tente novamente.",
+      );
     }
   };
 
@@ -52,7 +56,8 @@ export function PropertyOwnerForm() {
         Quero administrar meu imóvel
       </h3>
       <p className="text-sm text-[var(--ink-soft)] mb-8">
-        Preencha os dados do seu imóvel e entraremos em contato para uma avaliação sem compromisso.
+        Preencha os dados do seu imóvel e entraremos em contato para uma
+        avaliação sem compromisso.
       </p>
 
       {status === "success" ? (
@@ -62,7 +67,9 @@ export function PropertyOwnerForm() {
             Solicitação Enviada com Sucesso!
           </div>
           <p className="text-sm text-emerald-700">
-            Recebemos as informações do seu imóvel. Nossa equipe de administração entrará em contato em breve pelo telefone/WhatsApp informado.
+            Recebemos as informações do seu imóvel. Nossa equipe de
+            administração entrará em contato em breve pelo telefone/WhatsApp
+            informado.
           </p>
           <button
             onClick={() => setStatus("idle")}
@@ -82,7 +89,10 @@ export function PropertyOwnerForm() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="owner-name" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+              <label
+                htmlFor="owner-name"
+                className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+              >
                 Nome completo *
               </label>
               <input
@@ -96,7 +106,10 @@ export function PropertyOwnerForm() {
             </div>
 
             <div>
-              <label htmlFor="owner-phone" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+              <label
+                htmlFor="owner-phone"
+                className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+              >
                 Telefone / WhatsApp *
               </label>
               <input
@@ -111,7 +124,10 @@ export function PropertyOwnerForm() {
           </div>
 
           <div>
-            <label htmlFor="owner-email" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+            <label
+              htmlFor="owner-email"
+              className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+            >
               E-mail *
             </label>
             <input
@@ -126,7 +142,10 @@ export function PropertyOwnerForm() {
 
           <div className="grid gap-5 sm:grid-cols-2">
             <div>
-              <label htmlFor="owner-type" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+              <label
+                htmlFor="owner-type"
+                className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+              >
                 Tipo do Imóvel
               </label>
               <select
@@ -143,7 +162,10 @@ export function PropertyOwnerForm() {
             </div>
 
             <div>
-              <label htmlFor="owner-address" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+              <label
+                htmlFor="owner-address"
+                className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+              >
                 Bairro / Cidade do Imóvel
               </label>
               <input
@@ -157,7 +179,10 @@ export function PropertyOwnerForm() {
           </div>
 
           <div>
-            <label htmlFor="owner-message" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+            <label
+              htmlFor="owner-message"
+              className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+            >
               Observações ou Detalhes do Imóvel
             </label>
             <textarea

@@ -78,8 +78,7 @@ const pages = [
     heading: "Tudo o que seu imóvel precisa, com o cuidado que você espera.",
     intro:
       "Há mais de três décadas, transformamos imóveis em histórias bem cuidadas — com atendimento humano, gestão responsável e compromisso real com o seu patrimônio.",
-    body:
-      "Uma empresa construída em família, para relações que permanecem muito depois da entrega das chaves.",
+    body: "Uma empresa construída em família, para relações que permanecem muito depois da entrega das chaves.",
     ctaLabel: "Conheça nossos imóveis",
     ctaHref: "/imoveis",
     seoTitle: "Corretora Val | Confiança que abre portas",
@@ -95,8 +94,7 @@ const pages = [
     heading: "Cuidamos do seu patrimônio com atenção e transparência.",
     intro:
       "Conte com uma gestão próxima, organizada e preparada para acompanhar cada detalhe do seu imóvel.",
-    body:
-      "Fale com a Corretora Val para apresentar seu imóvel e entender a melhor forma de administrá-lo.",
+    body: "Fale com a Corretora Val para apresentar seu imóvel e entender a melhor forma de administrá-lo.",
     ctaLabel: "Administrar meu imóvel",
     ctaHref: "/contato",
     sortOrder: 1,
@@ -109,8 +107,7 @@ const pages = [
     heading: "Experiência regional, relações duradouras e atendimento humano.",
     intro:
       "A Corretora Val nasceu para cuidar de imóveis e das histórias que eles abrigam.",
-    body:
-      "Nossa trajetória é construída em família, com conhecimento de Balneário Camboriú, Camboriú e região.",
+    body: "Nossa trajetória é construída em família, com conhecimento de Balneário Camboriú, Camboriú e região.",
     ctaLabel: "Fale conosco",
     ctaHref: "/contato",
     sortOrder: 2,
@@ -123,8 +120,7 @@ const pages = [
     heading: "Conhecimento imobiliário para decisões mais seguras.",
     intro:
       "Atendimento personalizado, atuação local e compromisso com negociações transparentes.",
-    body:
-      "CRECI/SC 56372-F. Conteúdo, orientação e experiência para cada etapa da sua decisão imobiliária.",
+    body: "CRECI/SC 56372-F. Conteúdo, orientação e experiência para cada etapa da sua decisão imobiliária.",
     ctaLabel: "Conheça nossos imóveis",
     ctaHref: "/imoveis",
     sortOrder: 3,
@@ -137,8 +133,7 @@ const pages = [
     heading: "Histórias, encontros e o legado da Corretora Val.",
     intro:
       "Um espaço para compartilhar os capítulos que construíram nossa relação com a região.",
-    body:
-      "Fotos, bastidores e memórias que preservam a nossa trajetória e os vínculos com cada cliente.",
+    body: "Fotos, bastidores e memórias que preservam a nossa trajetória e os vínculos com cada cliente.",
     sortOrder: 4,
   },
   {
@@ -149,8 +144,7 @@ const pages = [
     heading: "Informação para orientar sua próxima escolha.",
     intro:
       "Dicas, mercado, administração e conteúdos sobre viver e investir na nossa região.",
-    body:
-      "Em breve, artigos assinados pela Corretora Val.",
+    body: "Em breve, artigos assinados pela Corretora Val.",
     sortOrder: 5,
   },
   {
@@ -159,10 +153,8 @@ const pages = [
     eyebrow: "Relações de confiança",
     title: "Depoimentos",
     heading: "Cada experiência autorizada conta um pouco da nossa história.",
-    intro:
-      "Publicamos relatos de clientes somente com autorização.",
-    body:
-      "Em breve, histórias compartilhadas por quem confiou seu imóvel e seus projetos à Corretora Val.",
+    intro: "Publicamos relatos de clientes somente com autorização.",
+    body: "Em breve, histórias compartilhadas por quem confiou seu imóvel e seus projetos à Corretora Val.",
     sortOrder: 6,
   },
   {
@@ -171,10 +163,8 @@ const pages = [
     eyebrow: "Vamos conversar",
     title: "Contato",
     heading: "Encontre a orientação certa para o seu imóvel.",
-    intro:
-      "Fale com a Corretora Val por WhatsApp, telefone ou e-mail.",
-    body:
-      "Estamos em Balneário Camboriú e atendemos também Camboriú e região.",
+    intro: "Fale com a Corretora Val por WhatsApp, telefone ou e-mail.",
+    body: "Estamos em Balneário Camboriú e atendemos também Camboriú e região.",
     ctaLabel: "Falar pelo WhatsApp",
     ctaHref: "https://wa.me/5547974007301",
     sortOrder: 7,
@@ -185,7 +175,8 @@ const posts = [
   {
     slug: "guia-de-investimento-imobiliario-balneario-camboriu",
     title: "Guia de Investimento Imobiliário em Balneário Camboriú para 2026",
-    summary: "Descubra por que a cidade possui um dos metros quadrados mais valorizados do Brasil e como escolher a melhor oportunidade.",
+    summary:
+      "Descubra por que a cidade possui um dos metros quadrados mais valorizados do Brasil e como escolher a melhor oportunidade.",
     category: "Investimentos",
     authorName: "Corretora Val",
     readingTimeMinutes: 6,
@@ -204,13 +195,16 @@ Ao analisar um imóvel para investimento na região, considere:
 - **Localização:** Imóveis na Barra Sul e Centro possuem demanda perene.
 - **Tipologia:** Apartamentos de 2 e 3 suítes com vaga privativa têm a maior liquidez de revenda.
 - **Documentação:** Garantir que o imóvel esteja 100% regularizado com matrícula individualizada.`,
-    seoTitle: "Investimento Imobiliário em Balneário Camboriú (2026) | Corretora Val",
-    seoDescription: "Guia completo de investimento e valorização imobiliária em Balneário Camboriú com a experiência da Corretora Val.",
+    seoTitle:
+      "Investimento Imobiliário em Balneário Camboriú (2026) | Corretora Val",
+    seoDescription:
+      "Guia completo de investimento e valorização imobiliária em Balneário Camboriú com a experiência da Corretora Val.",
   },
   {
     slug: "dicas-para-preparar-seu-imovel-para-locacao-anual",
     title: "5 Dicas Essenciais para Preparar seu Imóvel para Locação Anual",
-    summary: "Aumente a atratividade do seu patrimônio e garanta bons inquilinos com pequenas adequações estratégicas.",
+    summary:
+      "Aumente a atratividade do seu patrimônio e garanta bons inquilinos com pequenas adequações estratégicas.",
     category: "Alugar",
     authorName: "Corretora Val",
     readingTimeMinutes: 4,
@@ -227,12 +221,15 @@ Paredes pintadas com cores neutras (off-white ou bege claro) ampliam visualmente
 ### 3. Gestão Profissional de Imóveis
 Contar com uma administração imobiliária experiente garante vistoria detalhada de entrada e saída, análise rigorosa de crédito e segurança no recebimento dos aluguéis.`,
     seoTitle: "Como Preparar seu Imóvel para Locação Anual | Corretora Val",
-    seoDescription: "Dicas práticas da Corretora Val para valorizar seu imóvel e conquistar os melhores inquilinos em Balneário Camboriú.",
+    seoDescription:
+      "Dicas práticas da Corretora Val para valorizar seu imóvel e conquistar os melhores inquilinos em Balneário Camboriú.",
   },
   {
     slug: "morar-em-camboriu-qualidade-de-vida-e-tranquilidade",
-    title: "Morar em Camboriú: Qualidade de Vida, Natureza e Proximidade do Mar",
-    summary: "Conheça as vantagens de residir na cidade vizinha a Balneário Camboriú, combinando tranquilidade e excelente custo-benefício.",
+    title:
+      "Morar em Camboriú: Qualidade de Vida, Natureza e Proximidade do Mar",
+    summary:
+      "Conheça as vantagens de residir na cidade vizinha a Balneário Camboriú, combinando tranquilidade e excelente custo-benefício.",
     category: "Comprar",
     authorName: "Corretora Val",
     readingTimeMinutes: 5,
@@ -246,7 +243,8 @@ A cidade oferece opções de casas em loteamentos abertos e condomínios fechado
 ### Custo-Benefício Atraente
 O valor do metro quadrado em Camboriú permite adquirir imóveis com área privativa significativamente maior do que na área praiana vizinha.`,
     seoTitle: "Morar em Camboriú: Vantagens e Imóveis | Corretora Val",
-    seoDescription: "Saiba por que Camboriú é uma excelente escolha para morar bem perto do mar em SC.",
+    seoDescription:
+      "Saiba por que Camboriú é uma excelente escolha para morar bem perto do mar em SC.",
   },
 ];
 

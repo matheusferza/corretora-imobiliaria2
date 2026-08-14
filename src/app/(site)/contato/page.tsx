@@ -3,7 +3,15 @@ import { PageHero } from "@/components/site/page-hero";
 import { CTASection } from "@/components/site/cta-section";
 import { ContactForm } from "@/components/forms/contact-form";
 import { getSiteSettings } from "@/lib/site-content";
-import { MessageCircle, Phone, Mail, Share2, MapPin, Clock, ShieldCheck } from "lucide-react";
+import {
+  MessageCircle,
+  Phone,
+  Mail,
+  Share2,
+  MapPin,
+  Clock,
+  ShieldCheck,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Contato | Corretora Val",
@@ -13,7 +21,9 @@ export const metadata: Metadata = {
 
 export default async function ContatoPage() {
   const settings = await getSiteSettings();
-  const whatsappUrl = settings.whatsapp ? `https://wa.me/${settings.whatsapp}` : "#";
+  const whatsappUrl = settings.whatsapp
+    ? `https://wa.me/${settings.whatsapp}`
+    : "#";
 
   return (
     <main className="min-h-screen">
@@ -36,7 +46,9 @@ export default async function ContatoPage() {
                   Estamos à disposição para te ouvir.
                 </h2>
                 <p className="mt-4 text-sm text-[var(--ink-soft)] leading-relaxed">
-                  Seja para colocar seu imóvel para administrar, comprar um novo apartamento ou tirar dúvidas sobre a região, conte com nosso suporte direto.
+                  Seja para colocar seu imóvel para administrar, comprar um novo
+                  apartamento ou tirar dúvidas sobre a região, conte com nosso
+                  suporte direto.
                 </p>
               </div>
 
@@ -52,8 +64,12 @@ export default async function ContatoPage() {
                     <MessageCircle size={22} />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">WhatsApp</span>
-                    <strong className="text-base text-[var(--plum)] font-bold">{settings.phone || "(47) 97400-7301"}</strong>
+                    <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">
+                      WhatsApp
+                    </span>
+                    <strong className="text-base text-[var(--plum)] font-bold">
+                      {settings.phone || "(47) 97400-7301"}
+                    </strong>
                   </div>
                 </a>
 
@@ -65,8 +81,12 @@ export default async function ContatoPage() {
                     <Phone size={20} />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">Telefone Comercial</span>
-                    <strong className="text-base text-[var(--plum)] font-bold">{settings.phone || "(47) 97400-7301"}</strong>
+                    <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">
+                      Telefone Comercial
+                    </span>
+                    <strong className="text-base text-[var(--plum)] font-bold">
+                      {settings.phone || "(47) 97400-7301"}
+                    </strong>
                   </div>
                 </a>
 
@@ -78,8 +98,12 @@ export default async function ContatoPage() {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">E-mail</span>
-                    <strong className="text-base text-[var(--plum)] font-bold">{settings.email || "contato@corretoraval.com.br"}</strong>
+                    <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">
+                      E-mail
+                    </span>
+                    <strong className="text-base text-[var(--plum)] font-bold">
+                      {settings.email || "contato@corretoraval.com.br"}
+                    </strong>
                   </div>
                 </a>
 
@@ -94,8 +118,12 @@ export default async function ContatoPage() {
                       <Share2 size={20} />
                     </div>
                     <div>
-                      <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">Instagram</span>
-                      <strong className="text-base text-[var(--plum)] font-bold">@corretoraval</strong>
+                      <span className="text-xs font-bold text-[var(--ink-soft)] uppercase block">
+                        Instagram
+                      </span>
+                      <strong className="text-base text-[var(--plum)] font-bold">
+                        @corretoraval
+                      </strong>
                     </div>
                   </a>
                 )}
@@ -104,14 +132,20 @@ export default async function ContatoPage() {
               {/* Hours & Location Box */}
               <div className="rounded-2xl border bg-[var(--surface-muted)] p-6 space-y-3">
                 <div className="flex items-center gap-2 text-xs font-bold text-[var(--plum)] uppercase">
-                  <MapPin size={16} className="text-[var(--gold)]" /> Localização
+                  <MapPin size={16} className="text-[var(--gold)]" />{" "}
+                  Localização
                 </div>
-                <p className="text-xs text-[var(--ink-soft)]">{settings.address}</p>
+                <p className="text-xs text-[var(--ink-soft)]">
+                  {settings.address}
+                </p>
 
                 <div className="flex items-center gap-2 text-xs font-bold text-[var(--plum)] uppercase pt-2 border-t">
-                  <Clock size={16} className="text-[var(--gold)]" /> Horário de Atendimento
+                  <Clock size={16} className="text-[var(--gold)]" /> Horário de
+                  Atendimento
                 </div>
-                <p className="text-xs text-[var(--ink-soft)]">Segunda a Sexta: 08:30 às 18:00 | Sábado: 09:00 às 13:00</p>
+                <p className="text-xs text-[var(--ink-soft)]">
+                  Segunda a Sexta: 08:30 às 18:00 | Sábado: 09:00 às 13:00
+                </p>
               </div>
             </div>
 

@@ -11,15 +11,19 @@ export async function middleware(req: NextRequest) {
   if (!pathname.startsWith("/admin")) return NextResponse.next();
 
   // Allow the auth signin page (located at /auth/signin)
-  if (pathname === "/auth/signin" || pathname.startsWith("/auth")) return NextResponse.next();
+  if (pathname === "/auth/signin" || pathname.startsWith("/auth"))
+    return NextResponse.next();
 
   // Use next-auth/jwt getToken to read token from cookies
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
 
   if (!token || token.role !== "admin") {
     // Redirect to sign-in with callbackUrl back to original path
-    const signInUrl = new URL('/auth/signin', req.url);
-    signInUrl.searchParams.set('callbackUrl', pathname + (req.nextUrl.search || ''));
+    const signInUrl = new URL("/auth/signin", req.url);
+    signInUrl.searchParams.set(
+      "callbackUrl",
+      pathname + (req.nextUrl.search || ""),
+    );
     return NextResponse.redirect(signInUrl);
   }
 
@@ -27,5 +31,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ["/admin/:path*"],
 };

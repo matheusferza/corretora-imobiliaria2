@@ -10,7 +10,9 @@ interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
   const post = await prisma.postBlog.findUnique({ where: { slug } });
 
@@ -87,20 +89,29 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 {post.content.split("\n\n").map((paragraph, idx) => {
                   if (paragraph.startsWith("### ")) {
                     return (
-                      <h3 key={idx} className="display text-2xl font-bold text-[var(--plum)] pt-4">
+                      <h3
+                        key={idx}
+                        className="display text-2xl font-bold text-[var(--plum)] pt-4"
+                      >
                         {paragraph.replace("### ", "")}
                       </h3>
                     );
                   }
                   if (paragraph.startsWith("## ")) {
                     return (
-                      <h2 key={idx} className="display text-3xl font-bold text-[var(--plum)] pt-6">
+                      <h2
+                        key={idx}
+                        className="display text-3xl font-bold text-[var(--plum)] pt-6"
+                      >
                         {paragraph.replace("## ", "")}
                       </h2>
                     );
                   }
                   return (
-                    <p key={idx} className="text-base text-[var(--ink-soft)] leading-relaxed">
+                    <p
+                      key={idx}
+                      className="text-base text-[var(--ink-soft)] leading-relaxed"
+                    >
                       {paragraph}
                     </p>
                   );
@@ -122,9 +133,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <aside className="lg:col-span-4 space-y-8">
               {/* WhatsApp Box */}
               <div className="rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-8 shadow-xs space-y-4">
-                <h4 className="font-bold text-lg text-[var(--plum)]">Dúvidas sobre este tema?</h4>
+                <h4 className="font-bold text-lg text-[var(--plum)]">
+                  Dúvidas sobre este tema?
+                </h4>
                 <p className="text-xs text-[var(--ink-soft)] leading-relaxed">
-                  Fale com a Corretora Val e receba uma orientação personalizada para o seu imóvel ou investimento.
+                  Fale com a Corretora Val e receba uma orientação personalizada
+                  para o seu imóvel ou investimento.
                 </p>
                 <a
                   href="https://wa.me/5547974007301"
@@ -139,7 +153,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               {/* Related Properties */}
               {featuredProperties.length > 0 && (
                 <div className="rounded-3xl border bg-white p-8 shadow-xs space-y-4">
-                  <h4 className="font-bold text-base text-[var(--plum)]">Imóveis em Destaque</h4>
+                  <h4 className="font-bold text-base text-[var(--plum)]">
+                    Imóveis em Destaque
+                  </h4>
                   <div className="space-y-4">
                     {featuredProperties.map((prop) => (
                       <Link

@@ -4,8 +4,8 @@ import { Prisma } from "@prisma/client";
 import { getServerSession } from "next-auth/next";
 import { NextResponse } from "next/server";
 import { ZodError, z } from "zod";
-import { revalidatePath } from 'next/cache';
-import { getStorageProvider } from '@/lib/storage';
+import { revalidatePath } from "next/cache";
+import { getStorageProvider } from "@/lib/storage";
 
 const purposes = ["VENDA", "LOCACAO_ANUAL", "TEMPORADA"] as const;
 const statuses = [
@@ -107,7 +107,7 @@ function errorResponse(error: unknown) {
 
   // Log error server-side; return a generic 500 to the client to avoid leaking internals
   if (error instanceof Error) {
-    console.error('API /api/imoveis internal error:', error);
+    console.error("API /api/imoveis internal error:", error);
   }
 
   return NextResponse.json({ error: "Internal server error" }, { status: 500 });
@@ -157,26 +157,26 @@ export async function POST(req: Request) {
         const photosToCreate = body.photos.map((p: any, i: number) => ({
           url: p.url,
           alt: p.alt ?? null,
-          position: typeof p.position === 'number' ? p.position : i,
+          position: typeof p.position === "number" ? p.position : i,
           isCover: !!p.isCover,
           imovelId: created.id,
         }));
         await prisma.foto.createMany({ data: photosToCreate });
       } catch (e) {
-        console.error('Creating photos failed:', e);
+        console.error("Creating photos failed:", e);
       }
     }
 
     try {
       // on-demand revalidation for public listing and individual page
-      revalidatePath('/imoveis');
+      revalidatePath("/imoveis");
       if (created.slug) revalidatePath(`/imoveis/${created.slug}`);
     } catch (e) {
-      console.error('Revalidate after create failed:', e);
+      console.error("Revalidate after create failed:", e);
     }
     return NextResponse.json(created, { status: 201 });
   } catch (error) {
-    console.error('API /api/imoveis POST error:', error);
+    console.error("API /api/imoveis POST error:", error);
     return errorResponse(error);
   }
 }
@@ -193,14 +193,14 @@ export async function PUT(req: Request) {
     const data = updateSchema.parse(await req.json());
     const updated = await prisma.imovel.update({ where: { id }, data });
     try {
-      revalidatePath('/imoveis');
+      revalidatePath("/imoveis");
       if (updated.slug) revalidatePath(`/imoveis/${updated.slug}`);
     } catch (e) {
-      console.error('Revalidate after update failed:', e);
+      console.error("Revalidate after update failed:", e);
     }
     return NextResponse.json(updated);
   } catch (error) {
-    console.error('API /api/imoveis PUT error:', error);
+    console.error("API /api/imoveis PUT error:", error);
     return errorResponse(error);
   }
 }
@@ -219,14 +219,14 @@ export async function DELETE(req: Request) {
       data: { archivedAt: new Date(), status: "ARQUIVADO", isFeatured: false },
     });
     try {
-      revalidatePath('/imoveis');
+      revalidatePath("/imoveis");
       if (archived.slug) revalidatePath(`/imoveis/${archived.slug}`);
     } catch (e) {
-      console.error('Revalidate after archive failed:', e);
+      console.error("Revalidate after archive failed:", e);
     }
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('API /api/imoveis DELETE error:', error);
+    console.error("API /api/imoveis DELETE error:", error);
     return errorResponse(error);
   }
 }

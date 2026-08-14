@@ -45,7 +45,9 @@ export default function MemoriaVivaPage() {
             &ldquo;Cada imóvel carrega uma história. A nossa também.&rdquo;
           </h2>
           <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
-            Preservamos com carinho as amizades e contatos que iniciaram lá nos primeiros anos e continuam confiando no nosso trabalho até os dias de hoje.
+            Preservamos com carinho as amizades e contatos que iniciaram lá nos
+            primeiros anos e continuam confiando no nosso trabalho até os dias
+            de hoje.
           </p>
         </div>
       </section>

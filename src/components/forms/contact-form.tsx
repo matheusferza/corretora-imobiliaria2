@@ -4,7 +4,9 @@ import { useState } from "react";
 import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +43,9 @@ export function ContactForm() {
       form.reset();
     } catch (err: any) {
       setStatus("error");
-      setErrorMessage(err.message || "Ocorreu um erro ao enviar. Tente novamente.");
+      setErrorMessage(
+        err.message || "Ocorreu um erro ao enviar. Tente novamente.",
+      );
     }
   };
 
@@ -51,7 +55,8 @@ export function ContactForm() {
         Envie uma Mensagem
       </h3>
       <p className="text-sm text-[var(--ink-soft)] mb-6">
-        Preencha o formulário abaixo e nossa equipe responderá com a orientação certa para o seu projeto.
+        Preencha o formulário abaixo e nossa equipe responderá com a orientação
+        certa para o seu projeto.
       </p>
 
       {status === "success" ? (
@@ -61,7 +66,8 @@ export function ContactForm() {
             Mensagem Enviada com Sucesso!
           </div>
           <p className="text-sm text-emerald-700">
-            Obrigado pelo contato! Retornaremos sua mensagem o mais breve possível.
+            Obrigado pelo contato! Retornaremos sua mensagem o mais breve
+            possível.
           </p>
           <button
             onClick={() => setStatus("idle")}
@@ -80,7 +86,10 @@ export function ContactForm() {
           )}
 
           <div>
-            <label htmlFor="contact-name" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+            <label
+              htmlFor="contact-name"
+              className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+            >
               Nome completo *
             </label>
             <input
@@ -95,7 +104,10 @@ export function ContactForm() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
-              <label htmlFor="contact-email" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+              <label
+                htmlFor="contact-email"
+                className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+              >
                 E-mail *
               </label>
               <input
@@ -109,7 +121,10 @@ export function ContactForm() {
             </div>
 
             <div>
-              <label htmlFor="contact-phone" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+              <label
+                htmlFor="contact-phone"
+                className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+              >
                 Telefone / WhatsApp *
               </label>
               <input
@@ -124,7 +139,10 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="contact-subject" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+            <label
+              htmlFor="contact-subject"
+              className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+            >
               Assunto
             </label>
             <input
@@ -137,7 +155,10 @@ export function ContactForm() {
           </div>
 
           <div>
-            <label htmlFor="contact-message" className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5">
+            <label
+              htmlFor="contact-message"
+              className="block text-xs font-bold text-[var(--ink)] uppercase mb-1.5"
+            >
               Mensagem *
             </label>
             <textarea

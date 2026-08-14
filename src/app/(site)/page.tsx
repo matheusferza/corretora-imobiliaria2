@@ -31,16 +31,15 @@ export default function Home() {
           </h1>
           <p className="fade-up-delay mt-7 max-w-xl text-base leading-8 text-[var(--ink-soft)] sm:text-lg">
             Há mais de três décadas, transformamos imóveis em histórias bem
-            cuidadas — com atendimento humano, gestão responsável e
-            compromisso real com o seu patrimônio.
+            cuidadas — com atendimento humano, gestão responsável e compromisso
+            real com o seu patrimônio.
           </p>
           <div className="fade-up-delay mt-9 flex flex-col gap-3 sm:flex-row">
             <Link
               className="interactive inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-[var(--plum)] px-6 text-sm font-extrabold text-white shadow-[0_10px_24px_rgba(53,16,79,0.18)] hover:-translate-y-0.5 hover:bg-[var(--plum-bright)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--gold)]"
               href="/imoveis"
             >
-              Conheça nossos imóveis{" "}
-              <ArrowRight aria-hidden="true" size={17} />
+              Conheça nossos imóveis <ArrowRight aria-hidden="true" size={17} />
             </Link>
             <Link
               className="interactive inline-flex min-h-12 items-center justify-center gap-2 rounded-full border bg-[var(--surface)] px-6 text-sm font-extrabold text-[var(--plum)] hover:border-[var(--gold)] hover:bg-[var(--surface-muted)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--gold)]"
@@ -112,4 +111,3 @@ export default function Home() {
     </main>
   );
 }
-

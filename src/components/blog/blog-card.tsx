@@ -34,7 +34,10 @@ export function BlogCard({ post }: BlogCardProps) {
           </div>
         </div>
 
-        <Link href={`/blog/${post.slug}`} className="group-hover:text-[var(--plum-bright)] transition-colors">
+        <Link
+          href={`/blog/${post.slug}`}
+          className="group-hover:text-[var(--plum-bright)] transition-colors"
+        >
           <h3 className="display text-xl leading-snug font-bold text-[var(--plum)] mb-3">
             {post.title}
           </h3>

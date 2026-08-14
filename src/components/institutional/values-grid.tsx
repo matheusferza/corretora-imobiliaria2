@@ -1,4 +1,12 @@
-import { ShieldCheck, Eye, UserCheck, Award, Heart, Sparkles, CheckCircle2 } from "lucide-react";
+import {
+  ShieldCheck,
+  Eye,
+  UserCheck,
+  Award,
+  Heart,
+  Sparkles,
+  CheckCircle2,
+} from "lucide-react";
 
 interface ValueItem {
   icon: React.ElementType;

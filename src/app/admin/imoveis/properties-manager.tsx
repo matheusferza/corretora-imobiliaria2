@@ -10,7 +10,13 @@ import {
   Trash2,
   X,
 } from "lucide-react";
-import { type FormEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  type FormEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 type Purpose = "VENDA" | "LOCACAO_ANUAL" | "TEMPORADA";
 
@@ -138,8 +144,7 @@ export function AdminPropertiesManager() {
       });
       if (!res.ok) throw new Error("Não foi possível carregar o imóvel.");
       const full = await res.json();
-      const price =
-        full.salePrice ?? full.monthlyRent ?? full.dailyRate ?? "";
+      const price = full.salePrice ?? full.monthlyRent ?? full.dailyRate ?? "";
       setDraft({
         code: full.code,
         slug: full.slug,
@@ -323,7 +328,7 @@ export function AdminPropertiesManager() {
 
   const isEditing = editingId !== null;
   const editingCode = isEditing
-    ? properties.find((p) => p.id === editingId)?.code ?? "imóvel"
+    ? (properties.find((p) => p.id === editingId)?.code ?? "imóvel")
     : null;
 
   return (
@@ -352,7 +357,6 @@ export function AdminPropertiesManager() {
 
       {/* ── Two-column grid: list + form ───────────────── */}
       <section className="mt-10 grid gap-8 xl:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)]">
-
         {/* Property list */}
         <div className="rounded-2xl border bg-[var(--surface)] p-5 shadow-[0_8px_24px_rgba(53,16,79,0.06)] sm:p-7">
           <div className="flex items-center justify-between gap-4">
@@ -628,9 +632,7 @@ export function AdminPropertiesManager() {
                 >
                   Selecionar imagens
                 </label>
-                <span className="text-sm text-white/75">
-                  Até 12 imagens.
-                </span>
+                <span className="text-sm text-white/75">Até 12 imagens.</span>
               </div>
               {photos.length > 0 && (
                 <div className="flex flex-wrap gap-2">

@@ -53,7 +53,9 @@ export function BlogClientWrapper({ initialPosts }: BlogClientWrapperProps) {
         </div>
       ) : posts.length === 0 ? (
         <div className="rounded-2xl border bg-white p-12 text-center space-y-3">
-          <h3 className="text-lg font-bold text-[var(--plum)]">Nenhum artigo encontrado</h3>
+          <h3 className="text-lg font-bold text-[var(--plum)]">
+            Nenhum artigo encontrado
+          </h3>
           <p className="text-sm text-[var(--ink-soft)]">
             Tente buscar com outros termos ou selecione uma categoria diferente.
           </p>

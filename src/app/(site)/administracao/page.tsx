@@ -3,7 +3,17 @@ import { PageHero } from "@/components/site/page-hero";
 import { SectionTitle } from "@/components/site/section-title";
 import { CTASection } from "@/components/site/cta-section";
 import { PropertyOwnerForm } from "@/components/forms/property-owner-form";
-import { ShieldCheck, Megaphone, Users, LineChart, Lock, FileCheck, DollarSign, Wrench, Headset } from "lucide-react";
+import {
+  ShieldCheck,
+  Megaphone,
+  Users,
+  LineChart,
+  Lock,
+  FileCheck,
+  DollarSign,
+  Wrench,
+  Headset,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Administração de Imóveis | Corretora Val",
@@ -15,43 +25,84 @@ const benefits = [
   {
     icon: ShieldCheck,
     title: "Gestão Profissional",
-    description: "Administração completa com relatórios transparentes, suporte jurídico e acompanhamento de cada contrato.",
+    description:
+      "Administração completa com relatórios transparentes, suporte jurídico e acompanhamento de cada contrato.",
   },
   {
     icon: Megaphone,
     title: "Divulgação Estratégica",
-    description: "Anúncios em portais de destaque, fotos de qualidade e atendimento ágil para atrair interessados qualificados.",
+    description:
+      "Anúncios em portais de destaque, fotos de qualidade e atendimento ágil para atrair interessados qualificados.",
   },
   {
     icon: Users,
     title: "Seleção de Inquilinos",
-    description: "Análise criteriosa de crédito e comprovantes de renda para garantir morada responsável e adimplência.",
+    description:
+      "Análise criteriosa de crédito e comprovantes de renda para garantir morada responsável e adimplência.",
   },
   {
     icon: LineChart,
     title: "Acompanhamento Contínuo",
-    description: "Monitoramento de reajustes contratuais, vistorias periódicas de entrada e saída e renovações orientadas.",
+    description:
+      "Monitoramento de reajustes contratuais, vistorias periódicas de entrada e saída e renovações orientadas.",
   },
   {
     icon: Lock,
     title: "Segurança Jurídica",
-    description: "Contratos estruturados sob a Lei do Inquilinato com garantias locatícias sólidas para proteção do imóvel.",
+    description:
+      "Contratos estruturados sob a Lei do Inquilinato com garantias locatícias sólidas para proteção do imóvel.",
   },
 ];
 
 const steps = [
-  { number: "01", title: "Você apresenta o imóvel", desc: "Entre em contato conosco e compartilhe as características do seu bem." },
-  { number: "02", title: "Avaliamos e cadastramos", desc: "Realizamos estudo de mercado para precificação justa e cadastro completo." },
-  { number: "03", title: "Divulgamos", desc: "Publicamos seu imóvel nas nossas redes, portal exclusivo e parceiros estratégicos." },
-  { number: "04", title: "Encontramos o perfil ideal", desc: "Filtramos propostas e selecionamos inquilinos qualificados." },
-  { number: "05", title: "Administramos", desc: "Gestão completa de recebimentos, manutenção e atendimento durante todo o contrato." },
+  {
+    number: "01",
+    title: "Você apresenta o imóvel",
+    desc: "Entre em contato conosco e compartilhe as características do seu bem.",
+  },
+  {
+    number: "02",
+    title: "Avaliamos e cadastramos",
+    desc: "Realizamos estudo de mercado para precificação justa e cadastro completo.",
+  },
+  {
+    number: "03",
+    title: "Divulgamos",
+    desc: "Publicamos seu imóvel nas nossas redes, portal exclusivo e parceiros estratégicos.",
+  },
+  {
+    number: "04",
+    title: "Encontramos o perfil ideal",
+    desc: "Filtramos propostas e selecionamos inquilinos qualificados.",
+  },
+  {
+    number: "05",
+    title: "Administramos",
+    desc: "Gestão completa de recebimentos, manutenção e atendimento durante todo o contrato.",
+  },
 ];
 
 const careItems = [
-  { icon: FileCheck, title: "Gestão de Locação", desc: "Emissão de contratos, vistoria fotográfica e acompanhamento de chaves." },
-  { icon: DollarSign, title: "Cobrança & Repasse", desc: "Controle pontual de pagamentos, repasses e acompanhamento de adimplência." },
-  { icon: Headset, title: "Atendimento ao Inquilino", desc: "Central direta para resolução de dúvidas e ocorrências do dia a dia." },
-  { icon: Wrench, title: "Manutenção & Reparos", desc: "Acompanhamento de orçamentos e reparos necessários para conservar o imóvel." },
+  {
+    icon: FileCheck,
+    title: "Gestão de Locação",
+    desc: "Emissão de contratos, vistoria fotográfica e acompanhamento de chaves.",
+  },
+  {
+    icon: DollarSign,
+    title: "Cobrança & Repasse",
+    desc: "Controle pontual de pagamentos, repasses e acompanhamento de adimplência.",
+  },
+  {
+    icon: Headset,
+    title: "Atendimento ao Inquilino",
+    desc: "Central direta para resolução de dúvidas e ocorrências do dia a dia.",
+  },
+  {
+    icon: Wrench,
+    title: "Manutenção & Reparos",
+    desc: "Acompanhamento de orçamentos e reparos necessários para conservar o imóvel.",
+  },
 ];
 
 export default function AdministracaoPage() {
@@ -76,12 +127,19 @@ export default function AdministracaoPage() {
             {benefits.map((b, idx) => {
               const Icon = b.icon;
               return (
-                <div key={idx} className="rounded-2xl border p-8 bg-[var(--surface)] hover:border-[var(--gold-light)] transition-all">
+                <div
+                  key={idx}
+                  className="rounded-2xl border p-8 bg-[var(--surface)] hover:border-[var(--gold-light)] transition-all"
+                >
                   <div className="mb-6 flex size-12 items-center justify-center rounded-xl bg-white text-[var(--plum)] shadow-xs">
                     <Icon size={24} />
                   </div>
-                  <h3 className="text-xl font-bold text-[var(--plum)] mb-2">{b.title}</h3>
-                  <p className="text-sm text-[var(--ink-soft)] leading-relaxed">{b.description}</p>
+                  <h3 className="text-xl font-bold text-[var(--plum)] mb-2">
+                    {b.title}
+                  </h3>
+                  <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
+                    {b.description}
+                  </p>
                 </div>
               );
             })}
@@ -100,11 +158,20 @@ export default function AdministracaoPage() {
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {steps.map((s, idx) => (
-              <div key={idx} className="rounded-2xl border bg-white p-6 relative flex flex-col justify-between">
+              <div
+                key={idx}
+                className="rounded-2xl border bg-white p-6 relative flex flex-col justify-between"
+              >
                 <div>
-                  <span className="display block text-3xl font-bold text-[var(--gold)] mb-3">{s.number}</span>
-                  <h4 className="font-bold text-base text-[var(--plum)] mb-2">{s.title}</h4>
-                  <p className="text-xs text-[var(--ink-soft)] leading-relaxed">{s.desc}</p>
+                  <span className="display block text-3xl font-bold text-[var(--gold)] mb-3">
+                    {s.number}
+                  </span>
+                  <h4 className="font-bold text-base text-[var(--plum)] mb-2">
+                    {s.title}
+                  </h4>
+                  <p className="text-xs text-[var(--ink-soft)] leading-relaxed">
+                    {s.desc}
+                  </p>
                 </div>
               </div>
             ))}
@@ -125,7 +192,9 @@ export default function AdministracaoPage() {
                   O que cuidamos para você em cada detalhe
                 </h2>
                 <p className="mt-4 text-sm text-[var(--ink-soft)] leading-relaxed">
-                  Gerenciar um imóvel exige tempo, atenção legal e acompanhamento. Assumimos a rotina operacional para que você tenha retorno sem preocupações.
+                  Gerenciar um imóvel exige tempo, atenção legal e
+                  acompanhamento. Assumimos a rotina operacional para que você
+                  tenha retorno sem preocupações.
                 </p>
               </div>
 
@@ -133,9 +202,14 @@ export default function AdministracaoPage() {
                 {careItems.map((c, idx) => {
                   const Icon = c.icon;
                   return (
-                    <div key={idx} className="rounded-2xl border p-5 bg-[var(--surface)]">
+                    <div
+                      key={idx}
+                      className="rounded-2xl border p-5 bg-[var(--surface)]"
+                    >
                       <Icon size={20} className="text-[var(--gold)] mb-2" />
-                      <h4 className="font-bold text-sm text-[var(--plum)] mb-1">{c.title}</h4>
+                      <h4 className="font-bold text-sm text-[var(--plum)] mb-1">
+                        {c.title}
+                      </h4>
                       <p className="text-xs text-[var(--ink-soft)]">{c.desc}</p>
                     </div>
                   );

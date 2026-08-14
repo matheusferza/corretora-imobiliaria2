@@ -15,17 +15,20 @@ const testimonials = [
   {
     name: "Ricardo & Fernanda S.",
     role: "Proprietários de imóvel em Balneário Camboriú",
-    content: "A Val administra nosso apartamento há mais de 8 anos. Nunca tivemos atraso de repasse e a vistoria de devolução de inquilinos é sempre impecável. Recomendo de olhos fechados.",
+    content:
+      "A Val administra nosso apartamento há mais de 8 anos. Nunca tivemos atraso de repasse e a vistoria de devolução de inquilinos é sempre impecável. Recomendo de olhos fechados.",
   },
   {
     name: "Dr. Marcelo T.",
     role: "Inquilino anual no Centro",
-    content: "Atendimento transparente e sem burocracias desnecessárias. Na hora da assinatura do contrato, tudo foi explicado com muita clareza.",
+    content:
+      "Atendimento transparente e sem burocracias desnecessárias. Na hora da assinatura do contrato, tudo foi explicado com muita clareza.",
   },
   {
     name: "Camila V.",
     role: "Investidora",
-    content: "A orientação da Corretora Val sobre o mercado de Camboriú foi fundamental para minha primeira aquisição para rentabilidade. Experiência real da região.",
+    content:
+      "A orientação da Corretora Val sobre o mercado de Camboriú foi fundamental para minha primeira aquisição para rentabilidade. Experiência real da região.",
   },
 ];
 
@@ -63,7 +66,10 @@ export default function AutoridadePage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {testimonials.map((t, idx) => (
-              <div key={idx} className="rounded-2xl border bg-white p-8 shadow-xs flex flex-col justify-between">
+              <div
+                key={idx}
+                className="rounded-2xl border bg-white p-8 shadow-xs flex flex-col justify-between"
+              >
                 <div>
                   <div className="flex items-center gap-1 text-[var(--gold)] mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -77,8 +83,12 @@ export default function AutoridadePage() {
                 </div>
 
                 <div className="pt-4 border-t">
-                  <h4 className="font-bold text-sm text-[var(--plum)]">{t.name}</h4>
-                  <span className="text-xs text-[var(--ink-soft)]">{t.role}</span>
+                  <h4 className="font-bold text-sm text-[var(--plum)]">
+                    {t.name}
+                  </h4>
+                  <span className="text-xs text-[var(--ink-soft)]">
+                    {t.role}
+                  </span>
                 </div>
               </div>
             ))}
