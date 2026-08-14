@@ -52,3 +52,4 @@ csrf.json
 post_response.json
 tmp_payload.json
 
+public/uploads/
