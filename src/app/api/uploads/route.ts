@@ -6,9 +6,11 @@ export const runtime = "nodejs";
 export async function POST(req: Request) {
   try {
     const form = await req.formData();
-    const file = form.get("file") as any;
-    if (!file)
+    const file = form.get("file");
+
+    if (!(file instanceof File)) {
       return NextResponse.json({ error: "Missing file" }, { status: 400 });
+    }
 
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);

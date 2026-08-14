@@ -1,4 +1,4 @@
-import { Award, Shield, CheckCircle2, Building2 } from "lucide-react";
+import { CheckCircle2, Shield } from "lucide-react";
 
 export function AuthorityStats() {
   return (

@@ -1,11 +1,10 @@
+import { Prisma } from "@prisma/client";
+import { revalidatePath } from "next/cache";
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { ZodError, z } from "zod";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { Prisma } from "@prisma/client";
-import { getServerSession } from "next-auth/next";
-import { NextResponse } from "next/server";
-import { ZodError, z } from "zod";
-import { revalidatePath } from "next/cache";
-import { getStorageProvider } from "@/lib/storage";
 
 const purposes = ["VENDA", "LOCACAO_ANUAL", "TEMPORADA"] as const;
 const statuses = [
@@ -32,6 +31,13 @@ const markers = [
 const optionalText = z.string().trim().max(4_000).optional().nullable();
 const optionalAmount = z.number().int().nonnegative().optional().nullable();
 const optionalInteger = z.number().int().nonnegative().optional().nullable();
+
+type PropertyPhotoInput = {
+  url: string;
+  alt?: string | null;
+  position?: number | null;
+  isCover?: boolean | null;
+};
 
 const propertyFields = z.object({
   code: z.string().trim().min(3).max(32),
@@ -154,13 +160,16 @@ export async function POST(req: Request) {
     // handle photos if provided in payload (uploaded earlier via /api/uploads)
     if (Array.isArray(body.photos) && body.photos.length > 0) {
       try {
-        const photosToCreate = body.photos.map((p: any, i: number) => ({
-          url: p.url,
-          alt: p.alt ?? null,
-          position: typeof p.position === "number" ? p.position : i,
-          isCover: !!p.isCover,
-          imovelId: created.id,
-        }));
+        const photosToCreate = (body.photos as PropertyPhotoInput[]).map(
+          (photo, index) => ({
+            url: photo.url,
+            alt: photo.alt ?? null,
+            position:
+              typeof photo.position === "number" ? photo.position : index,
+            isCover: !!photo.isCover,
+            imovelId: created.id,
+          }),
+        );
         await prisma.foto.createMany({ data: photosToCreate });
       } catch (e) {
         console.error("Creating photos failed:", e);

@@ -1,7 +1,5 @@
 import { prisma } from "@/lib/prisma";
 
-export type SiteSettings = Awaited<ReturnType<typeof getSiteSettings>>;
-
 const fallbackSettings = {
   id: "principal",
   brandName: "Corretora Val",
@@ -20,10 +18,6 @@ export async function getSiteSettings() {
       where: { id: "principal" },
     })) ?? fallbackSettings
   );
-}
-
-export async function getPage(slug: string) {
-  return prisma.paginaSite.findUnique({ where: { slug } });
 }
 
 export async function getPublishedPages() {

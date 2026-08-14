@@ -1,6 +1,6 @@
-import { Metadata } from "next";
-import { PageHero } from "@/components/site/page-hero";
+import type { Metadata } from "next";
 import { CTASection } from "@/components/site/cta-section";
+import { PageHero } from "@/components/site/page-hero";
 import { prisma } from "@/lib/prisma";
 import { BlogClientWrapper } from "./blog-client-wrapper";
 

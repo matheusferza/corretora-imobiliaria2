@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { BlogSearch } from "@/components/blog/blog-search";
 import { BlogCard } from "@/components/blog/blog-card";
+import { BlogSearch } from "@/components/blog/blog-search";
 
 interface Post {
   id: string;

@@ -1,7 +1,7 @@
 "use client";
 
+import { AlertCircle, CheckCircle2, Loader2, Send } from "lucide-react";
 import { useState } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react";
 
 export function PropertyOwnerForm() {
   const [status, setStatus] = useState<
@@ -34,7 +34,7 @@ export function PropertyOwnerForm() {
         body: JSON.stringify(payload),
       });
 
-      const data = await res.json();
+      const data = (await res.json()) as { error?: string };
 
       if (!res.ok) {
         throw new Error(data.error || "Erro ao enviar formulário.");
@@ -42,11 +42,13 @@ export function PropertyOwnerForm() {
 
       setStatus("success");
       form.reset();
-    } catch (err: any) {
+    } catch (error: unknown) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Ocorreu um erro ao enviar. Tente novamente.";
       setStatus("error");
-      setErrorMessage(
-        err.message || "Ocorreu um erro ao enviar. Tente novamente.",
-      );
+      setErrorMessage(message);
     }
   };
 
@@ -72,6 +74,7 @@ export function PropertyOwnerForm() {
             informado.
           </p>
           <button
+            type="button"
             onClick={() => setStatus("idle")}
             className="mt-4 text-xs font-bold text-emerald-800 underline hover:text-emerald-950"
           >

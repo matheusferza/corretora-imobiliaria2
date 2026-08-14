@@ -1,6 +1,6 @@
-import { getPublishedPages, getSiteSettings } from "@/lib/site-content";
 import { Camera, Heart, Mail, MapPin, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { getPublishedPages, getSiteSettings } from "@/lib/site-content";
 
 export async function SiteFooter() {
   const [settings, pages] = await Promise.all([

@@ -1,5 +1,5 @@
+import { ArrowRight, MessageCircle } from "lucide-react";
 import Link from "next/link";
-import { MessageCircle, ArrowRight } from "lucide-react";
 
 interface CTASectionProps {
   title?: string;

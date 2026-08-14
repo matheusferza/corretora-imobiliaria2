@@ -1,10 +1,10 @@
-import { authOptions } from "@/lib/auth";
-import { prisma } from "@/lib/prisma";
 import { Prisma } from "@prisma/client";
-import { getStorageProvider } from "@/lib/storage";
-import { getServerSession } from "next-auth/next";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
+import { getStorageProvider } from "@/lib/storage";
 
 async function requireAdmin() {
   const session = await getServerSession(authOptions);

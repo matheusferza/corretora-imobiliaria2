@@ -1,19 +1,19 @@
-import { Metadata } from "next";
-import { PageHero } from "@/components/site/page-hero";
-import { SectionTitle } from "@/components/site/section-title";
-import { CTASection } from "@/components/site/cta-section";
-import { PropertyOwnerForm } from "@/components/forms/property-owner-form";
 import {
-  ShieldCheck,
-  Megaphone,
-  Users,
+  DollarSign,
+  FileCheck,
+  Headset,
   LineChart,
   Lock,
-  FileCheck,
-  DollarSign,
+  Megaphone,
+  ShieldCheck,
+  Users,
   Wrench,
-  Headset,
 } from "lucide-react";
+import type { Metadata } from "next";
+import { PropertyOwnerForm } from "@/components/forms/property-owner-form";
+import { CTASection } from "@/components/site/cta-section";
+import { PageHero } from "@/components/site/page-hero";
+import { SectionTitle } from "@/components/site/section-title";
 
 export const metadata: Metadata = {
   title: "Administração de Imóveis | Corretora Val",
@@ -124,11 +124,11 @@ export default function AdministracaoPage() {
           />
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {benefits.map((b, idx) => {
+            {benefits.map((b) => {
               const Icon = b.icon;
               return (
                 <div
-                  key={idx}
+                  key={b.title}
                   className="rounded-2xl border p-8 bg-[var(--surface)] hover:border-[var(--gold-light)] transition-all"
                 >
                   <div className="mb-6 flex size-12 items-center justify-center rounded-xl bg-white text-[var(--plum)] shadow-xs">
@@ -157,9 +157,9 @@ export default function AdministracaoPage() {
           />
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-            {steps.map((s, idx) => (
+            {steps.map((s) => (
               <div
-                key={idx}
+                key={s.number}
                 className="rounded-2xl border bg-white p-6 relative flex flex-col justify-between"
               >
                 <div>
@@ -199,11 +199,11 @@ export default function AdministracaoPage() {
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
-                {careItems.map((c, idx) => {
+                {careItems.map((c) => {
                   const Icon = c.icon;
                   return (
                     <div
-                      key={idx}
+                      key={c.title}
                       className="rounded-2xl border p-5 bg-[var(--surface)]"
                     >
                       <Icon size={20} className="text-[var(--gold)] mb-2" />

@@ -1,6 +1,6 @@
-import { authOptions } from "@/lib/auth";
-import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 import { AdminPropertiesManager } from "./properties-manager";
 
 export const dynamic = "force-dynamic";

@@ -1,9 +1,9 @@
-import { Metadata } from "next";
+import { HeartHandshake } from "lucide-react";
+import type { Metadata } from "next";
+import { Timeline } from "@/components/institutional/timeline";
+import { CTASection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionTitle } from "@/components/site/section-title";
-import { CTASection } from "@/components/site/cta-section";
-import { Timeline } from "@/components/institutional/timeline";
-import { HeartHandshake } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Memória Viva | Corretora Val",

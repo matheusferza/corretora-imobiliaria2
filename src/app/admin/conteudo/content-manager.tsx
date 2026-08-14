@@ -1,7 +1,7 @@
 "use client";
 
 import { LoaderCircle, Save } from "lucide-react";
-import { FormEvent, useCallback, useEffect, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useState } from "react";
 
 type Settings = {
   brandName: string;

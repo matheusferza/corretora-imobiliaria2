@@ -1,5 +1,5 @@
-import { getSiteSettings } from "@/lib/site-content";
 import { MessageCircle } from "lucide-react";
+import { getSiteSettings } from "@/lib/site-content";
 
 export async function WhatsAppFloat() {
   const settings = await getSiteSettings();

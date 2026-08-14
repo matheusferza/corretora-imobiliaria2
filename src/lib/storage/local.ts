@@ -1,5 +1,5 @@
-import fs from "fs";
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import type { StorageProvider, UploadResult } from "./index";
 
 export function LocalStorageProvider(): StorageProvider {
@@ -28,7 +28,7 @@ export function LocalStorageProvider(): StorageProvider {
       const full = path.join(uploadsRoot, p);
       try {
         await fs.promises.unlink(full);
-      } catch (e) {
+      } catch {
         // ignore if file does not exist
       }
     },

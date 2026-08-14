@@ -1,6 +1,6 @@
-import { getSiteSettings } from "@/lib/site-content";
 import { BookOpen, Building2, Settings } from "lucide-react";
 import Link from "next/link";
+import { getSiteSettings } from "@/lib/site-content";
 
 const actions = [
   {

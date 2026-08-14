@@ -1,7 +1,7 @@
 export const revalidate = 30; // revalidate every 30s to keep public list reasonably fresh
 
-import { formatPrice } from "@/lib/format-price";
 import Link from "next/link";
+import { formatPrice } from "@/lib/format-price";
 import { prisma } from "@/lib/prisma";
 
 type PublicProperty = {

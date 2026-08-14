@@ -1,4 +1,4 @@
-import { Calendar, MapPin, Heart, Bike, ShieldCheck, Home } from "lucide-react";
+import { Bike, Calendar, Heart, Home, MapPin, ShieldCheck } from "lucide-react";
 
 interface TimelineItem {
   year: string;
@@ -50,10 +50,10 @@ const timelineData: TimelineItem[] = [
 export function Timeline() {
   return (
     <div className="relative border-l-2 border-[var(--gold-light)] pl-6 ml-4 md:ml-8 md:pl-10 space-y-12">
-      {timelineData.map((item, idx) => {
+      {timelineData.map((item) => {
         const Icon = item.icon || Calendar;
         return (
-          <div key={idx} className="relative group">
+          <div key={item.year} className="relative group">
             {/* Timeline Dot */}
             <div className="absolute -left-[31px] md:-left-[47px] top-1.5 flex size-8 items-center justify-center rounded-full border-2 border-[var(--gold)] bg-white text-[var(--plum)] shadow-md group-hover:bg-[var(--plum)] group-hover:text-[var(--gold)] transition-colors">
               <Icon size={14} />

@@ -1,11 +1,10 @@
 import {
-  ShieldCheck,
-  Eye,
-  UserCheck,
   Award,
+  Eye,
   Heart,
+  ShieldCheck,
   Sparkles,
-  CheckCircle2,
+  UserCheck,
 } from "lucide-react";
 
 interface ValueItem {
@@ -50,11 +49,11 @@ const values: ValueItem[] = [
 export function ValuesGrid() {
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {values.map((v, idx) => {
+      {values.map((v) => {
         const Icon = v.icon;
         return (
           <div
-            key={idx}
+            key={v.title}
             className="group rounded-2xl border bg-white p-8 shadow-xs hover:border-[var(--gold-light)] hover:shadow-md transition-all"
           >
             <div className="mb-6 flex size-12 items-center justify-center rounded-xl bg-[var(--surface-muted)] text-[var(--plum)] group-hover:bg-[var(--plum)] group-hover:text-[var(--gold)] transition-colors">

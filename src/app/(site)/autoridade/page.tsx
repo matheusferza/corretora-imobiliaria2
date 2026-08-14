@@ -1,9 +1,9 @@
-import { Metadata } from "next";
+import { Quote, Star } from "lucide-react";
+import type { Metadata } from "next";
+import { AuthorityStats } from "@/components/institutional/authority-stats";
+import { CTASection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionTitle } from "@/components/site/section-title";
-import { CTASection } from "@/components/site/cta-section";
-import { AuthorityStats } from "@/components/institutional/authority-stats";
-import { Quote, Star } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Autoridade e Experiência | Corretora Val",
@@ -65,14 +65,15 @@ export default function AutoridadePage() {
           />
 
           <div className="grid gap-6 md:grid-cols-3">
-            {testimonials.map((t, idx) => (
+            {testimonials.map((t) => (
               <div
-                key={idx}
+                key={t.name}
                 className="rounded-2xl border bg-white p-8 shadow-xs flex flex-col justify-between"
               >
                 <div>
                   <div className="flex items-center gap-1 text-[var(--gold)] mb-4">
                     {[...Array(5)].map((_, i) => (
+                      // biome-ignore lint/suspicious/noArrayIndexKey: static array of 5 identical stars, index is appropriate
                       <Star key={i} size={15} fill="currentColor" />
                     ))}
                   </div>

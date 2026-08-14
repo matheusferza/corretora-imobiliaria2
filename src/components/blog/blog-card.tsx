@@ -1,5 +1,5 @@
+import { ArrowUpRight, Clock, User } from "lucide-react";
 import Link from "next/link";
-import { Clock, User, ArrowUpRight } from "lucide-react";
 
 interface BlogCardProps {
   post: {
@@ -30,7 +30,7 @@ export function BlogCard({ post }: BlogCardProps) {
           </span>
           <div className="flex items-center gap-1.5 text-xs text-[var(--ink-soft)]">
             <Clock size={13} className="text-[var(--gold)]" />
-            <span>{post.readingTimeMinutes} min de leitura</span>
+            <span>{formattedDate}</span>
           </div>
         </div>
 

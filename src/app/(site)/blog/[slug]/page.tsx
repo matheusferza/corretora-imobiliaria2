@@ -1,10 +1,10 @@
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
-import { PageHero } from "@/components/site/page-hero";
+import { notFound } from "next/navigation";
 import { CTASection } from "@/components/site/cta-section";
-import { Clock, User, Calendar, Share2, ArrowLeft } from "lucide-react";
+import { PageHero } from "@/components/site/page-hero";
+import { prisma } from "@/lib/prisma";
 
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -30,7 +30,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = await prisma.postBlog.findUnique({ where: { slug } });
 
-  if (!post || !post.isPublished) {
+  if (!post?.isPublished) {
     notFound();
   }
 
@@ -86,11 +86,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
               {/* Body */}
               <div className="prose prose-plum max-w-none space-y-6 text-[var(--ink)] leading-relaxed">
-                {post.content.split("\n\n").map((paragraph, idx) => {
+                {post.content.split("\n\n").map((paragraph, index) => {
+                  const key = `${paragraph.slice(0, 24)}-${index}`;
                   if (paragraph.startsWith("### ")) {
                     return (
                       <h3
-                        key={idx}
+                        key={key}
                         className="display text-2xl font-bold text-[var(--plum)] pt-4"
                       >
                         {paragraph.replace("### ", "")}
@@ -100,7 +101,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   if (paragraph.startsWith("## ")) {
                     return (
                       <h2
-                        key={idx}
+                        key={key}
                         className="display text-3xl font-bold text-[var(--plum)] pt-6"
                       >
                         {paragraph.replace("## ", "")}
@@ -109,7 +110,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   }
                   return (
                     <p
-                      key={idx}
+                      key={key}
                       className="text-base text-[var(--ink-soft)] leading-relaxed"
                     >
                       {paragraph}

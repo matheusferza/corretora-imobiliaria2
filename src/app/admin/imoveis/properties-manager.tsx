@@ -1,6 +1,5 @@
 "use client";
 
-import { formatPrice } from "@/lib/format-price";
 import {
   Archive,
   LoaderCircle,
@@ -10,6 +9,7 @@ import {
   Trash2,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import {
   type FormEvent,
   useCallback,
@@ -17,6 +17,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { formatPrice } from "@/lib/format-price";
 
 type Purpose = "VENDA" | "LOCACAO_ANUAL" | "TEMPORADA";
 
@@ -51,6 +52,25 @@ type PhotoEntry = {
   alt?: string;
   position?: number;
   isCover?: boolean;
+};
+
+type PropertyPayload = {
+  code: string;
+  slug: string;
+  title: string;
+  propertyType: string;
+  purpose: Purpose;
+  city: string;
+  isFeatured: boolean;
+  salePrice?: number | null;
+  monthlyRent?: number | null;
+  dailyRate?: number | null;
+  photos?: Array<{
+    url: string;
+    alt: string | null;
+    position: number;
+    isCover: boolean;
+  }>;
 };
 
 const initialDraft: Draft = {
@@ -143,7 +163,25 @@ export function AdminPropertiesManager() {
         cache: "no-store",
       });
       if (!res.ok) throw new Error("Não foi possível carregar o imóvel.");
-      const full = await res.json();
+      const full = (await res.json()) as {
+        salePrice?: number | null;
+        monthlyRent?: number | null;
+        dailyRate?: number | null;
+        code: string;
+        slug: string;
+        title: string;
+        propertyType: string;
+        purpose: Purpose;
+        city: string;
+        isFeatured: boolean;
+        photos?: Array<{
+          url: string;
+          path?: string | null;
+          alt?: string | null;
+          isCover?: boolean | null;
+          position?: number | null;
+        }>;
+      };
       const price = full.salePrice ?? full.monthlyRent ?? full.dailyRate ?? "";
       setDraft({
         code: full.code,
@@ -157,12 +195,12 @@ export function AdminPropertiesManager() {
       });
       if (Array.isArray(full.photos)) {
         setPhotos(
-          full.photos.map((p: any) => ({
-            url: p.url,
-            path: p.path ?? undefined,
-            alt: p.alt ?? undefined,
-            isCover: p.isCover,
-            position: p.position,
+          full.photos.map((photo) => ({
+            url: photo.url,
+            path: photo.path ?? undefined,
+            alt: photo.alt ?? undefined,
+            isCover: photo.isCover ?? false,
+            position: photo.position ?? undefined,
           })),
         );
       }
@@ -190,7 +228,7 @@ export function AdminPropertiesManager() {
     setMessage(null);
 
     const price = Number(draft.price);
-    const payload: any = {
+    const payload: PropertyPayload = {
       code: draft.code.trim().toUpperCase(),
       slug: draft.slug || toSlug(draft.title),
       title: draft.title,
@@ -244,7 +282,7 @@ export function AdminPropertiesManager() {
     setMessage(null);
 
     const price = Number(draft.price);
-    const payload: any = {
+    const payload: PropertyPayload = {
       code: draft.code.trim().toUpperCase(),
       slug: draft.slug || toSlug(draft.title),
       title: draft.title,
@@ -636,20 +674,26 @@ export function AdminPropertiesManager() {
               </div>
               {photos.length > 0 && (
                 <div className="flex flex-wrap gap-2">
-                  {photos.map((p, idx) => (
+                  {photos.map((photo, idx) => (
                     <div
-                      key={idx}
+                      key={photo.url || `photo-${idx}`}
                       className="relative h-16 w-24 overflow-hidden rounded bg-white"
                     >
-                      <img
-                        src={p.url}
-                        alt={p.alt || `Foto ${idx + 1}`}
+                      <Image
+                        src={photo.url}
+                        alt={photo.alt || `Foto ${idx + 1}`}
+                        width={96}
+                        height={64}
                         className="h-full w-full object-cover"
                       />
                       <button
                         type="button"
                         onClick={() =>
-                          setPhotos((s) => s.filter((_, i) => i !== idx))
+                          setPhotos((current) =>
+                            current.filter(
+                              (_, photoIndex) => photoIndex !== idx,
+                            ),
+                          )
                         }
                         className="absolute right-1 top-1 rounded-full bg-white/80 px-1 text-xs"
                       >
@@ -658,15 +702,18 @@ export function AdminPropertiesManager() {
                       <button
                         type="button"
                         onClick={() =>
-                          setPhotos((s) =>
-                            s.map((it, i) => ({ ...it, isCover: i === idx })),
+                          setPhotos((current) =>
+                            current.map((item, photoIndex) => ({
+                              ...item,
+                              isCover: photoIndex === idx,
+                            })),
                           )
                         }
                         className="absolute bottom-1 left-1 rounded-full bg-white/80 px-1 text-xs"
                       >
                         Capa
                       </button>
-                      {p.isCover && (
+                      {photo.isCover && (
                         <span className="absolute bottom-1 right-1 rounded-full bg-[var(--gold)] px-1 text-[10px] font-bold text-[var(--plum)]">
                           ✓
                         </span>
@@ -742,7 +789,6 @@ export function AdminPropertiesManager() {
           )}
           <div className="mt-6 flex flex-wrap-reverse gap-3">
             <button
-              autoFocus
               className="interactive flex-1 rounded-full border px-5 py-3 text-sm font-bold text-[var(--plum)] hover:border-[var(--plum)]"
               onClick={() => setDeleteTarget(null)}
               type="button"

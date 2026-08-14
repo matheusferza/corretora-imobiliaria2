@@ -1,18 +1,17 @@
-import { Metadata } from "next";
+import {
+  Award,
+  Compass,
+  MapPin,
+  Quote,
+  Shield,
+  Target,
+  Users,
+} from "lucide-react";
+import type { Metadata } from "next";
+import { ValuesGrid } from "@/components/institutional/values-grid";
+import { CTASection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
 import { SectionTitle } from "@/components/site/section-title";
-import { CTASection } from "@/components/site/cta-section";
-import { ValuesGrid } from "@/components/institutional/values-grid";
-import {
-  Heart,
-  Shield,
-  Users,
-  Target,
-  Compass,
-  Award,
-  Quote,
-  MapPin,
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Quem Somos | Corretora Val",

@@ -1,6 +1,6 @@
-import { getPublishedPages, getSiteSettings } from "@/lib/site-content";
 import { ChevronDown, Heart, Menu, MessageCircle } from "lucide-react";
 import Link from "next/link";
+import { getPublishedPages, getSiteSettings } from "@/lib/site-content";
 
 const navigationSlugs = [
   "administracao",

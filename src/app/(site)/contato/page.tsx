@@ -1,17 +1,16 @@
-import { Metadata } from "next";
-import { PageHero } from "@/components/site/page-hero";
-import { CTASection } from "@/components/site/cta-section";
-import { ContactForm } from "@/components/forms/contact-form";
-import { getSiteSettings } from "@/lib/site-content";
 import {
+  Clock,
+  Mail,
+  MapPin,
   MessageCircle,
   Phone,
-  Mail,
   Share2,
-  MapPin,
-  Clock,
-  ShieldCheck,
 } from "lucide-react";
+import type { Metadata } from "next";
+import { ContactForm } from "@/components/forms/contact-form";
+import { CTASection } from "@/components/site/cta-section";
+import { PageHero } from "@/components/site/page-hero";
+import { getSiteSettings } from "@/lib/site-content";
 
 export const metadata: Metadata = {
   title: "Contato | Corretora Val",

@@ -1,8 +1,8 @@
+import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth/next";
+import { ZodError, z } from "zod";
 import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import { getServerSession } from "next-auth/next";
-import { NextResponse } from "next/server";
-import { ZodError, z } from "zod";
 
 const settingsSchema = z.object({
   brandName: z.string().trim().min(2).max(80),

@@ -1,4 +1,3 @@
-import { authOptions } from "@/lib/auth";
 import {
   BookOpen,
   Building2,
@@ -6,9 +5,10 @@ import {
   LayoutDashboard,
   Settings,
 } from "lucide-react";
-import { getServerSession } from "next-auth/next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/lib/auth";
 import { SignOutButton } from "./sign-out-button";
 
 const navigation = [

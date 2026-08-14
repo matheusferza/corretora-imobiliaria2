@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight, Building2, KeyRound, ShieldCheck } from "lucide-react";
+import Link from "next/link";
 
 const services = [
   {
