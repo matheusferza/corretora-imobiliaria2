@@ -9,6 +9,7 @@ import {
 import { getServerSession } from "next-auth/next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { SignOutButton } from "./sign-out-button";
 
 const navigation = [
   { href: "/admin", label: "Visão geral", icon: LayoutDashboard },
@@ -28,7 +29,7 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
 
   return (
     <div className="min-h-screen bg-[var(--surface-muted)] text-[var(--ink)] lg:grid lg:grid-cols-[17rem_1fr]">
-      <aside className="border-b bg-[var(--plum)] p-5 text-white lg:min-h-screen lg:border-r lg:border-b-0">
+      <aside className="flex flex-col border-b bg-[var(--plum)] p-5 text-white lg:min-h-screen lg:border-r lg:border-b-0">
         <Link className="display text-3xl" href="/admin">
           Corretora Val
         </Link>
@@ -53,6 +54,19 @@ export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
         >
           <ExternalLink aria-hidden="true" size={16} /> Ver site público
         </Link>
+
+        {/* Empurra o bloco do usuário para o rodapé da sidebar */}
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/15 pt-4 lg:mt-10">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-bold text-white">
+              {session.user.name || "Administrador"}
+            </p>
+            <p className="truncate text-xs text-white/55">
+              {session.user.email}
+            </p>
+          </div>
+          <SignOutButton />
+        </div>
       </aside>
       <div>{children}</div>
     </div>
