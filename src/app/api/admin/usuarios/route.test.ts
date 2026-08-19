@@ -17,10 +17,10 @@ vi.mock("next-auth/next", () => ({
 }));
 
 let route: typeof import("./route");
-let prismaMock: { prisma: { usuario: Record<string, unknown> } };
+let prismaMock: { prisma: { usuario: Record<string, (...args: unknown[]) => unknown> } };
 
 beforeAll(async () => {
-  prismaMock = (await import("@/lib/prisma")) as unknown as { prisma: { usuario: Record<string, any> } };
+  prismaMock = (await import("@/lib/prisma")) as unknown as { prisma: { usuario: Record<string, (...args: unknown[]) => unknown> } };
   route = await import("./route");
 });
 
