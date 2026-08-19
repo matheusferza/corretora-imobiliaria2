@@ -27,6 +27,47 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
     load();
   }, [load]);
 
+  // Edit modal state
+  const [editTarget, setEditTarget] = useState<User | null>(null);
+  const [editForm, setEditForm] = useState<{ email: string; name?: string | null; role: string }>({ email: "", name: "", role: "admin" });
+  const [editError, setEditError] = useState<string | null>(null);
+
+  function openEdit(user: User) {
+    setEditError(null);
+    setEditForm({ email: user.email, name: user.name ?? "", role: user.role });
+    setEditTarget(user);
+  }
+
+  function closeEdit() {
+    setEditTarget(null);
+    setEditError(null);
+  }
+
+  async function submitEdit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!editTarget) return;
+    setEditError(null);
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "updateUser", id: editTarget.id, name: editForm.name, role: editForm.role, email: editForm.email }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => null);
+        throw new Error(d?.error || "Falha ao atualizar usuário");
+      }
+      await load();
+      closeEdit();
+    } catch (err) {
+      setEditError(err instanceof Error ? err.message : String(err));
+    }
+  }
+
+  // password change toggle state
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+
+
   async function createUser(e: React.FormEvent) {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -136,7 +177,8 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
                     <td className="py-2">{new Date(u.createdAt).toLocaleString()}</td>
                     <td className="py-2">
                       <button type="button" className="mr-2 text-xs" onClick={() => resetPassword(u.id)}>Resetar senha</button>
-                                            <button type="button" className="text-xs" onClick={() => deleteUser(u.id)} disabled={u.email === currentUserEmail}>Excluir</button>
+                      <button type="button" className="mr-2 text-xs" onClick={() => openEdit(u)}>Editar</button>
+                      <button type="button" className="text-xs" onClick={() => deleteUser(u.id)} disabled={u.email === currentUserEmail}>Excluir</button>
                     </td>
                   </tr>
                 ))}
@@ -150,13 +192,24 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
 
       <section className="mt-8 rounded-2xl border bg-[var(--surface)] p-5 shadow sm:p-7">
         <h2 className="text-lg font-bold text-[var(--plum)]">Minha conta</h2>
-        <ChangePasswordForm />
+        <div>
+          {!showPasswordForm ? (
+            <button type="button" className="text-sm font-bold text-[var(--plum)]" onClick={() => setShowPasswordForm(true)}>Trocar senha</button>
+          ) : (
+            <div className="mt-4 md:w-1/2">
+              <ChangePasswordForm onDone={() => setShowPasswordForm(false)} />
+              <div className="mt-2">
+                <button type="button" className="text-xs text-[var(--ink-soft)]" onClick={() => setShowPasswordForm(false)}>Cancelar</button>
+              </div>
+            </div>
+          )}
+        </div>
       </section>
     </main>
   );
 }
 
-function ChangePasswordForm() {
+function ChangePasswordForm({ onDone }: { onDone?: () => void }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -180,6 +233,7 @@ function ChangePasswordForm() {
       }
       setMessage("Senha alterada com sucesso");
       form.reset();
+      if (onDone) onDone();
     } catch (e) {
       setMessage(e instanceof Error ? e.message : "Erro");
     } finally {
@@ -197,7 +251,9 @@ function ChangePasswordForm() {
         Nova senha
         <input name="newPassword" type="password" required className="rounded-lg border bg-white px-3 py-2" />
       </label>
-      <button className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-sm font-extrabold text-[var(--plum)]" type="submit" disabled={loading}>Trocar senha</button>
+      <div className="flex items-center gap-2">
+        <button className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-sm font-extrabold text-[var(--plum)]" type="submit" disabled={loading}>Confirmar</button>
+      </div>
       {message && <p className="mt-2 text-sm text-[var(--plum)]">{message}</p>}
     </form>
   );

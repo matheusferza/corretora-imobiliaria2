@@ -1,0 +1,6 @@
+fix(admin): edit user via modal and collapse password change form
+
+- Add "Editar" action per user row, opening a modal to update name, email, and role
+- Extend PUT /api/admin/usuarios to support updating email
+- Replace always-visible 'change my password' form with a collapsible one, revealed on click (same pattern as reset password)
+
