@@ -22,6 +22,7 @@ const updateSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("updateUser"),
     id: z.string().min(1),
+    email: z.string().trim().email().optional(),
     name: z.string().trim().max(120).optional(),
     role: z.enum(["admin", "user"]).optional(),
   }),
@@ -104,7 +105,8 @@ export async function PUT(req: Request) {
     }
 
     if (payload.type === "updateUser") {
-      const data: { name?: string | null; role?: string } = {};
+      const data: { email?: string; name?: string | null; role?: string } = {};
+      if (payload.email !== undefined) data.email = payload.email.toLowerCase().trim();
       if (payload.name !== undefined) data.name = payload.name ?? null;
       if (payload.role !== undefined) data.role = payload.role;
       const updated = await prisma.usuario.update({ where: { id: payload.id }, data, select: { id: true, email: true, name: true, role: true, createdAt: true } });
