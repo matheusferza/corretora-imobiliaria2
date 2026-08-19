@@ -1,7 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const categories = [
   "Todos",
@@ -20,16 +20,35 @@ export function BlogSearch({ onSearch }: BlogSearchProps) {
   const [activeCategory, setActiveCategory] = useState("Todos");
   const [query, setQuery] = useState("");
 
+  // Keep a ref to the latest category so the debounced effect can read it
+  // without re-running when the category changes (category clicks fire immediately).
+  const categoryRef = useRef(activeCategory);
+  useEffect(() => {
+    categoryRef.current = activeCategory;
+  }, [activeCategory]);
+
   const handleCategoryClick = (cat: string) => {
     setActiveCategory(cat);
+    // Fire category searches immediately (no debounce)
     onSearch(query, cat);
   };
 
   const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;
     setQuery(val);
-    onSearch(val, activeCategory);
   };
+
+  // Debounce text search so queries are only sent after the user stops typing.
+  useEffect(() => {
+    const id = setTimeout(() => {
+      onSearch(query, categoryRef.current);
+    }, 400);
+
+    return () => clearTimeout(id);
+    // Only re-run when the query or onSearch reference changes. We intentionally
+    // don't include activeCategory here so category changes don't go through the
+    // debounce path (they are handled immediately by handleCategoryClick).
+  }, [query, onSearch]);
 
   return (
     <div className="space-y-6">

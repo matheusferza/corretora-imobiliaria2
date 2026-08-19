@@ -20,7 +20,6 @@ export async function GET(request: Request) {
       where.OR = [
         { title: { contains: q, mode: "insensitive" } },
         { summary: { contains: q, mode: "insensitive" } },
-        { content: { contains: q, mode: "insensitive" } },
       ];
     }
 

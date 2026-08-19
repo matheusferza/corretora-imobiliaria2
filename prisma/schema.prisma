@@ -228,6 +228,8 @@ model PostBlog {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
+  @@index([title])
+  @@index([summary])
   @@index([isPublished, category])
   @@index([isFeatured])
 }
