@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getServerSession } from "next-auth/next";
 import { ZodError, z } from "zod";
 import { authOptions } from "@/lib/auth";
@@ -69,6 +70,14 @@ export async function PUT(request: Request) {
         update: payload.settings,
         create: { id: "principal", ...payload.settings },
       });
+
+      try {
+        // Revalidate public site so header/footer reflect new settings
+        revalidatePath("/");
+      } catch (e) {
+        console.error("Revalidate after settings update failed:", e);
+      }
+
       return NextResponse.json({ settings });
     }
 
@@ -77,6 +86,15 @@ export async function PUT(request: Request) {
       update: payload.page,
       create: payload.page,
     });
+
+    try {
+      // Revalidate home (footer/header) and the page's public route
+      revalidatePath("/");
+      if (page.slug && page.slug !== "home") revalidatePath(`/${page.slug}`);
+    } catch (e) {
+      console.error("Revalidate after page update failed:", e);
+    }
+
     return NextResponse.json({ page });
   } catch (error) {
     if (error instanceof ZodError) {
