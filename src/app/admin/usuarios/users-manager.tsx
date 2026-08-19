@@ -135,8 +135,8 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
                     <td className="py-2">{u.role}</td>
                     <td className="py-2">{new Date(u.createdAt).toLocaleString()}</td>
                     <td className="py-2">
-                      <button className="mr-2 text-xs" onClick={() => resetPassword(u.id)}>Resetar senha</button>
-                      <button className="text-xs" onClick={() => deleteUser(u.id)} disabled={u.email === currentUserEmail}>Excluir</button>
+                      <button type="button" className="mr-2 text-xs" onClick={() => resetPassword(u.id)}>Resetar senha</button>
+                                            <button type="button" className="text-xs" onClick={() => deleteUser(u.id)} disabled={u.email === currentUserEmail}>Excluir</button>
                     </td>
                   </tr>
                 ))}

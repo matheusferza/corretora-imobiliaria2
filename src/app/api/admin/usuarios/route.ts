@@ -72,10 +72,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
 
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      if (error.code === "P2002") {
-        return NextResponse.json({ error: "E-mail já está em uso." }, { status: 409 });
-      }
+    const maybeErr = error as unknown as { code?: string };
+    if (maybeErr?.code === "P2002" || (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002")) {
+      return NextResponse.json({ error: "E-mail já está em uso." }, { status: 409 });
     }
 
     console.error("API /api/admin/usuarios POST error:", error);
@@ -105,8 +104,8 @@ export async function PUT(req: Request) {
     }
 
     if (payload.type === "updateUser") {
-      const data: any = {};
-      if (payload.name !== undefined) data.name = payload.name;
+      const data: { name?: string | null; role?: string } = {};
+      if (payload.name !== undefined) data.name = payload.name ?? null;
       if (payload.role !== undefined) data.role = payload.role;
       const updated = await prisma.usuario.update({ where: { id: payload.id }, data, select: { id: true, email: true, name: true, role: true, createdAt: true } });
       return NextResponse.json(updated);
@@ -114,7 +113,7 @@ export async function PUT(req: Request) {
 
     if (payload.type === "resetPassword") {
       // generate temporary password
-      const temp = Math.random().toString(36).slice(-10) + "A1";
+      const temp = `${Math.random().toString(36).slice(-10)}A1`;
       const hash = await bcrypt.hash(temp, 10);
       await prisma.usuario.update({ where: { id: payload.id }, data: { password: hash } });
       return NextResponse.json({ tempPassword: temp });
@@ -126,11 +125,9 @@ export async function PUT(req: Request) {
       return NextResponse.json({ error: error.issues }, { status: 400 });
     }
 
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      console.error("Prisma error in usuarios PUT:", error);
-      if (error.code === "P2002") {
-        return NextResponse.json({ error: "E-mail já está em uso." }, { status: 409 });
-      }
+    const maybeErr = error as unknown as { code?: string };
+    if (maybeErr?.code === "P2002" || (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002")) {
+      return NextResponse.json({ error: "E-mail já está em uso." }, { status: 409 });
     }
 
     console.error("API /api/admin/usuarios PUT error:", error);
