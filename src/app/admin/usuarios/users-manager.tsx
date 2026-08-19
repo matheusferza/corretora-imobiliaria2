@@ -1,0 +1,204 @@
+"use client";
+
+import { useCallback, useEffect, useState } from "react";
+
+type User = { id: string; email: string; name?: string | null; role: string; createdAt: string };
+
+export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }) {
+  const [users, setUsers] = useState<User[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<string | null>(null);
+
+  const load = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/usuarios", { cache: "no-store" });
+      if (!res.ok) throw new Error("Não foi possível carregar usuários");
+      const data = await res.json();
+      setUsers(data.users ?? []);
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : "Erro");
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    load();
+  }, [load]);
+
+  async function createUser(e: React.FormEvent) {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const fd = new FormData(form);
+    const email = (fd.get("email") as string) || "";
+    const name = (fd.get("name") as string) || undefined;
+    const password = (fd.get("password") as string) || "";
+    const role = (fd.get("role") as string) || "admin";
+    setMessage(null);
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name, password, role }),
+      });
+      if (!res.ok) throw new Error("Falha ao criar usuário");
+      setMessage("Usuário criado com sucesso");
+      form.reset();
+      await load();
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : "Erro");
+    }
+  }
+
+  async function resetPassword(userId: string) {
+    setMessage(null);
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "resetPassword", id: userId }),
+      });
+      if (!res.ok) throw new Error("Falha ao resetar senha");
+      const data = await res.json();
+      alert(`Senha temporária: ${data.tempPassword}`);
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : "Erro");
+    }
+  }
+
+  async function deleteUser(userId: string) {
+    if (!confirm("Tem certeza que deseja excluir este usuário?")) return;
+    setMessage(null);
+    try {
+      const res = await fetch(`/api/admin/usuarios?id=${userId}`, { method: "DELETE" });
+      if (!res.ok) throw new Error("Falha ao excluir usuário");
+      await load();
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : "Erro");
+    }
+  }
+
+  return (
+    <main className="p-6 sm:p-10">
+      <p className="eyebrow">Usuários</p>
+      <h1 className="display mt-3 text-4xl text-[var(--plum)] sm:text-5xl">Gerenciamento de Usuários</h1>
+      <p className="mt-3 max-w-2xl text-[var(--ink-soft)]">Crie, edite e remova logins de acesso ao painel administrativo.</p>
+
+      <section className="mt-9 grid gap-7 lg:grid-cols-2">
+        <div className="rounded-2xl border bg-[var(--surface)] p-5 shadow sm:p-7">
+          <h2 className="text-lg font-bold text-[var(--plum)]">Novo usuário</h2>
+          <form className="mt-4 grid gap-3" onSubmit={createUser}>
+            <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
+              E-mail
+              <input name="email" type="email" required className="rounded-lg border bg-white px-3 py-2" />
+            </label>
+            <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
+              Nome
+              <input name="name" type="text" className="rounded-lg border bg-white px-3 py-2" />
+            </label>
+            <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
+              Senha
+              <input name="password" type="password" required className="rounded-lg border bg-white px-3 py-2" />
+            </label>
+            <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
+              Papel
+              <select name="role" defaultValue="admin" className="rounded-lg border bg-white px-3 py-2">
+                <option value="admin">admin</option>
+                <option value="user">user</option>
+              </select>
+            </label>
+            <button className="inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-4 py-2 text-sm font-extrabold text-white" type="submit">Criar</button>
+          </form>
+        </div>
+
+        <div className="rounded-2xl border bg-[var(--surface)] p-5 shadow sm:p-7">
+          <h2 className="text-lg font-bold text-[var(--plum)]">Lista de usuários</h2>
+          {loading ? (
+            <p className="mt-4">Carregando…</p>
+          ) : (
+            <table className="mt-4 w-full text-sm">
+              <thead className="text-left text-[var(--ink-soft)]">
+                <tr>
+                  <th>E-mail</th>
+                  <th>Nome</th>
+                  <th>Papel</th>
+                  <th>Criado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((u) => (
+                  <tr key={u.id} className="border-t">
+                    <td className="py-2">{u.email}</td>
+                    <td className="py-2">{u.name ?? "—"}</td>
+                    <td className="py-2">{u.role}</td>
+                    <td className="py-2">{new Date(u.createdAt).toLocaleString()}</td>
+                    <td className="py-2">
+                      <button className="mr-2 text-xs" onClick={() => resetPassword(u.id)}>Resetar senha</button>
+                      <button className="text-xs" onClick={() => deleteUser(u.id)} disabled={u.email === currentUserEmail}>Excluir</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+
+          {message && <p className="mt-4 text-sm text-[var(--plum)]">{message}</p>}
+        </div>
+      </section>
+
+      <section className="mt-8 rounded-2xl border bg-[var(--surface)] p-5 shadow sm:p-7">
+        <h2 className="text-lg font-bold text-[var(--plum)]">Minha conta</h2>
+        <ChangePasswordForm />
+      </section>
+    </main>
+  );
+}
+
+function ChangePasswordForm() {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const form = e.target as HTMLFormElement;
+    const fd = new FormData(form);
+    const currentPassword = (fd.get("currentPassword") as string) || "";
+    const newPassword = (fd.get("newPassword") as string) || "";
+    setMessage(null);
+    setLoading(true);
+    try {
+      const res = await fetch("/api/admin/usuarios", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "changeOwnPassword", currentPassword, newPassword }),
+      });
+      if (!res.ok) {
+        const d = await res.json().catch(() => null);
+        throw new Error(d?.error || "Falha ao trocar senha");
+      }
+      setMessage("Senha alterada com sucesso");
+      form.reset();
+    } catch (e) {
+      setMessage(e instanceof Error ? e.message : "Erro");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <form className="mt-4 grid gap-3 md:w-1/2" onSubmit={handleSubmit}>
+      <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
+        Senha atual
+        <input name="currentPassword" type="password" required className="rounded-lg border bg-white px-3 py-2" />
+      </label>
+      <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
+        Nova senha
+        <input name="newPassword" type="password" required className="rounded-lg border bg-white px-3 py-2" />
+      </label>
+      <button className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-sm font-extrabold text-[var(--plum)]" type="submit" disabled={loading}>Trocar senha</button>
+      {message && <p className="mt-2 text-sm text-[var(--plum)]">{message}</p>}
+    </form>
+  );
+}

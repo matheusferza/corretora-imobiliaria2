@@ -4,6 +4,7 @@ import {
   ExternalLink,
   LayoutDashboard,
   Settings,
+  Users,
 } from "lucide-react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -20,6 +21,7 @@ const navigation = [
     label: "Configurações do site",
     icon: Settings,
   },
+  { href: "/admin/usuarios", label: "Usuários", icon: Users },
 ];
 
 export default async function AdminLayout({ children }: LayoutProps<"/admin">) {
