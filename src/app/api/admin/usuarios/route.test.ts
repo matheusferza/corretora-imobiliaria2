@@ -17,7 +17,7 @@ vi.mock("next-auth/next", () => ({
 }));
 
 let route: typeof import("./route");
-let prismaMock: { prisma: { usuario: Record<string, any> } };
+let prismaMock: { prisma: { usuario: Record<string, unknown> } };
 
 beforeAll(async () => {
   prismaMock = (await import("@/lib/prisma")) as unknown as { prisma: { usuario: Record<string, any> } };
@@ -59,7 +59,8 @@ describe("API /api/admin/usuarios handlers", () => {
   });
 
   it("DELETE prevents deleting own account", async () => {
-    mockGetServerSession.mockResolvedValue({ user: { role: "admin", id: "me" } });
+    mockGetServerSession.mockResolvedValue({ user: { role: "admin", email: "me@x" } });
+    prismaMock.prisma.usuario.findUnique.mockResolvedValue({ id: "me" });
     const res = await route.DELETE(new Request("http://localhost/api/admin/usuarios?id=me"));
     expect(prismaMock.prisma.usuario.delete).not.toHaveBeenCalled();
     expect(res.status).toBe(400);

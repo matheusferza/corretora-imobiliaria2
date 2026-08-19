@@ -144,8 +144,12 @@ export async function DELETE(req: Request) {
   if (!id) return NextResponse.json({ error: "Missing id" }, { status: 400 });
 
   const session = await getServerSession(authOptions);
-  if (session?.user?.id === id) {
-    return NextResponse.json({ error: "Cannot delete own account" }, { status: 400 });
+  if (session?.user?.email) {
+    // resolve current user's id from DB to avoid relying on session.user.id
+    const me = await prisma.usuario.findUnique({ where: { email: session.user.email } });
+    if (me?.id === id) {
+      return NextResponse.json({ error: "Cannot delete own account" }, { status: 400 });
+    }
   }
 
   try {
