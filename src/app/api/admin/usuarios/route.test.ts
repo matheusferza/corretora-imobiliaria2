@@ -17,10 +17,21 @@ vi.mock("next-auth/next", () => ({
 }));
 
 let route: typeof import("./route");
-let prismaMock: { prisma: { usuario: Record<string, (...args: unknown[]) => unknown> } };
+
+type UsuarioMock = {
+  findMany: ReturnType<typeof vi.fn>;
+  create: ReturnType<typeof vi.fn>;
+  findUnique: ReturnType<typeof vi.fn>;
+  update: ReturnType<typeof vi.fn>;
+  delete: ReturnType<typeof vi.fn>;
+};
+
+type PrismaMock = { prisma: { usuario: UsuarioMock } };
+
+let prismaMock: PrismaMock;
 
 beforeAll(async () => {
-  prismaMock = (await import("@/lib/prisma")) as unknown as { prisma: { usuario: Record<string, (...args: unknown[]) => unknown> } };
+  prismaMock = (await import("@/lib/prisma")) as unknown as PrismaMock;
   route = await import("./route");
 });
 
