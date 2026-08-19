@@ -16,7 +16,7 @@ const navigation = [
   { href: "/admin/imoveis", label: "Imóveis", icon: Building2 },
   { href: "/admin/conteudo", label: "Páginas e conteúdo", icon: BookOpen },
   {
-    href: "/admin/conteudo#configuracoes",
+  href: "/admin/configuracoes",
     label: "Configurações do site",
     icon: Settings,
   },
