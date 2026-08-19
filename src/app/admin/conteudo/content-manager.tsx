@@ -193,6 +193,12 @@ export function ContentManager() {
           </form>
         )}
       </section>
+
+      {message && (
+        <p className="mt-5 rounded-xl border bg-[var(--surface)] p-4 text-sm text-[var(--plum)]" role="status">
+          {message}
+        </p>
+      )}
     </main>
   );
 }
