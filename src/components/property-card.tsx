@@ -21,7 +21,9 @@ export interface PropertyCardProps {
 }
 
 export function PropertyCard({ property }: PropertyCardProps) {
-  const href = property.slug ? `/imoveis/${property.slug}` : `/imoveis`;
+  // NOTE: rota dinâmica /imoveis/[slug] é parte da Fase 2 do roadmap.
+  // Até sua criação, os cards direcionam com segurança para o catálogo geral /imoveis.
+  const href = "/imoveis";
 
   return (
     <article className="group flex flex-col justify-between rounded-2xl border bg-[var(--background)] p-5 shadow-[0_2px_8px_rgba(53,16,79,0.04)] hover:border-[var(--gold-light)] hover:shadow-md transition-all">
