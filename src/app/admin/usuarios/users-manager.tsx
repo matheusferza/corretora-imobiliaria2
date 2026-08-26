@@ -44,7 +44,7 @@ export function UsersManager({
     name?: string | null;
     role: string;
   }>({ email: "", name: "", role: "admin" });
-  const [editError, setEditError] = useState<string | null>(null);
+  const [_editError, setEditError] = useState<string | null>(null);
 
   function openEdit(user: User) {
     setEditError(null);
@@ -57,7 +57,7 @@ export function UsersManager({
     setEditError(null);
   }
 
-  async function submitEdit(e: React.FormEvent) {
+  async function _submitEdit(e: React.FormEvent) {
     e.preventDefault();
     if (!editTarget) return;
     setEditError(null);
