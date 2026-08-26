@@ -1,6 +1,7 @@
 import { Award, Compass, MapPin, Quote, Shield, Target } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Timeline } from "@/components/institutional/timeline";
 import { ValuesGrid } from "@/components/institutional/values-grid";
 import { CTASection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
@@ -21,52 +22,39 @@ export default function QuemSomosPage() {
         subtitle="Desde 1989, uma trajetória construída com trabalho, família e confiança."
       />
 
-      {/* Main Biography Section */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* ═══════════════════════════════════════════════════════════
+          SEÇÃO 1 — Perfil da Fundadora (Abertura & Biografia)
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12 items-start">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-start">
+            {/* Biografia Textual */}
             <div className="lg:col-span-7 space-y-6">
               <span className="text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase block">
                 História de Dedicação & Superação
               </span>
-              <h2 className="display text-3xl md:text-4xl text-[var(--plum)] leading-tight">
+              <h2 className="display text-3xl md:text-5xl text-[var(--plum)] leading-tight">
                 Valdete Gonçalves de Melo
               </h2>
 
-              <p className="text-base text-[var(--ink)] leading-relaxed font-semibold">
+              <p className="text-base md:text-lg text-[var(--ink)] leading-relaxed font-semibold">
                 Meu nome é Valdete Gonçalves de Melo, fundadora da Corretora
                 Val, especialista em Administração de Imóveis, Locação Anual,
                 Temporada e Compra e Venda, com atuação em Balneário Camboriú e
                 Camboriú.
               </p>
 
-              {/* Foto Histórica 1989 */}
-              <div className="my-6 overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-[var(--surface)] p-4 shadow-sm">
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-100">
-                  <Image
-                    src="/images/institutional/valdete-inicio-1989.png"
-                    alt="Valdete no início da carreira na Imobiliária Gonzaga em 1989/1990"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <p className="mt-3 text-center text-xs font-medium text-[var(--ink-soft)] italic">
-                  1989/1990 — Primeiros passos no mercado imobiliário na
-                  tradicional Imobiliária Gonzaga, em Curitiba.
-                </p>
-              </div>
-
-              <div className="space-y-4 text-sm text-[var(--ink-soft)] leading-relaxed">
+              <div className="space-y-4 text-sm md:text-base text-[var(--ink-soft)] leading-relaxed">
                 <p>
                   Minha história no mercado imobiliário teve início em{" "}
-                  <strong>1989</strong>, com o convite que abriu a primeira
-                  porta para trabalhar na tradicional Imobiliária Gonzaga, em
-                  Curitiba. Foi em <strong>1990</strong> que iniciei
-                  oficialmente minha trajetória profissional no setor, começando
-                  como secretária e, com o tempo, passando a apresentar imóveis,
-                  realizar vistorias e intermediar relações entre proprietários
-                  e locatários.
+                  <strong className="text-[var(--plum)] font-bold">1989</strong>
+                  , com o convite que abriu a primeira porta para trabalhar na
+                  tradicional Imobiliária Gonzaga, em Curitiba. Foi em{" "}
+                  <strong className="text-[var(--plum)] font-bold">1990</strong>{" "}
+                  que iniciei oficialmente minha trajetória profissional no
+                  setor, começando como secretária e, com o tempo, passando a
+                  apresentar imóveis, realizar vistorias e intermediar relações
+                  entre proprietários e locatários.
                 </p>
                 <p>
                   A vida me levou por outros caminhos durante muitos anos, mas
@@ -79,7 +67,7 @@ export default function QuemSomosPage() {
                 </p>
                 <p>
                   Também tive a honra de presidir a{" "}
-                  <strong>
+                  <strong className="text-[var(--plum)] font-bold">
                     AMAE – Associação de Apoio à Criança e ao Adolescente com
                     Mobilidade Reduzida e com Câncer
                   </strong>
@@ -87,11 +75,13 @@ export default function QuemSomosPage() {
                   com o cuidado, a responsabilidade e o respeito pelas pessoas.
                 </p>
                 <p>
-                  Em <strong>2019</strong>, já em Balneário Camboriú, retornei
-                  ao mercado imobiliário e reencontrei a profissão que sempre
-                  fez parte da minha essência.
+                  Em{" "}
+                  <strong className="text-[var(--plum)] font-bold">2019</strong>
+                  , já em Balneário Camboriú, retornei ao mercado imobiliário e
+                  reencontrei a profissão que sempre fez parte da minha
+                  essência.
                 </p>
-                <p className="font-bold text-[var(--plum)] text-base pt-2">
+                <p className="font-bold text-[var(--plum)] text-base md:text-lg pt-2">
                   Foi dessa trajetória que nasceu a Corretora Val.
                 </p>
                 <p>
@@ -133,30 +123,30 @@ export default function QuemSomosPage() {
               </div>
             </div>
 
-            {/* Institutional Profile Sidebar com Foto Oficial */}
+            {/* Foto de Perfil Oficial & Identificação (Proporção 2:3 nativa 682x1024) */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-6 md:p-8 shadow-md space-y-6">
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[var(--plum)]/10 shadow-inner">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-5 md:p-7 shadow-lg space-y-6">
+                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl bg-[var(--plum)]/10 shadow-inner">
                   <Image
                     src="/images/institutional/valdete-perfil.png"
-                    alt="Valdete Gonçalves de Melo - Fundadora da Corretora Val"
+                    alt="Valdete Gonçalves de Melo, fundadora da Corretora Val, em traje profissional blazer preto e camisa branca"
                     fill
                     priority
                     className="object-cover object-top"
                     sizes="(max-width: 768px) 100vw, 40vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/60 via-transparent to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <p className="display text-2xl font-bold leading-tight">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/75 via-transparent to-transparent" />
+                  <div className="absolute bottom-5 left-5 right-5 text-white">
+                    <p className="display text-2xl md:text-3xl font-bold leading-tight">
                       Valdete Gonçalves de Melo
                     </p>
-                    <p className="text-xs font-extrabold tracking-wider text-[var(--gold-light)] uppercase">
+                    <p className="text-xs font-extrabold tracking-wider text-[var(--gold-light)] uppercase mt-1">
                       CRECI/SC 56372-F
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 pt-2">
+                <div className="flex items-center gap-3 pt-1">
                   <div className="flex size-12 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)] shrink-0">
                     <Award size={22} />
                   </div>
@@ -165,7 +155,7 @@ export default function QuemSomosPage() {
                       Corretora Val
                     </h3>
                     <span className="text-xs text-[var(--gold)] font-bold uppercase tracking-wider block">
-                      Fundadora & Gestora
+                      Fundadora & Gestora Patrimonial
                     </span>
                   </div>
                 </div>
@@ -195,8 +185,109 @@ export default function QuemSomosPage() {
         </div>
       </section>
 
-      {/* Mission and Vision Section */}
-      <section className="py-16 md:py-24 bg-[var(--surface-muted)] border-y">
+      {/* ═══════════════════════════════════════════════════════════
+          SEÇÃO 2 — Linha do Tempo Visual com Fotos Históricas
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
+        <div className="shell max-w-4xl">
+          <SectionTitle
+            eyebrow="Memória & Marcos"
+            title="Nossa Linha do Tempo"
+            subtitle="Os momentos decisivos que transformaram experiência, superação e dedicação na solidez da Corretora Val."
+            align="center"
+          />
+
+          <div className="mt-14">
+            <Timeline />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SEÇÃO 3 — Família (Composição sem cortes)
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white">
+        <div className="shell">
+          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+            {/* Foto da Família em Proporção 3:2 Nativa (1024x682) */}
+            <div className="lg:col-span-6">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-[var(--surface)] p-4 md:p-5 shadow-lg space-y-4">
+                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm">
+                  <Image
+                    src="/images/institutional/valdete-familia.jpg"
+                    alt="Valdete Gonçalves de Melo, seu filho Felipe Cesar e seu neto Kauan Enrique com vista panorâmica para o skyline de Balneário Camboriú"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                  />
+                </div>
+                <div className="px-2 pb-1 text-center">
+                  <span className="eyebrow text-[var(--gold)] block">
+                    Família & Continuidade
+                  </span>
+                  <p className="display text-xl md:text-2xl text-[var(--plum)] font-bold mt-1">
+                    Três gerações unidas pelo cuidado
+                  </p>
+                  <p className="text-xs text-[var(--ink-soft)] mt-1 max-w-md mx-auto">
+                    Valdete, seu filho Felipe e seu neto Kauan — unindo
+                    experiência, inovação e o compromisso ético da Corretora Val
+                    em Balneário Camboriú.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Texto da Seção Família */}
+            <div className="lg:col-span-6 space-y-5">
+              <span className="text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase block">
+                Nossa Família
+              </span>
+              <h2 className="display text-3xl md:text-4xl text-[var(--plum)] leading-tight">
+                A Corretora Val é uma empresa construída em família.
+              </h2>
+              <p className="text-base text-[var(--ink-soft)] leading-relaxed">
+                Ao meu lado caminham meu filho{" "}
+                <strong className="text-[var(--plum)] font-bold">
+                  Felipe Cesar Gonçalves de Melo
+                </strong>
+                , que atua na gestão da empresa, meu neto{" "}
+                <strong className="text-[var(--plum)] font-bold">
+                  Kauan Enrique Otto
+                </strong>
+                , representando a nova geração do mercado imobiliário, e toda a
+                minha família, que sempre foi a base de cada recomeço.
+              </p>
+              <p className="text-base text-[var(--ink-soft)] leading-relaxed">
+                Minha filha{" "}
+                <strong className="text-[var(--plum)] font-bold">
+                  Michely
+                </strong>
+                , meu genro{" "}
+                <strong className="text-[var(--plum)] font-bold">Marcos</strong>
+                , meus netos{" "}
+                <strong className="text-[var(--plum)] font-bold">Malu</strong> e{" "}
+                <strong className="text-[var(--plum)] font-bold">Raul</strong>,
+                e minha mãe{" "}
+                <strong className="text-[var(--plum)] font-bold">Dileia</strong>{" "}
+                fazem parte da história que inspira a Corretora Val todos os
+                dias. São eles que me lembram por que vale a pena trabalhar com
+                dedicação, honestidade e amor pelo que faço.
+              </p>
+              <div className="pt-3 border-t border-[var(--gold-light)]/40">
+                <p className="text-xs font-bold text-[var(--plum)] italic">
+                  &ldquo;Acreditamos que cada cliente que confia seu imóvel a
+                  nós passa a fazer parte da nossa história.&rdquo;
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SEÇÃO 4 — Missão, Visão e Valores
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
         <div className="shell">
           <SectionTitle
             eyebrow="Propósito Institucional"
@@ -205,7 +296,7 @@ export default function QuemSomosPage() {
             align="center"
           />
 
-          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto">
+          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto mt-12">
             <div className="rounded-3xl border bg-white p-8 md:p-10 shadow-xs space-y-4">
               <div className="flex size-12 items-center justify-center rounded-xl bg-[var(--plum)] text-[var(--gold)]">
                 <Target size={24} />
@@ -235,82 +326,25 @@ export default function QuemSomosPage() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Values Grid Section */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="shell">
-          <SectionTitle
-            eyebrow="Pilares Éticos"
-            title="Nossos Valores"
-            subtitle="Princípios que orientam cada contrato, atendimento e negociação."
-            align="center"
-          />
-
-          <ValuesGrid />
-        </div>
-      </section>
-
-      {/* Family Section com Foto da Família */}
-      <section className="py-16 md:py-24 bg-[var(--surface-muted)] border-y">
-        <div className="shell">
-          <div className="grid gap-12 lg:grid-cols-12 items-center">
-            <div className="lg:col-span-5">
-              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-3 shadow-md space-y-3">
-                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-neutral-100">
-                  <Image
-                    src="/images/institutional/valdete-familia.jpg"
-                    alt="Valdete, seu filho Felipe e seu neto Kauan com vista para Balneário Camboriú"
-                    fill
-                    className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 40vw"
-                  />
-                </div>
-                <div className="p-3 text-center">
-                  <span className="eyebrow text-[var(--gold)] block">
-                    Família & Tradição
-                  </span>
-                  <p className="display text-xl text-[var(--plum)] font-bold mt-1">
-                    Três gerações unidas pelo cuidado
-                  </p>
-                  <p className="text-xs text-[var(--ink-soft)] mt-1">
-                    Valdete, Felipe e Kauan — presença e continuidade em
-                    Balneário Camboriú.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:col-span-7 space-y-4">
-              <span className="text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase block">
-                Nossa Família
-              </span>
-              <h2 className="display text-3xl md:text-4xl text-[var(--plum)]">
-                A Corretora Val é uma empresa construída em família.
-              </h2>
-              <p className="text-base text-[var(--ink-soft)] leading-relaxed">
-                Ao meu lado caminham meu filho{" "}
-                <strong>Felipe Cesar Gonçalves de Melo</strong>, que atua na
-                gestão da empresa, meu neto <strong>Kauan Enrique Otto</strong>,
-                representando a nova geração do mercado imobiliário, e toda a
-                minha família, que sempre foi a base de cada recomeço.
-              </p>
-              <p className="text-base text-[var(--ink-soft)] leading-relaxed">
-                Minha filha <strong>Michely</strong>, meu genro{" "}
-                <strong>Marcos</strong>, meus netos <strong>Malu</strong> e{" "}
-                <strong>Raul</strong>, e minha mãe <strong>Dileia</strong> fazem
-                parte da história que inspira a Corretora Val todos os dias. São
-                eles que me lembram por que vale a pena trabalhar com dedicação,
-                honestidade e amor pelo que faço.
-              </p>
+          <div className="mt-20">
+            <SectionTitle
+              eyebrow="Pilares Éticos"
+              title="Nossos Valores"
+              subtitle="Princípios que orientam cada contrato, atendimento e negociação."
+              align="center"
+            />
+            <div className="mt-10">
+              <ValuesGrid />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Manifesto Section */}
-      <section className="py-16 md:py-24 bg-white">
+      {/* ═══════════════════════════════════════════════════════════
+          SEÇÃO 5 — Manifesto & CTA Final
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="shell max-w-4xl">
           <div className="rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--plum)] to-[#4A1768] p-8 md:p-14 text-white shadow-xl space-y-6 text-center">
             <div className="inline-flex size-14 items-center justify-center rounded-full bg-white/10 text-[var(--gold-light)] mb-2">
