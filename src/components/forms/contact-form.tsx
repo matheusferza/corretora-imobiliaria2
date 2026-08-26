@@ -57,8 +57,8 @@ export function ContactForm() {
         Envie uma Mensagem
       </h3>
       <p className="text-sm text-[var(--ink-soft)] mb-6">
-        Preencha o formulário abaixo e nossa equipe responderá com a orientação
-        certa para o seu projeto.
+        Preencha o formulário abaixo e eu entrarei em contato diretamente com a
+        orientação certa para o que você precisa.
       </p>
 
       {status === "success" ? (
@@ -68,7 +68,7 @@ export function ContactForm() {
             Mensagem Enviada com Sucesso!
           </div>
           <p className="text-sm text-emerald-700">
-            Obrigado pelo contato! Retornaremos sua mensagem o mais breve
+            Obrigada pelo contato! Retornarei sua mensagem o mais breve
             possível.
           </p>
           <button

@@ -65,7 +65,13 @@ export async function POST(req: Request) {
         password: hash,
         role,
       },
-      select: { id: true, email: true, name: true, role: true, createdAt: true },
+      select: {
+        id: true,
+        email: true,
+        name: true,
+        role: true,
+        createdAt: true,
+      },
     });
     return NextResponse.json(created, { status: 201 });
   } catch (error) {
@@ -74,12 +80,22 @@ export async function POST(req: Request) {
     }
 
     const maybeErr = error as unknown as { code?: string };
-    if (maybeErr?.code === "P2002" || (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002")) {
-      return NextResponse.json({ error: "E-mail já está em uso." }, { status: 409 });
+    if (
+      maybeErr?.code === "P2002" ||
+      (error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002")
+    ) {
+      return NextResponse.json(
+        { error: "E-mail já está em uso." },
+        { status: 409 },
+      );
     }
 
     console.error("API /api/admin/usuarios POST error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }
 
@@ -89,13 +105,27 @@ export async function PUT(req: Request) {
 
     if (payload.type === "changeOwnPassword") {
       const session = await getServerSession(authOptions);
-      if (!session?.user?.email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-      const user = await prisma.usuario.findUnique({ where: { email: session.user.email } });
-      if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
-      const match = await bcrypt.compare(payload.currentPassword, user.password);
-      if (!match) return NextResponse.json({ error: "Current password incorrect" }, { status: 400 });
+      if (!session?.user?.email)
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      const user = await prisma.usuario.findUnique({
+        where: { email: session.user.email },
+      });
+      if (!user)
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+      const match = await bcrypt.compare(
+        payload.currentPassword,
+        user.password,
+      );
+      if (!match)
+        return NextResponse.json(
+          { error: "Current password incorrect" },
+          { status: 400 },
+        );
       const hash = await bcrypt.hash(payload.newPassword, 10);
-      await prisma.usuario.update({ where: { id: user.id }, data: { password: hash } });
+      await prisma.usuario.update({
+        where: { id: user.id },
+        data: { password: hash },
+      });
       return NextResponse.json({ success: true });
     }
 
@@ -106,10 +136,21 @@ export async function PUT(req: Request) {
 
     if (payload.type === "updateUser") {
       const data: { email?: string; name?: string | null; role?: string } = {};
-      if (payload.email !== undefined) data.email = payload.email.toLowerCase().trim();
+      if (payload.email !== undefined)
+        data.email = payload.email.toLowerCase().trim();
       if (payload.name !== undefined) data.name = payload.name ?? null;
       if (payload.role !== undefined) data.role = payload.role;
-      const updated = await prisma.usuario.update({ where: { id: payload.id }, data, select: { id: true, email: true, name: true, role: true, createdAt: true } });
+      const updated = await prisma.usuario.update({
+        where: { id: payload.id },
+        data,
+        select: {
+          id: true,
+          email: true,
+          name: true,
+          role: true,
+          createdAt: true,
+        },
+      });
       return NextResponse.json(updated);
     }
 
@@ -117,7 +158,10 @@ export async function PUT(req: Request) {
       // generate temporary password
       const temp = `${Math.random().toString(36).slice(-10)}A1`;
       const hash = await bcrypt.hash(temp, 10);
-      await prisma.usuario.update({ where: { id: payload.id }, data: { password: hash } });
+      await prisma.usuario.update({
+        where: { id: payload.id },
+        data: { password: hash },
+      });
       return NextResponse.json({ tempPassword: temp });
     }
 
@@ -128,12 +172,22 @@ export async function PUT(req: Request) {
     }
 
     const maybeErr = error as unknown as { code?: string };
-    if (maybeErr?.code === "P2002" || (error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002")) {
-      return NextResponse.json({ error: "E-mail já está em uso." }, { status: 409 });
+    if (
+      maybeErr?.code === "P2002" ||
+      (error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === "P2002")
+    ) {
+      return NextResponse.json(
+        { error: "E-mail já está em uso." },
+        { status: 409 },
+      );
     }
 
     console.error("API /api/admin/usuarios PUT error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }
 
@@ -148,9 +202,14 @@ export async function DELETE(req: Request) {
   const session = await getServerSession(authOptions);
   if (session?.user?.email) {
     // resolve current user's id from DB to avoid relying on session.user.id
-    const me = await prisma.usuario.findUnique({ where: { email: session.user.email } });
+    const me = await prisma.usuario.findUnique({
+      where: { email: session.user.email },
+    });
     if (me?.id === id) {
-      return NextResponse.json({ error: "Cannot delete own account" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Cannot delete own account" },
+        { status: 400 },
+      );
     }
   }
 
@@ -159,6 +218,9 @@ export async function DELETE(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("API /api/admin/usuarios DELETE error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
   }
 }

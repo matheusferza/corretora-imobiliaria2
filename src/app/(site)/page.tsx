@@ -1,21 +1,36 @@
-import { ArrowRight, Building2, KeyRound, ShieldCheck } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  CalendarDays,
+  KeyRound,
+  ShoppingBag,
+} from "lucide-react";
 import Link from "next/link";
 
 const services = [
   {
-    icon: Building2,
-    title: "Administração patrimonial",
-    text: "Cuidado completo para o seu imóvel, com organização, clareza e acompanhamento próximo.",
+    icon: ShoppingBag,
+    title: "Comprar",
+    text: "Oportunidades selecionadas de imóveis para compra com análise documental completa e segurança jurídica.",
+    href: "/imoveis",
   },
   {
     icon: KeyRound,
-    title: "Locação e temporada",
-    text: "Escolhas seguras para quem busca viver, alugar ou desfrutar o litoral em cada estação.",
+    title: "Alugar",
+    text: "Locação anual transparente, com análise rigorosa e contratos seguros para inquilinos e proprietários.",
+    href: "/imoveis",
   },
   {
-    icon: ShieldCheck,
-    title: "Compra e venda",
-    text: "Negociações conduzidas com escuta, transparência e conhecimento da nossa região.",
+    icon: CalendarDays,
+    title: "Temporada",
+    text: "Imóveis exclusivos para desfrutar o litoral de Balneário Camboriú com conforto em cada temporada.",
+    href: "/imoveis",
+  },
+  {
+    icon: Building2,
+    title: "Administrar",
+    text: "Gestão patrimonial dedicada, com vistorias criteriosas, repasses pontuais e suporte completo.",
+    href: "/administracao",
   },
 ];
 
@@ -55,7 +70,7 @@ export default function Home() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(216,189,130,0.28),transparent_30%),radial-gradient(circle_at_10%_100%,rgba(255,255,255,0.13),transparent_35%)]" />
             <div className="relative">
               <span className="eyebrow text-[var(--gold-light)]">
-                Desde 1990
+                Desde 1989
               </span>
               <p className="display mt-10 max-w-sm text-4xl leading-none sm:text-5xl">
                 Mais que imóveis, cuidamos de histórias.
@@ -80,29 +95,35 @@ export default function Home() {
       <section className="border-y bg-[var(--surface)] py-20">
         <div className="shell">
           <div className="max-w-2xl">
-            <p className="eyebrow">Uma relação de confiança</p>
+            <p className="eyebrow">Áreas de Atuação</p>
             <h2 className="display mt-4 text-4xl leading-none text-[var(--plum)] sm:text-5xl">
               Tudo o que seu imóvel precisa, com o cuidado que você espera.
             </h2>
           </div>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {services.map((service) => {
               const Icon = service.icon;
               return (
-                <article
-                  className="interactive rounded-2xl bg-[var(--background)] p-7 shadow-[0_0_0_1px_rgba(53,16,79,0.07),0_2px_4px_rgba(53,16,79,0.04)] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(53,16,79,0.1),0_14px_28px_rgba(53,16,79,0.1)]"
+                <Link
+                  href={service.href}
                   key={service.title}
+                  className="interactive flex flex-col justify-between rounded-2xl bg-[var(--background)] p-7 shadow-[0_0_0_1px_rgba(53,16,79,0.07),0_2px_4px_rgba(53,16,79,0.04)] hover:-translate-y-1 hover:shadow-[0_0_0_1px_rgba(53,16,79,0.1),0_14px_28px_rgba(53,16,79,0.1)] transition-all group"
                 >
-                  <span className="flex size-11 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold-light)]">
-                    <Icon aria-hidden="true" size={20} />
-                  </span>
-                  <h3 className="display mt-6 text-3xl text-[var(--plum)]">
-                    {service.title}
-                  </h3>
-                  <p className="mt-3 text-sm leading-6 text-[var(--ink-soft)]">
-                    {service.text}
-                  </p>
-                </article>
+                  <div>
+                    <span className="flex size-11 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold-light)] group-hover:scale-105 transition-transform">
+                      <Icon aria-hidden="true" size={20} />
+                    </span>
+                    <h3 className="display mt-6 text-3xl text-[var(--plum)]">
+                      {service.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-[var(--ink-soft)]">
+                      {service.text}
+                    </p>
+                  </div>
+                  <div className="mt-6 flex items-center gap-1.5 text-xs font-extrabold text-[var(--gold)] uppercase tracking-wider">
+                    Saiba mais <ArrowRight size={14} />
+                  </div>
+                </Link>
               );
             })}
           </div>

@@ -16,7 +16,7 @@ import { SectionTitle } from "@/components/site/section-title";
 export const metadata: Metadata = {
   title: "Quem Somos | Corretora Val",
   description:
-    "Conheça a história de Valdete Gonçalves de Melo e a trajetória da Corretora Val em Balneário Camboriú e Camboriú: trabalho, família, compromisso e confiança desde 1990.",
+    "Conheça a história de Valdete Gonçalves de Melo e a trajetória da Corretora Val em Balneário Camboriú e Camboriú: trabalho, família, compromisso e confiança desde 1989.",
 };
 
 export default function QuemSomosPage() {
@@ -25,7 +25,7 @@ export default function QuemSomosPage() {
       <PageHero
         eyebrow="QUEM SOMOS"
         title="Minha História. Meu Compromisso."
-        subtitle="Desde 1990, uma trajetória construída com trabalho, família e confiança."
+        subtitle="Desde 1989, uma trajetória construída com trabalho, família e confiança."
       />
 
       {/* Main Biography Section */}
@@ -49,13 +49,14 @@ export default function QuemSomosPage() {
 
               <div className="space-y-4 text-sm text-[var(--ink-soft)] leading-relaxed">
                 <p>
-                  Minha história no mercado imobiliário começou em{" "}
-                  <strong>1990</strong>, na cidade de Curitiba, quando recebi um
-                  convite para trabalhar na tradicional Imobiliária Gonzaga. Foi
-                  ali que dei os primeiros passos na profissão, iniciando como
-                  secretária, passando pela apresentação de imóveis, realização
-                  de vistorias e, posteriormente, pela intermediação entre
-                  proprietários e locatários.
+                  Minha história no mercado imobiliário teve início em{" "}
+                  <strong>1989</strong>, com o convite que abriu a primeira
+                  porta para trabalhar na tradicional Imobiliária Gonzaga, em
+                  Curitiba. Foi em <strong>1990</strong> que iniciei
+                  oficialmente minha trajetória profissional no setor, começando
+                  como secretária e, com o tempo, passando a apresentar imóveis,
+                  realizar vistorias e intermediar relações entre proprietários
+                  e locatários.
                 </p>
                 <p>
                   A vida me levou por outros caminhos durante muitos anos, mas
@@ -93,6 +94,32 @@ export default function QuemSomosPage() {
                   relacionamentos duradouros, baseados na confiança e no
                   respeito.
                 </p>
+              </div>
+
+              {/* Personal Gratitude & Overcoming Highlight */}
+              <div className="rounded-3xl border border-[var(--gold-light)] bg-gradient-to-r from-[var(--surface-muted)] to-[var(--surface)] p-6 md:p-8 shadow-xs">
+                <div className="flex items-start gap-4">
+                  <div className="flex size-10 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)] shrink-0 mt-1">
+                    <Quote size={20} />
+                  </div>
+                  <div className="space-y-3">
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-[var(--gold)]">
+                      Palavras da Fundadora
+                    </span>
+                    <p className="text-base text-[var(--plum)] font-medium italic leading-relaxed">
+                      &ldquo;Quero agradecer primeiramente por me ajudar a
+                      realizar um sonho guardado desde que resolvi caminhar aqui
+                      sozinha. Na pandemia fui dispensada do trabalho, sem rumo.
+                      A Michely e o Felipe me mostraram que eu era capaz — as
+                      palavras deles e o presente da Michely, me presenteando
+                      com o curso do CRECI, me fizeram acreditar que sou
+                      capaz.&rdquo;
+                    </p>
+                    <p className="text-xs font-bold text-[var(--ink-soft)]">
+                      — Valdete Gonçalves de Melo · CRECI/SC 56372-F
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -291,7 +318,7 @@ export default function QuemSomosPage() {
 
       <CTASection
         title="Confiança que abre portas."
-        description="Fale diretamente com Valdete Gonçalves de Melo e equipe para cuidar do seu imóvel com a atenção que ele merece."
+        description="Fale diretamente comigo para cuidar do seu imóvel com a atenção, o carinho e a segurança que seu patrimônio merece."
         primaryButtonText="Falar pelo WhatsApp"
         secondaryButtonText="Ver Nossos Imóveis"
         secondaryButtonHref="/imoveis"

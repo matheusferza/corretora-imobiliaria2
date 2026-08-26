@@ -670,7 +670,9 @@ export function AdminPropertiesManager() {
                 >
                   Selecionar imagens
                 </label>
-                <span className="text-sm text-white/75">Até 12 imagens.</span>
+                <span className="text-sm text-white/75">
+                  Múltiplas imagens (selecione uma ou mais fotos).
+                </span>
               </div>
               {photos.length > 0 && (
                 <div className="flex flex-wrap gap-2">

@@ -6,11 +6,11 @@ export function AuthorityStats() {
       {/* Stats Cards */}
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl border bg-white p-6 text-center shadow-xs">
-          <span className="display block text-4xl font-bold text-[var(--plum)]">
-            35+
+          <span className="display block text-3xl md:text-4xl font-bold text-[var(--plum)]">
+            +35 Anos
           </span>
           <span className="mt-2 block text-xs font-bold text-[var(--ink-soft)] uppercase tracking-wider">
-            Anos no Mercado
+            Mais de 35 anos de experiência
           </span>
         </div>
         <div className="rounded-2xl border bg-white p-6 text-center shadow-xs">

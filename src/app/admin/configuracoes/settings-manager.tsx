@@ -52,8 +52,11 @@ export function SettingsManager() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await fetch("/api/admin/conteudo", { cache: "no-store" });
-      if (!response.ok) throw new Error("Não foi possível carregar as configurações.");
+      const response = await fetch("/api/admin/conteudo", {
+        cache: "no-store",
+      });
+      if (!response.ok)
+        throw new Error("Não foi possível carregar as configurações.");
       const data = await response.json();
       setSettings(data.settings);
     } catch (error) {
@@ -78,8 +81,11 @@ export function SettingsManager() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ type: "settings", settings }),
       });
-      if (!response.ok) throw new Error("Não foi possível salvar as configurações.");
-      setMessage("Configurações salvas. O rodapé e os contatos do site serão atualizados.");
+      if (!response.ok)
+        throw new Error("Não foi possível salvar as configurações.");
+      setMessage(
+        "Configurações salvas. O rodapé e os contatos do site serão atualizados.",
+      );
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Ocorreu um erro.");
     } finally {
@@ -100,31 +106,94 @@ export function SettingsManager() {
   return (
     <main className="p-6 sm:p-10">
       <p className="eyebrow">Configurações</p>
-      <h1 className="display mt-3 text-4xl text-[var(--plum)] sm:text-5xl">Configurações do site</h1>
-      <p className="mt-3 max-w-2xl text-[var(--ink-soft)]">Edite as configurações globais do site, exibidas no cabeçalho e rodapé público.</p>
+      <h1 className="display mt-3 text-4xl text-[var(--plum)] sm:text-5xl">
+        Configurações do site
+      </h1>
+      <p className="mt-3 max-w-2xl text-[var(--ink-soft)]">
+        Edite as configurações globais do site, exibidas no cabeçalho e rodapé
+        público.
+      </p>
 
       <section className="mt-9">
         {settings ? (
-          <form className="mt-6 grid gap-4 md:grid-cols-2" onSubmit={saveSettings}>
-            <Input label="Nome da marca" value={settings.brandName} onChange={(value) => setSettings({ ...settings, brandName: value })} />
-            <Input label="Slogan" value={settings.tagline} onChange={(value) => setSettings({ ...settings, tagline: value })} />
-            <Input label="Telefone" value={settings.phone} onChange={(value) => setSettings({ ...settings, phone: emptyToNull(value) })} />
-            <Input label="WhatsApp (somente números)" value={settings.whatsapp} onChange={(value) => setSettings({ ...settings, whatsapp: emptyToNull(value) })} />
-            <Input label="E-mail" type="email" value={settings.email} onChange={(value) => setSettings({ ...settings, email: emptyToNull(value) })} />
-            <Input label="CRECI" value={settings.creci} onChange={(value) => setSettings({ ...settings, creci: value })} />
-            <Input label="Endereço" value={settings.address} onChange={(value) => setSettings({ ...settings, address: emptyToNull(value) })} />
-            <Input label="Instagram" type="url" value={settings.instagramUrl} onChange={(value) => setSettings({ ...settings, instagramUrl: emptyToNull(value) })} />
+          <form
+            className="mt-6 grid gap-4 md:grid-cols-2"
+            onSubmit={saveSettings}
+          >
+            <Input
+              label="Nome da marca"
+              value={settings.brandName}
+              onChange={(value) =>
+                setSettings({ ...settings, brandName: value })
+              }
+            />
+            <Input
+              label="Slogan"
+              value={settings.tagline}
+              onChange={(value) => setSettings({ ...settings, tagline: value })}
+            />
+            <Input
+              label="Telefone"
+              value={settings.phone}
+              onChange={(value) =>
+                setSettings({ ...settings, phone: emptyToNull(value) })
+              }
+            />
+            <Input
+              label="WhatsApp (somente números)"
+              value={settings.whatsapp}
+              onChange={(value) =>
+                setSettings({ ...settings, whatsapp: emptyToNull(value) })
+              }
+            />
+            <Input
+              label="E-mail"
+              type="email"
+              value={settings.email}
+              onChange={(value) =>
+                setSettings({ ...settings, email: emptyToNull(value) })
+              }
+            />
+            <Input
+              label="CRECI"
+              value={settings.creci}
+              onChange={(value) => setSettings({ ...settings, creci: value })}
+            />
+            <Input
+              label="Endereço"
+              value={settings.address}
+              onChange={(value) =>
+                setSettings({ ...settings, address: emptyToNull(value) })
+              }
+            />
+            <Input
+              label="Instagram"
+              type="url"
+              value={settings.instagramUrl}
+              onChange={(value) =>
+                setSettings({ ...settings, instagramUrl: emptyToNull(value) })
+              }
+            />
 
-            <button className="interactive md:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[var(--gold)] px-5 py-3 text-sm font-extrabold text-[var(--plum)] hover:bg-[var(--gold-light)] disabled:opacity-60" disabled={saving} type="submit">
+            <button
+              className="interactive md:col-span-2 inline-flex w-fit items-center gap-2 rounded-full bg-[var(--gold)] px-5 py-3 text-sm font-extrabold text-[var(--plum)] hover:bg-[var(--gold-light)] disabled:opacity-60"
+              disabled={saving}
+              type="submit"
+            >
               <Save size={17} /> {saving ? "Salvando…" : "Salvar configurações"}
             </button>
           </form>
         ) : (
-          <p className="text-sm text-[var(--ink-soft)]">Nenhuma configuração encontrada.</p>
+          <p className="text-sm text-[var(--ink-soft)]">
+            Nenhuma configuração encontrada.
+          </p>
         )}
 
         {message && (
-          <p className="mt-5 rounded-xl border bg-[var(--surface)] p-4 text-sm text-[var(--plum)]" role="status">
+          <p
+            className="mt-5 rounded-xl border bg-[var(--surface)] p-4 text-sm text-[var(--plum)]"
+            role="status"
+          >
             {message}
           </p>
         )}

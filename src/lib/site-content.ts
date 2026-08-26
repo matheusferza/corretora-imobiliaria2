@@ -13,16 +13,24 @@ const fallbackSettings = {
 };
 
 export async function getSiteSettings() {
-  return (
-    (await prisma.configuracaoSite.findUnique({
-      where: { id: "principal" },
-    })) ?? fallbackSettings
-  );
+  try {
+    return (
+      (await prisma.configuracaoSite.findUnique({
+        where: { id: "principal" },
+      })) ?? fallbackSettings
+    );
+  } catch {
+    return fallbackSettings;
+  }
 }
 
 export async function getPublishedPages() {
-  return prisma.paginaSite.findMany({
-    where: { isPublished: true },
-    orderBy: { sortOrder: "asc" },
-  });
+  try {
+    return await prisma.paginaSite.findMany({
+      where: { isPublished: true },
+      orderBy: { sortOrder: "asc" },
+    });
+  } catch {
+    return [];
+  }
 }

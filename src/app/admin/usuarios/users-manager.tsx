@@ -2,9 +2,19 @@
 
 import { useCallback, useEffect, useState } from "react";
 
-type User = { id: string; email: string; name?: string | null; role: string; createdAt: string };
+type User = {
+  id: string;
+  email: string;
+  name?: string | null;
+  role: string;
+  createdAt: string;
+};
 
-export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }) {
+export function UsersManager({
+  currentUserEmail,
+}: {
+  currentUserEmail?: string;
+}) {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState<string | null>(null);
@@ -29,7 +39,11 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
 
   // Edit modal state
   const [editTarget, setEditTarget] = useState<User | null>(null);
-  const [editForm, setEditForm] = useState<{ email: string; name?: string | null; role: string }>({ email: "", name: "", role: "admin" });
+  const [editForm, setEditForm] = useState<{
+    email: string;
+    name?: string | null;
+    role: string;
+  }>({ email: "", name: "", role: "admin" });
   const [editError, setEditError] = useState<string | null>(null);
 
   function openEdit(user: User) {
@@ -51,7 +65,13 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
       const res = await fetch("/api/admin/usuarios", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "updateUser", id: editTarget.id, name: editForm.name, role: editForm.role, email: editForm.email }),
+        body: JSON.stringify({
+          type: "updateUser",
+          id: editTarget.id,
+          name: editForm.name,
+          role: editForm.role,
+          email: editForm.email,
+        }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => null);
@@ -66,7 +86,6 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
 
   // password change toggle state
   const [showPasswordForm, setShowPasswordForm] = useState(false);
-
 
   async function createUser(e: React.FormEvent) {
     e.preventDefault();
@@ -112,7 +131,9 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
     if (!confirm("Tem certeza que deseja excluir este usuário?")) return;
     setMessage(null);
     try {
-      const res = await fetch(`/api/admin/usuarios?id=${userId}`, { method: "DELETE" });
+      const res = await fetch(`/api/admin/usuarios?id=${userId}`, {
+        method: "DELETE",
+      });
       if (!res.ok) throw new Error("Falha ao excluir usuário");
       await load();
     } catch (e) {
@@ -123,8 +144,12 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
   return (
     <main className="p-6 sm:p-10">
       <p className="eyebrow">Usuários</p>
-      <h1 className="display mt-3 text-4xl text-[var(--plum)] sm:text-5xl">Gerenciamento de Usuários</h1>
-      <p className="mt-3 max-w-2xl text-[var(--ink-soft)]">Crie, edite e remova logins de acesso ao painel administrativo.</p>
+      <h1 className="display mt-3 text-4xl text-[var(--plum)] sm:text-5xl">
+        Gerenciamento de Usuários
+      </h1>
+      <p className="mt-3 max-w-2xl text-[var(--ink-soft)]">
+        Crie, edite e remova logins de acesso ao painel administrativo.
+      </p>
 
       <section className="mt-9 grid gap-7 lg:grid-cols-2">
         <div className="rounded-2xl border bg-[var(--surface)] p-5 shadow sm:p-7">
@@ -132,29 +157,54 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
           <form className="mt-4 grid gap-3" onSubmit={createUser}>
             <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
               E-mail
-              <input name="email" type="email" required className="rounded-lg border bg-white px-3 py-2" />
+              <input
+                name="email"
+                type="email"
+                required
+                className="rounded-lg border bg-white px-3 py-2"
+              />
             </label>
             <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
               Nome
-              <input name="name" type="text" className="rounded-lg border bg-white px-3 py-2" />
+              <input
+                name="name"
+                type="text"
+                className="rounded-lg border bg-white px-3 py-2"
+              />
             </label>
             <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
               Senha
-              <input name="password" type="password" required className="rounded-lg border bg-white px-3 py-2" />
+              <input
+                name="password"
+                type="password"
+                required
+                className="rounded-lg border bg-white px-3 py-2"
+              />
             </label>
             <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
               Papel
-              <select name="role" defaultValue="admin" className="rounded-lg border bg-white px-3 py-2">
+              <select
+                name="role"
+                defaultValue="admin"
+                className="rounded-lg border bg-white px-3 py-2"
+              >
                 <option value="admin">admin</option>
                 <option value="user">user</option>
               </select>
             </label>
-            <button className="inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-4 py-2 text-sm font-extrabold text-white" type="submit">Criar</button>
+            <button
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-4 py-2 text-sm font-extrabold text-white"
+              type="submit"
+            >
+              Criar
+            </button>
           </form>
         </div>
 
         <div className="rounded-2xl border bg-[var(--surface)] p-5 shadow sm:p-7">
-          <h2 className="text-lg font-bold text-[var(--plum)]">Lista de usuários</h2>
+          <h2 className="text-lg font-bold text-[var(--plum)]">
+            Lista de usuários
+          </h2>
           {loading ? (
             <p className="mt-4">Carregando…</p>
           ) : (
@@ -174,11 +224,32 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
                     <td className="py-2">{u.email}</td>
                     <td className="py-2">{u.name ?? "—"}</td>
                     <td className="py-2">{u.role}</td>
-                    <td className="py-2">{new Date(u.createdAt).toLocaleString()}</td>
                     <td className="py-2">
-                      <button type="button" className="mr-2 text-xs" onClick={() => resetPassword(u.id)}>Resetar senha</button>
-                      <button type="button" className="mr-2 text-xs" onClick={() => openEdit(u)}>Editar</button>
-                      <button type="button" className="text-xs" onClick={() => deleteUser(u.id)} disabled={u.email === currentUserEmail}>Excluir</button>
+                      {new Date(u.createdAt).toLocaleString()}
+                    </td>
+                    <td className="py-2">
+                      <button
+                        type="button"
+                        className="mr-2 text-xs"
+                        onClick={() => resetPassword(u.id)}
+                      >
+                        Resetar senha
+                      </button>
+                      <button
+                        type="button"
+                        className="mr-2 text-xs"
+                        onClick={() => openEdit(u)}
+                      >
+                        Editar
+                      </button>
+                      <button
+                        type="button"
+                        className="text-xs"
+                        onClick={() => deleteUser(u.id)}
+                        disabled={u.email === currentUserEmail}
+                      >
+                        Excluir
+                      </button>
                     </td>
                   </tr>
                 ))}
@@ -186,7 +257,9 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
             </table>
           )}
 
-          {message && <p className="mt-4 text-sm text-[var(--plum)]">{message}</p>}
+          {message && (
+            <p className="mt-4 text-sm text-[var(--plum)]">{message}</p>
+          )}
         </div>
       </section>
 
@@ -194,12 +267,24 @@ export function UsersManager({ currentUserEmail }: { currentUserEmail?: string }
         <h2 className="text-lg font-bold text-[var(--plum)]">Minha conta</h2>
         <div>
           {!showPasswordForm ? (
-            <button type="button" className="text-sm font-bold text-[var(--plum)]" onClick={() => setShowPasswordForm(true)}>Trocar senha</button>
+            <button
+              type="button"
+              className="text-sm font-bold text-[var(--plum)]"
+              onClick={() => setShowPasswordForm(true)}
+            >
+              Trocar senha
+            </button>
           ) : (
             <div className="mt-4 md:w-1/2">
               <ChangePasswordForm onDone={() => setShowPasswordForm(false)} />
               <div className="mt-2">
-                <button type="button" className="text-xs text-[var(--ink-soft)]" onClick={() => setShowPasswordForm(false)}>Cancelar</button>
+                <button
+                  type="button"
+                  className="text-xs text-[var(--ink-soft)]"
+                  onClick={() => setShowPasswordForm(false)}
+                >
+                  Cancelar
+                </button>
               </div>
             </div>
           )}
@@ -225,7 +310,11 @@ function ChangePasswordForm({ onDone }: { onDone?: () => void }) {
       const res = await fetch("/api/admin/usuarios", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type: "changeOwnPassword", currentPassword, newPassword }),
+        body: JSON.stringify({
+          type: "changeOwnPassword",
+          currentPassword,
+          newPassword,
+        }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => null);
@@ -245,14 +334,30 @@ function ChangePasswordForm({ onDone }: { onDone?: () => void }) {
     <form className="mt-4 grid gap-3 md:w-1/2" onSubmit={handleSubmit}>
       <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
         Senha atual
-        <input name="currentPassword" type="password" required className="rounded-lg border bg-white px-3 py-2" />
+        <input
+          name="currentPassword"
+          type="password"
+          required
+          className="rounded-lg border bg-white px-3 py-2"
+        />
       </label>
       <label className="grid gap-1 text-sm font-bold text-[var(--plum)]">
         Nova senha
-        <input name="newPassword" type="password" required className="rounded-lg border bg-white px-3 py-2" />
+        <input
+          name="newPassword"
+          type="password"
+          required
+          className="rounded-lg border bg-white px-3 py-2"
+        />
       </label>
       <div className="flex items-center gap-2">
-        <button className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-sm font-extrabold text-[var(--plum)]" type="submit" disabled={loading}>Confirmar</button>
+        <button
+          className="inline-flex items-center gap-2 rounded-full bg-[var(--gold)] px-4 py-2 text-sm font-extrabold text-[var(--plum)]"
+          type="submit"
+          disabled={loading}
+        >
+          Confirmar
+        </button>
       </div>
       {message && <p className="mt-2 text-sm text-[var(--plum)]">{message}</p>}
     </form>

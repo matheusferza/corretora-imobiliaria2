@@ -1,7 +1,6 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
 
 const categories = [
   "Todos",
@@ -13,43 +12,18 @@ const categories = [
 ];
 
 interface BlogSearchProps {
-  onSearch: (query: string, category: string) => void;
+  activeCategory: string;
+  onCategoryChange: (category: string) => void;
+  query: string;
+  onQueryChange: (query: string) => void;
 }
 
-export function BlogSearch({ onSearch }: BlogSearchProps) {
-  const [activeCategory, setActiveCategory] = useState("Todos");
-  const [query, setQuery] = useState("");
-
-  // Keep a ref to the latest category so the debounced effect can read it
-  // without re-running when the category changes (category clicks fire immediately).
-  const categoryRef = useRef(activeCategory);
-  useEffect(() => {
-    categoryRef.current = activeCategory;
-  }, [activeCategory]);
-
-  const handleCategoryClick = (cat: string) => {
-    setActiveCategory(cat);
-    // Fire category searches immediately (no debounce)
-    onSearch(query, cat);
-  };
-
-  const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = e.target.value;
-    setQuery(val);
-  };
-
-  // Debounce text search so queries are only sent after the user stops typing.
-  useEffect(() => {
-    const id = setTimeout(() => {
-      onSearch(query, categoryRef.current);
-    }, 400);
-
-    return () => clearTimeout(id);
-    // Only re-run when the query or onSearch reference changes. We intentionally
-    // don't include activeCategory here so category changes don't go through the
-    // debounce path (they are handled immediately by handleCategoryClick).
-  }, [query, onSearch]);
-
+export function BlogSearch({
+  activeCategory,
+  onCategoryChange,
+  query,
+  onQueryChange,
+}: BlogSearchProps) {
   return (
     <div className="space-y-6">
       {/* Search Input */}
@@ -61,7 +35,7 @@ export function BlogSearch({ onSearch }: BlogSearchProps) {
         <input
           type="text"
           value={query}
-          onChange={handleQueryChange}
+          onChange={(e) => onQueryChange(e.target.value)}
           placeholder="Buscar artigos por palavra-chave ou tema..."
           className="w-full rounded-2xl border bg-white py-3.5 pl-12 pr-4 text-sm text-[var(--ink)] placeholder-[var(--ink-soft)] shadow-xs focus:border-[var(--gold)] focus:outline-hidden"
         />
@@ -75,7 +49,7 @@ export function BlogSearch({ onSearch }: BlogSearchProps) {
             <button
               key={cat}
               type="button"
-              onClick={() => handleCategoryClick(cat)}
+              onClick={() => onCategoryChange(cat)}
               className={`interactive rounded-full px-4 py-2 text-xs font-bold tracking-wider uppercase transition-all ${
                 isActive
                   ? "bg-[var(--plum)] text-white shadow-xs"

@@ -11,10 +11,21 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await prisma.postBlog.findMany({
-    where: { isPublished: true },
-    orderBy: { publishedAt: "desc" },
-  });
+  let posts: Awaited<ReturnType<typeof prisma.postBlog.findMany>> = [];
+  try {
+    // NOTE: sem paginação — todos os posts publicados são carregados de uma vez
+    // e repassados ao BlogClientWrapper via initialPosts. A filtragem por
+    // categoria e busca por texto é feita inteiramente em memória no cliente.
+    // Se for implementada paginação no futuro, revisar a lógica de filtro em
+    // src/app/(site)/blog/blog-client-wrapper.tsx para buscar via API em vez
+    // de filtrar apenas sobre o lote inicial.
+    posts = await prisma.postBlog.findMany({
+      where: { isPublished: true },
+      orderBy: { publishedAt: "desc" },
+    });
+  } catch {
+    posts = [];
+  }
 
   return (
     <main className="min-h-screen">
@@ -32,7 +43,7 @@ export default async function BlogPage() {
 
       <CTASection
         title="Quer sugestões personalizadas para o seu investimento?"
-        description="Fale diretamente com nossa equipe e receba análises do mercado imobiliário catarinense."
+        description="Fale diretamente comigo para receber análises do mercado imobiliário catarinense e encontrar as melhores oportunidades."
       />
     </main>
   );

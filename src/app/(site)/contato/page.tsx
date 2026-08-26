@@ -39,15 +39,18 @@ export default async function ContatoPage() {
             <div className="lg:col-span-5 space-y-8">
               <div>
                 <span className="text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase block mb-2">
-                  Atendimento Humano
+                  Atendimento Humano & Direto
                 </span>
                 <h2 className="display text-3xl md:text-4xl text-[var(--plum)] leading-tight">
-                  Estamos à disposição para te ouvir.
+                  Estou à disposição para te ouvir.
                 </h2>
                 <p className="mt-4 text-sm text-[var(--ink-soft)] leading-relaxed">
                   Seja para colocar seu imóvel para administrar, comprar um novo
-                  apartamento ou tirar dúvidas sobre a região, conte com nosso
-                  suporte direto.
+                  apartamento ou tirar dúvidas sobre a nossa região, conte com
+                  meu atendimento direto, acolhedor e transparente.
+                </p>
+                <p className="mt-2 text-xs font-bold text-[var(--plum)]">
+                  — Valdete Gonçalves de Melo · CRECI/SC 56372-F
                 </p>
               </div>
 

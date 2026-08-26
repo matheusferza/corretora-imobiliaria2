@@ -69,9 +69,9 @@ export function PropertyOwnerForm() {
             Solicitação Enviada com Sucesso!
           </div>
           <p className="text-sm text-emerald-700">
-            Recebemos as informações do seu imóvel. Nossa equipe de
-            administração entrará em contato em breve pelo telefone/WhatsApp
-            informado.
+            Recebemos as informações do seu imóvel. Entrarei em contato em breve
+            pelo telefone/WhatsApp informado para avaliarmos juntos o seu
+            patrimônio.
           </p>
           <button
             type="button"

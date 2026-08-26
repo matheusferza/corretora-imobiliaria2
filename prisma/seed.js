@@ -102,7 +102,7 @@ const pages = [
   {
     slug: "quem-somos",
     navigationLabel: "Quem Somos",
-    eyebrow: "Desde 1990",
+    eyebrow: "Desde 1989",
     title: "Quem somos",
     heading: "Experiência regional, relações duradouras e atendimento humano.",
     intro:

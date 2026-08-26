@@ -42,11 +42,21 @@ beforeEach(() => {
 describe("API /api/admin/usuarios handlers", () => {
   it("POST creates a user when admin", async () => {
     mockGetServerSession.mockResolvedValue({ user: { role: "admin" } });
-    prismaMock.prisma.usuario.create.mockResolvedValue({ id: "1", email: "a@a.com", name: "A", role: "admin", createdAt: new Date() });
+    prismaMock.prisma.usuario.create.mockResolvedValue({
+      id: "1",
+      email: "a@a.com",
+      name: "A",
+      role: "admin",
+      createdAt: new Date(),
+    });
 
     const req = new Request("http://localhost/api/admin/usuarios", {
       method: "POST",
-      body: JSON.stringify({ email: "a@a.com", password: "senha123", name: "A" }),
+      body: JSON.stringify({
+        email: "a@a.com",
+        password: "senha123",
+        name: "A",
+      }),
       headers: { "Content-Type": "application/json" },
     });
     const res = await route.POST(req as Request);
@@ -70,9 +80,13 @@ describe("API /api/admin/usuarios handlers", () => {
   });
 
   it("DELETE prevents deleting own account", async () => {
-    mockGetServerSession.mockResolvedValue({ user: { role: "admin", email: "me@x" } });
+    mockGetServerSession.mockResolvedValue({
+      user: { role: "admin", email: "me@x" },
+    });
     prismaMock.prisma.usuario.findUnique.mockResolvedValue({ id: "me" });
-    const res = await route.DELETE(new Request("http://localhost/api/admin/usuarios?id=me"));
+    const res = await route.DELETE(
+      new Request("http://localhost/api/admin/usuarios?id=me"),
+    );
     expect(prismaMock.prisma.usuario.delete).not.toHaveBeenCalled();
     expect(res.status).toBe(400);
   });

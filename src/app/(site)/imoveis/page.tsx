@@ -12,26 +12,30 @@ type PublicProperty = {
 };
 
 async function loadProperties(): Promise<PublicProperty[]> {
-  const rows = await prisma.imovel.findMany({
-    where: { archivedAt: null },
-    orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
-    take: 50,
-    select: {
-      id: true,
-      title: true,
-      city: true,
-      salePrice: true,
-      monthlyRent: true,
-      dailyRate: true,
-    },
-  });
+  try {
+    const rows = await prisma.imovel.findMany({
+      where: { archivedAt: null },
+      orderBy: [{ isFeatured: "desc" }, { createdAt: "desc" }],
+      take: 50,
+      select: {
+        id: true,
+        title: true,
+        city: true,
+        salePrice: true,
+        monthlyRent: true,
+        dailyRate: true,
+      },
+    });
 
-  return rows.map((r) => ({
-    id: r.id,
-    title: r.title,
-    location: r.city,
-    price: r.salePrice ?? r.monthlyRent ?? r.dailyRate ?? null,
-  }));
+    return rows.map((r) => ({
+      id: r.id,
+      title: r.title,
+      location: r.city,
+      price: r.salePrice ?? r.monthlyRent ?? r.dailyRate ?? null,
+    }));
+  } catch {
+    return [];
+  }
 }
 
 export default async function Imoveis() {

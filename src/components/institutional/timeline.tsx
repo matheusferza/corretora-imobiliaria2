@@ -11,13 +11,22 @@ interface TimelineItem {
 
 const timelineData: TimelineItem[] = [
   {
-    year: "1990",
-    title: "Primeiros Passos na Imobiliária Gonzaga",
+    year: "1989",
+    title: "O convite que abriu a primeira porta",
     description:
-      "Início no mercado imobiliário em Curitiba como secretária, passando pela apresentação de imóveis, realização de vistorias e intermediação entre proprietários e locatários.",
+      "O momento em que uma nova porta se abriu através do convite para atuar na tradicional Imobiliária Gonzaga, em Curitiba, marcando o primeiro contato com o mercado imobiliário.",
     location: "Curitiba — PR",
-    tag: "O Início",
+    tag: "Primeira Porta",
     icon: Home,
+  },
+  {
+    year: "1990",
+    title: "O início oficial da trajetória profissional",
+    description:
+      "Foi em 1990 que Valdete Gonçalves iniciou oficialmente sua trajetória no mercado imobiliário, na Imobiliária Gonzaga, em Curitiba. Começou como secretária e, com o tempo, passou a apresentar imóveis, realizar vistorias e intermediar relações entre proprietários e locatários.",
+    location: "Curitiba — PR",
+    tag: "Início Oficial",
+    icon: ShieldCheck,
   },
   {
     year: "25 Anos",

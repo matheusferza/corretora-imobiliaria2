@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { BlogCard } from "@/components/blog/blog-card";
 import { BlogSearch } from "@/components/blog/blog-search";
 
@@ -21,37 +21,36 @@ interface BlogClientWrapperProps {
 }
 
 export function BlogClientWrapper({ initialPosts }: BlogClientWrapperProps) {
-  const [posts, setPosts] = useState<Post[]>(initialPosts);
-  const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Todos");
 
-  const handleSearch = async (query: string, category: string) => {
-    setLoading(true);
-    try {
-      const params = new URLSearchParams();
-      if (query) params.set("q", query);
-      if (category && category !== "Todos") params.set("category", category);
+  const filteredPosts = useMemo(() => {
+    return initialPosts.filter((post) => {
+      const matchesCategory =
+        selectedCategory === "Todos" ||
+        post.category.toLowerCase() === selectedCategory.toLowerCase();
 
-      const res = await fetch(`/api/blog?${params.toString()}`);
-      const data = await res.json();
-      if (data.posts) {
-        setPosts(data.posts);
-      }
-    } catch (err) {
-      console.error("Erro ao filtrar posts:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+      const normalizedQuery = searchQuery.trim().toLowerCase();
+      const matchesQuery =
+        !normalizedQuery ||
+        post.title.toLowerCase().includes(normalizedQuery) ||
+        post.summary.toLowerCase().includes(normalizedQuery) ||
+        post.category.toLowerCase().includes(normalizedQuery);
+
+      return matchesCategory && matchesQuery;
+    });
+  }, [initialPosts, searchQuery, selectedCategory]);
 
   return (
     <div className="space-y-12">
-      <BlogSearch onSearch={handleSearch} />
+      <BlogSearch
+        activeCategory={selectedCategory}
+        onCategoryChange={setSelectedCategory}
+        query={searchQuery}
+        onQueryChange={setSearchQuery}
+      />
 
-      {loading ? (
-        <div className="py-12 text-center text-sm text-[var(--ink-soft)]">
-          Carregando artigos...
-        </div>
-      ) : posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className="rounded-2xl border bg-white p-12 text-center space-y-3">
           <h3 className="text-lg font-bold text-[var(--plum)]">
             Nenhum artigo encontrado
@@ -62,7 +61,7 @@ export function BlogClientWrapper({ initialPosts }: BlogClientWrapperProps) {
         </div>
       ) : (
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <BlogCard key={post.id} post={post} />
           ))}
         </div>

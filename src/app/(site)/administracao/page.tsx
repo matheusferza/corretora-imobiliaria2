@@ -226,7 +226,7 @@ export default function AdministracaoPage() {
 
       <CTASection
         title="Deixe seu patrimônio nas mãos de quem cuida dele."
-        description="Fale direto com nossa equipe de administração e tire suas dúvidas sobre valores de aluguel e taxas de gestão."
+        description="Fale diretamente comigo para tirar suas dúvidas sobre valores de aluguel, vistorias e taxas de administração."
       />
     </main>
   );

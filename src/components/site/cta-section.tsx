@@ -13,7 +13,7 @@ interface CTASectionProps {
 
 export function CTASection({
   title = "Deixe seu patrimônio nas mãos de quem cuida dele.",
-  description = "Fale com nossa equipe especializada para administração, venda ou avaliação do seu imóvel em Balneário Camboriú e região.",
+  description = "Fale diretamente comigo para administração, venda ou avaliação do seu imóvel em Balneário Camboriú e região.",
   primaryButtonText = "Falar pelo WhatsApp",
   primaryButtonHref = "https://wa.me/5547974007301",
   secondaryButtonText = "Conhecer Nossos Imóveis",
