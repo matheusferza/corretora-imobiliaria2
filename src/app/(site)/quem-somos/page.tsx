@@ -186,9 +186,66 @@ export default function QuemSomosPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SEÇÃO 2 — Linha do Tempo Visual com Fotos Históricas
+          SEÇÃO 2 — Missão, Visão e Valores (Antiga Seção 4)
           ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
+        <div className="shell">
+          <SectionTitle
+            eyebrow="Propósito Institucional"
+            title="Nossa Missão & Nossa Visão"
+            subtitle="Direcionadores fundamentais que conduzem a nossa atuação diária."
+            align="center"
+          />
+
+          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto mt-12">
+            <div className="rounded-3xl border bg-white p-8 md:p-10 shadow-xs space-y-4">
+              <div className="flex size-12 items-center justify-center rounded-xl bg-[var(--plum)] text-[var(--gold)]">
+                <Target size={24} />
+              </div>
+              <h3 className="display text-2xl font-bold text-[var(--plum)]">
+                Nossa Missão
+              </h3>
+              <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
+                Administrar patrimônios com responsabilidade, transparência e
+                organização, oferecendo segurança para proprietários e
+                tranquilidade para inquilinos, sempre por meio de um atendimento
+                humano e personalizado.
+              </p>
+            </div>
+
+            <div className="rounded-3xl border bg-white p-8 md:p-10 shadow-xs space-y-4">
+              <div className="flex size-12 items-center justify-center rounded-xl bg-[var(--plum)] text-[var(--gold)]">
+                <Compass size={24} />
+              </div>
+              <h3 className="display text-2xl font-bold text-[var(--plum)]">
+                Nossa Visão
+              </h3>
+              <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
+                Ser reconhecida como referência em administração de imóveis e
+                locações em Balneário Camboriú e Camboriú, unindo experiência,
+                inovação e relacionamento de confiança.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-20">
+            <SectionTitle
+              eyebrow="Pilares Éticos"
+              title="Nossos Valores"
+              subtitle="Princípios que orientam cada contrato, atendimento e negociação."
+              align="center"
+            />
+            <div className="mt-10">
+              <ValuesGrid />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SEÇÃO 3 — Linha do Tempo Visual com Fotos Históricas (Antiga Seção 2)
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="py-20 md:py-28 bg-white">
         <div className="shell max-w-4xl">
           <SectionTitle
             eyebrow="Memória & Marcos"
@@ -204,14 +261,14 @@ export default function QuemSomosPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SEÇÃO 3 — Família (Composição sem cortes)
+          SEÇÃO 4 — Família (Composição sem cortes) (Antiga Seção 3)
           ═══════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-white">
+      <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
             {/* Foto da Família em Proporção 3:2 Nativa (1024x682) */}
             <div className="lg:col-span-6">
-              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-[var(--surface)] p-4 md:p-5 shadow-lg space-y-4">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-4 md:p-5 shadow-lg space-y-4">
                 <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm">
                   <Image
                     src="/images/institutional/valdete-familia.jpg"
@@ -279,63 +336,6 @@ export default function QuemSomosPage() {
                   nós passa a fazer parte da nossa história.&rdquo;
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-          SEÇÃO 4 — Missão, Visão e Valores
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
-        <div className="shell">
-          <SectionTitle
-            eyebrow="Propósito Institucional"
-            title="Nossa Missão & Nossa Visão"
-            subtitle="Direcionadores fundamentais que conduzem a nossa atuação diária."
-            align="center"
-          />
-
-          <div className="grid gap-8 md:grid-cols-2 max-w-4xl mx-auto mt-12">
-            <div className="rounded-3xl border bg-white p-8 md:p-10 shadow-xs space-y-4">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-[var(--plum)] text-[var(--gold)]">
-                <Target size={24} />
-              </div>
-              <h3 className="display text-2xl font-bold text-[var(--plum)]">
-                Nossa Missão
-              </h3>
-              <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
-                Administrar patrimônios com responsabilidade, transparência e
-                organização, oferecendo segurança para proprietários e
-                tranquilidade para inquilinos, sempre por meio de um atendimento
-                humano e personalizado.
-              </p>
-            </div>
-
-            <div className="rounded-3xl border bg-white p-8 md:p-10 shadow-xs space-y-4">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-[var(--plum)] text-[var(--gold)]">
-                <Compass size={24} />
-              </div>
-              <h3 className="display text-2xl font-bold text-[var(--plum)]">
-                Nossa Visão
-              </h3>
-              <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
-                Ser reconhecida como referência em administração de imóveis e
-                locações em Balneário Camboriú e Camboriú, unindo experiência,
-                inovação e relacionamento de confiança.
-              </p>
-            </div>
-          </div>
-
-          <div className="mt-20">
-            <SectionTitle
-              eyebrow="Pilares Éticos"
-              title="Nossos Valores"
-              subtitle="Princípios que orientam cada contrato, atendimento e negociação."
-              align="center"
-            />
-            <div className="mt-10">
-              <ValuesGrid />
             </div>
           </div>
         </div>
