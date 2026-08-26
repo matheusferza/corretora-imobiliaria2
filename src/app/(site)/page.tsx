@@ -288,16 +288,16 @@ export default async function Home() {
                 </div>
               </div>
 
-              <div className="lg:col-span-4 rounded-2xl bg-[var(--surface)] p-6 border text-center space-y-2">
-                <span className="display block text-3xl font-bold text-[var(--plum)]">
-                  CRECI/SC
+              <div className="lg:col-span-4 rounded-2xl bg-[linear-gradient(145deg,#35104F_0%,#4A1768_100%)] p-6 md:p-8 text-white shadow-md space-y-3">
+                <span className="eyebrow text-[var(--gold-light)] block">
+                  Propósito
                 </span>
-                <span className="text-xs font-extrabold text-[var(--gold)] uppercase tracking-wider block">
-                  56372-F
-                </span>
-                <p className="text-xs text-[var(--ink-soft)] pt-2 border-t">
-                  Atendimento humano e especializado em administração, compra,
-                  locação anual e temporada.
+                <p className="display text-xl leading-snug text-white/95">
+                  &ldquo;Cuidamos do seu patrimônio com a mesma dedicação que
+                  cuidamos da nossa própria família.&rdquo;
+                </p>
+                <p className="text-xs text-[var(--gold-light)] font-extrabold uppercase tracking-wider pt-2 border-t border-white/15">
+                  Atendimento Próximo & Humano
                 </p>
               </div>
             </div>
