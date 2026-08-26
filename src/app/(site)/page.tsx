@@ -7,6 +7,7 @@ import {
   Sparkles,
   UserCheck,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { AuthorityStats } from "@/components/institutional/authority-stats";
 import { TestimonialsPlaceholder } from "@/components/institutional/testimonials-placeholder";
@@ -258,15 +259,36 @@ export default async function Home() {
 
           <AuthorityStats />
 
-          {/* Resumo da História da Fundadora */}
-          <div className="rounded-3xl border border-[var(--gold-light)] bg-white p-8 md:p-12 shadow-xs">
-            <div className="grid gap-8 lg:grid-cols-12 items-center">
+          {/* Resumo da História da Fundadora com Foto */}
+          <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white shadow-xs">
+            <div className="grid gap-8 lg:grid-cols-12 items-center p-8 md:p-12">
+              <div className="lg:col-span-4">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[var(--plum)]/10 shadow-sm">
+                  <Image
+                    src="/images/institutional/valdete-perfil.png"
+                    alt="Valdete Gonçalves de Melo - Fundadora da Corretora Val"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/70 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="display text-xl font-bold">
+                      Valdete Gonçalves de Melo
+                    </p>
+                    <p className="text-xs font-extrabold tracking-wider text-[var(--gold-light)] uppercase">
+                      CRECI/SC 56372-F
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               <div className="lg:col-span-8 space-y-4">
                 <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-muted)] px-3.5 py-1 text-xs font-bold text-[var(--gold)]">
                   <UserCheck size={16} /> Fundadora da Corretora Val
                 </div>
                 <h3 className="display text-3xl md:text-4xl text-[var(--plum)]">
-                  Valdete Gonçalves de Melo
+                  Uma trajetória guiada pela confiança
                 </h3>
                 <p className="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed">
                   Desde <strong>1989</strong>, quando o primeiro convite abriu
@@ -286,19 +308,6 @@ export default async function Home() {
                     Conheça minha história <ArrowRight size={16} />
                   </Link>
                 </div>
-              </div>
-
-              <div className="lg:col-span-4 rounded-2xl bg-[linear-gradient(145deg,#35104F_0%,#4A1768_100%)] p-6 md:p-8 text-white shadow-md space-y-3">
-                <span className="eyebrow text-[var(--gold-light)] block">
-                  Propósito
-                </span>
-                <p className="display text-xl leading-snug text-white/95">
-                  &ldquo;Cuidamos do seu patrimônio com a mesma dedicação que
-                  cuidamos da nossa própria família.&rdquo;
-                </p>
-                <p className="text-xs text-[var(--gold-light)] font-extrabold uppercase tracking-wider pt-2 border-t border-white/15">
-                  Atendimento Próximo & Humano
-                </p>
               </div>
             </div>
           </div>

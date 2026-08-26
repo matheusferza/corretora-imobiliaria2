@@ -1,13 +1,6 @@
-import {
-  Award,
-  Compass,
-  MapPin,
-  Quote,
-  Shield,
-  Target,
-  Users,
-} from "lucide-react";
+import { Award, Compass, MapPin, Quote, Shield, Target } from "lucide-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ValuesGrid } from "@/components/institutional/values-grid";
 import { CTASection } from "@/components/site/cta-section";
 import { PageHero } from "@/components/site/page-hero";
@@ -46,6 +39,23 @@ export default function QuemSomosPage() {
                 Temporada e Compra e Venda, com atuação em Balneário Camboriú e
                 Camboriú.
               </p>
+
+              {/* Foto Histórica 1989 */}
+              <div className="my-6 overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-[var(--surface)] p-4 shadow-sm">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-neutral-100">
+                  <Image
+                    src="/images/institutional/valdete-inicio-1989.png"
+                    alt="Valdete no início da carreira na Imobiliária Gonzaga em 1989/1990"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <p className="mt-3 text-center text-xs font-medium text-[var(--ink-soft)] italic">
+                  1989/1990 — Primeiros passos no mercado imobiliário na
+                  tradicional Imobiliária Gonzaga, em Curitiba.
+                </p>
+              </div>
 
               <div className="space-y-4 text-sm text-[var(--ink-soft)] leading-relaxed">
                 <p>
@@ -123,11 +133,31 @@ export default function QuemSomosPage() {
               </div>
             </div>
 
-            {/* Institutional Profile Sidebar */}
+            {/* Institutional Profile Sidebar com Foto Oficial */}
             <div className="lg:col-span-5 space-y-6">
-              <div className="rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-8 md:p-10 shadow-xs space-y-6">
-                <div className="flex items-center gap-3">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)]">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-6 md:p-8 shadow-md space-y-6">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-[var(--plum)]/10 shadow-inner">
+                  <Image
+                    src="/images/institutional/valdete-perfil.png"
+                    alt="Valdete Gonçalves de Melo - Fundadora da Corretora Val"
+                    fill
+                    priority
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="display text-2xl font-bold leading-tight">
+                      Valdete Gonçalves de Melo
+                    </p>
+                    <p className="text-xs font-extrabold tracking-wider text-[var(--gold-light)] uppercase">
+                      CRECI/SC 56372-F
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3 pt-2">
+                  <div className="flex size-12 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)] shrink-0">
                     <Award size={22} />
                   </div>
                   <div>
@@ -135,10 +165,7 @@ export default function QuemSomosPage() {
                       Corretora Val
                     </h3>
                     <span className="text-xs text-[var(--gold)] font-bold uppercase tracking-wider block">
-                      Valdete Gonçalves de Melo
-                    </span>
-                    <span className="text-xs text-[var(--ink-soft)] font-bold uppercase">
-                      CRECI/SC 56372-F
+                      Fundadora & Gestora
                     </span>
                   </div>
                 </div>
@@ -154,7 +181,7 @@ export default function QuemSomosPage() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white p-5 border text-center space-y-1">
+                <div className="rounded-2xl bg-white p-5 border text-center space-y-1 shadow-xs">
                   <span className="display text-2xl font-bold text-[var(--plum)]">
                     Confiança que abre portas.
                   </span>
@@ -225,25 +252,33 @@ export default function QuemSomosPage() {
         </div>
       </section>
 
-      {/* Family Section */}
+      {/* Family Section com Foto da Família */}
       <section className="py-16 md:py-24 bg-[var(--surface-muted)] border-y">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 items-center">
             <div className="lg:col-span-5">
-              <div className="rounded-3xl overflow-hidden border border-[var(--gold-light)] bg-[linear-gradient(145deg,#35104F_0%,#4A1768_100%)] p-8 text-white shadow-md">
-                <div className="flex size-12 items-center justify-center rounded-full bg-white/10 text-[var(--gold-light)] mb-6">
-                  <Users size={24} />
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-3 shadow-md space-y-3">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-neutral-100">
+                  <Image
+                    src="/images/institutional/valdete-familia.jpg"
+                    alt="Valdete, seu filho Felipe e seu neto Kauan com vista para Balneário Camboriú"
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                  />
                 </div>
-                <span className="eyebrow text-[var(--gold-light)]">
-                  Base de Cada Recomeço
-                </span>
-                <h3 className="display text-3xl md:text-4xl text-white mt-2 mb-4">
-                  Uma empresa construída em família.
-                </h3>
-                <p className="text-sm text-white/80 leading-relaxed">
-                  Valores transmitidos de geração em geração com dedicação,
-                  honestidade e amor pelo que fazemos.
-                </p>
+                <div className="p-3 text-center">
+                  <span className="eyebrow text-[var(--gold)] block">
+                    Família & Tradição
+                  </span>
+                  <p className="display text-xl text-[var(--plum)] font-bold mt-1">
+                    Três gerações unidas pelo cuidado
+                  </p>
+                  <p className="text-xs text-[var(--ink-soft)] mt-1">
+                    Valdete, Felipe e Kauan — presença e continuidade em
+                    Balneário Camboriú.
+                  </p>
+                </div>
               </div>
             </div>
 
