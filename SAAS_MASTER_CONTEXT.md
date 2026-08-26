@@ -71,6 +71,7 @@ necessidade concreta, evitando custo e complexidade prematuros.
 - Aplicar DRY com critério; não introduzir abstrações especulativas.
 - Proteger autenticação, autorização, limites de requisição e validação de
   entradas desde a primeira função administrativa.
+- **Connection Pooling & Concorrência SSR**: Ao utilizar Supabase Transaction Pooler (porta 6543 / pgbouncer), o parâmetro `connection_limit` na `DATABASE_URL` deve ser configurado com valor adequado (ex: `connection_limit=10`). Configurações com `connection_limit=1` causam timeout de conexão no Prisma durante renderizações SSR que executam múltiplas consultas paralelas no mesmo ciclo de vida (ex: Home, catálogo e cabeçalhos).
 - Termos de Uso e Política de Privacidade dependem de revisão e aprovação
   jurídica antes de publicação.
 

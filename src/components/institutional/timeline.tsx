@@ -1,4 +1,5 @@
 import { Bike, Calendar, Heart, Home, MapPin, ShieldCheck } from "lucide-react";
+import Image from "next/image";
 
 interface TimelineItem {
   year: string;
@@ -7,9 +8,14 @@ interface TimelineItem {
   location?: string;
   tag?: string;
   icon?: React.ElementType;
+  image?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
 }
 
-const timelineData: TimelineItem[] = [
+const defaultTimelineData: TimelineItem[] = [
   {
     year: "1989",
     title: "O convite que abriu a primeira porta",
@@ -18,6 +24,12 @@ const timelineData: TimelineItem[] = [
     location: "Curitiba — PR",
     tag: "Primeira Porta",
     icon: Home,
+    image: {
+      src: "/images/institutional/valdete-inicio-1989.png",
+      alt: "Valdete no início da carreira na Imobiliária Gonzaga em Curitiba (1989/1990)",
+      caption:
+        "1989 — O convite que abriu a primeira porta, na Imobiliária Gonzaga em Curitiba.",
+    },
   },
   {
     year: "1990",
@@ -56,10 +68,20 @@ const timelineData: TimelineItem[] = [
   },
 ];
 
-export function Timeline() {
+interface TimelineProps {
+  items?: TimelineItem[];
+  className?: string;
+}
+
+export function Timeline({
+  items = defaultTimelineData,
+  className = "",
+}: TimelineProps) {
   return (
-    <div className="relative border-l-2 border-[var(--gold-light)] pl-6 ml-4 md:ml-8 md:pl-10 space-y-12">
-      {timelineData.map((item) => {
+    <div
+      className={`relative border-l-2 border-[var(--gold-light)] pl-6 ml-4 md:ml-8 md:pl-10 space-y-12 ${className}`}
+    >
+      {items.map((item) => {
         const Icon = item.icon || Calendar;
         return (
           <div key={item.year} className="relative group">
@@ -87,6 +109,26 @@ export function Timeline() {
               <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
                 {item.description}
               </p>
+
+              {/* Foto do Marco Histórico (proporção 3:2 nativa 1024x682) */}
+              {item.image && (
+                <div className="mt-5 overflow-hidden rounded-2xl border border-[var(--gold-light)] bg-[var(--surface)] p-3 shadow-xs">
+                  <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-neutral-100">
+                    <Image
+                      src={item.image.src}
+                      alt={item.image.alt}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 600px"
+                    />
+                  </div>
+                  {item.image.caption && (
+                    <p className="mt-2.5 text-center text-xs font-medium text-[var(--ink-soft)] italic">
+                      {item.image.caption}
+                    </p>
+                  )}
+                </div>
+              )}
 
               {item.location && (
                 <div className="mt-4 flex items-center gap-1.5 text-xs text-[var(--ink-soft)]">
