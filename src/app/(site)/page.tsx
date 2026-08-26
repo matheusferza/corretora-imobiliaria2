@@ -4,8 +4,18 @@ import {
   CalendarDays,
   KeyRound,
   ShoppingBag,
+  Sparkles,
+  UserCheck,
 } from "lucide-react";
 import Link from "next/link";
+import { AuthorityStats } from "@/components/institutional/authority-stats";
+import { TestimonialsPlaceholder } from "@/components/institutional/testimonials-placeholder";
+import { PropertyCard } from "@/components/property-card";
+import { CTASection } from "@/components/site/cta-section";
+import { SectionTitle } from "@/components/site/section-title";
+import { prisma } from "@/lib/prisma";
+
+export const revalidate = 60;
 
 const services = [
   {
@@ -34,9 +44,55 @@ const services = [
   },
 ];
 
-export default function Home() {
+async function getFeaturedProperties() {
+  try {
+    const rows = await prisma.imovel.findMany({
+      where: {
+        isFeatured: true,
+        archivedAt: null,
+      },
+      orderBy: [{ createdAt: "desc" }],
+      take: 6,
+      select: {
+        id: true,
+        slug: true,
+        title: true,
+        city: true,
+        neighborhood: true,
+        propertyType: true,
+        salePrice: true,
+        monthlyRent: true,
+        dailyRate: true,
+        bedrooms: true,
+        parkingSpaces: true,
+        privateArea: true,
+        isFeatured: true,
+      },
+    });
+
+    return rows.map((r) => ({
+      id: r.id,
+      slug: r.slug,
+      title: r.title,
+      location: r.neighborhood ? `${r.neighborhood}, ${r.city}` : r.city,
+      price: r.salePrice ?? r.monthlyRent ?? r.dailyRate ?? null,
+      propertyType: r.propertyType,
+      bedrooms: r.bedrooms,
+      parkingSpaces: r.parkingSpaces,
+      privateArea: r.privateArea,
+      isFeatured: r.isFeatured,
+    }));
+  } catch {
+    return [];
+  }
+}
+
+export default async function Home() {
+  const featuredProperties = await getFeaturedProperties();
+
   return (
     <main>
+      {/* Hero Section */}
       <section className="shell grid min-h-[calc(100dvh-5rem)] items-center gap-12 py-16 lg:grid-cols-[1fr_0.92fr] lg:py-20">
         <div className="max-w-2xl">
           <p className="eyebrow fade-up">Balneário Camboriú e Camboriú</p>
@@ -92,6 +148,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Services / 4 Areas */}
       <section className="border-y bg-[var(--surface)] py-20">
         <div className="shell">
           <div className="max-w-2xl">
@@ -129,6 +186,138 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* SEÇÃO 1 — Imóveis em Destaque */}
+      <section className="py-20 md:py-24 bg-white">
+        <div className="shell">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <SectionTitle
+              eyebrow="Oportunidades Selecionadas"
+              title="Imóveis em Destaque"
+              subtitle="Unidades exclusivas com documentação rigorosa em Balneário Camboriú e Camboriú."
+            />
+            <Link
+              href="/imoveis"
+              className="interactive inline-flex items-center gap-2 text-sm font-extrabold text-[var(--plum)] hover:text-[var(--gold)] transition-colors self-start md:self-end"
+            >
+              Ver todos os imóveis <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          {featuredProperties.length === 0 ? (
+            <div className="rounded-3xl border border-[var(--gold-light)] bg-[var(--surface)] p-8 md:p-12 text-center space-y-4">
+              <div className="inline-flex size-12 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)]">
+                <Sparkles size={22} />
+              </div>
+              <h3 className="display text-2xl text-[var(--plum)]">
+                Novos destaques em preparação
+              </h3>
+              <p className="text-sm text-[var(--ink-soft)] max-w-md mx-auto">
+                Estamos selecionando novas oportunidades de alto padrão.
+                Consulte nosso catálogo completo para encontrar seu próximo
+                imóvel.
+              </p>
+              <div className="pt-2">
+                <Link
+                  href="/imoveis"
+                  className="interactive inline-flex items-center gap-2 rounded-full bg-[var(--plum)] px-6 py-3 text-xs font-bold text-white hover:bg-[var(--plum-bright)] transition-all"
+                >
+                  Explorar Catálogo de Imóveis <ArrowRight size={14} />
+                </Link>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {featuredProperties.map((property) => (
+                  <PropertyCard key={property.id} property={property} />
+                ))}
+              </div>
+
+              <div className="mt-12 text-center">
+                <Link
+                  href="/imoveis"
+                  className="interactive inline-flex items-center gap-2 rounded-full border border-[var(--plum)] px-8 py-3.5 text-xs font-extrabold uppercase tracking-wider text-[var(--plum)] hover:bg-[var(--plum)] hover:text-white transition-all shadow-xs"
+                >
+                  Ver todos os imóveis <ArrowRight size={15} />
+                </Link>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
+
+      {/* SEÇÃO 2 — Autoridade (Números + Resumo da História) */}
+      <section className="py-20 md:py-24 bg-[var(--surface-muted)] border-t">
+        <div className="shell space-y-16">
+          <SectionTitle
+            eyebrow="Tradição & Solidez"
+            title="Credibilidade construída com trabalho e presença local"
+            subtitle="Estrutura profissional e dedicação para cuidar com excelência do seu patrimônio imobiliário."
+          />
+
+          <AuthorityStats />
+
+          {/* Resumo da História da Fundadora */}
+          <div className="rounded-3xl border border-[var(--gold-light)] bg-white p-8 md:p-12 shadow-xs">
+            <div className="grid gap-8 lg:grid-cols-12 items-center">
+              <div className="lg:col-span-8 space-y-4">
+                <div className="inline-flex items-center gap-2 rounded-full bg-[var(--surface-muted)] px-3.5 py-1 text-xs font-bold text-[var(--gold)]">
+                  <UserCheck size={16} /> Fundadora da Corretora Val
+                </div>
+                <h3 className="display text-3xl md:text-4xl text-[var(--plum)]">
+                  Valdete Gonçalves de Melo
+                </h3>
+                <p className="text-sm md:text-base text-[var(--ink-soft)] leading-relaxed">
+                  Desde <strong>1989</strong>, quando o primeiro convite abriu
+                  as portas no mercado imobiliário em Curitiba, e com início
+                  oficial da carreira em <strong>1990</strong>, uma sólida
+                  trajetória foi construída com trabalho, superação e
+                  compromisso ético. Hoje, à frente da Corretora Val em
+                  Balneário Camboriú e Camboriú, unimos experiência e gestão
+                  familiar para transformar cada negociação em uma relação de
+                  confiança e cuidado real.
+                </p>
+                <div className="pt-2">
+                  <Link
+                    href="/autoridade"
+                    className="interactive inline-flex items-center gap-2 text-sm font-extrabold text-[var(--plum)] hover:text-[var(--gold)] transition-colors"
+                  >
+                    Conheça minha história <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 rounded-2xl bg-[var(--surface)] p-6 border text-center space-y-2">
+                <span className="display block text-3xl font-bold text-[var(--plum)]">
+                  CRECI/SC
+                </span>
+                <span className="text-xs font-extrabold text-[var(--gold)] uppercase tracking-wider block">
+                  56372-F
+                </span>
+                <p className="text-xs text-[var(--ink-soft)] pt-2 border-t">
+                  Atendimento humano e especializado em administração, compra,
+                  locação anual e temporada.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SEÇÃO 3 — Depoimentos ("Em breve") */}
+      <section className="py-20 md:py-24 bg-white border-t">
+        <TestimonialsPlaceholder />
+      </section>
+
+      {/* CTA Final */}
+      <CTASection
+        title="Confiança que abre portas para o seu patrimônio."
+        description="Fale diretamente com a Corretora Val para compra, administração, locação anual ou temporada em Balneário Camboriú e região."
+        primaryButtonText="Falar pelo WhatsApp"
+        secondaryButtonText="Ver Nossos Imóveis"
+        secondaryButtonHref="/imoveis"
+      />
     </main>
   );
 }

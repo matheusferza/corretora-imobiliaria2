@@ -1,14 +1,19 @@
 export const revalidate = 30; // revalidate every 30s to keep public list reasonably fresh
 
-import Link from "next/link";
-import { formatPrice } from "@/lib/format-price";
+import { PropertyCard } from "@/components/property-card";
 import { prisma } from "@/lib/prisma";
 
 type PublicProperty = {
   id: string;
+  slug?: string;
   title: string;
   location: string;
   price: number | null;
+  propertyType?: string | null;
+  bedrooms?: number | null;
+  parkingSpaces?: number | null;
+  privateArea?: number | null;
+  isFeatured?: boolean;
 };
 
 async function loadProperties(): Promise<PublicProperty[]> {
@@ -19,19 +24,32 @@ async function loadProperties(): Promise<PublicProperty[]> {
       take: 50,
       select: {
         id: true,
+        slug: true,
         title: true,
         city: true,
+        neighborhood: true,
+        propertyType: true,
         salePrice: true,
         monthlyRent: true,
         dailyRate: true,
+        bedrooms: true,
+        parkingSpaces: true,
+        privateArea: true,
+        isFeatured: true,
       },
     });
 
     return rows.map((r) => ({
       id: r.id,
+      slug: r.slug,
       title: r.title,
-      location: r.city,
+      location: r.neighborhood ? `${r.neighborhood}, ${r.city}` : r.city,
       price: r.salePrice ?? r.monthlyRent ?? r.dailyRate ?? null,
+      propertyType: r.propertyType,
+      bedrooms: r.bedrooms,
+      parkingSpaces: r.parkingSpaces,
+      privateArea: r.privateArea,
+      isFeatured: r.isFeatured,
     }));
   } catch {
     return [];
@@ -57,29 +75,7 @@ export default async function Imoveis() {
             contato conosco.
           </p>
         ) : (
-          properties.map((p) => (
-            <article
-              key={p.id}
-              className="rounded-2xl border bg-[var(--background)] p-4 shadow-[0_2px_8px_rgba(53,16,79,0.04)]"
-            >
-              <div className="h-36 w-full rounded-md bg-gradient-to-br from-[var(--plum)] to-[var(--plum-bright)]/30" />
-              <h2 className="mt-4 text-lg font-bold text-[var(--plum)]">
-                {p.title}
-              </h2>
-              <p className="text-sm text-[var(--ink-soft)]">{p.location}</p>
-              <p className="mt-3 text-base font-extrabold">
-                {p.price != null ? formatPrice(p.price) : "Sob consulta"}
-              </p>
-              <div className="mt-4">
-                <Link
-                  href={`#/`}
-                  className="inline-flex items-center rounded-full bg-[var(--plum)] px-4 py-2 text-sm font-bold text-white"
-                >
-                  Ver detalhes
-                </Link>
-              </div>
-            </article>
-          ))
+          properties.map((p) => <PropertyCard key={p.id} property={p} />)
         )}
       </div>
     </main>
