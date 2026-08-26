@@ -113,7 +113,7 @@ export function Timeline({
               {/* Foto do Marco Histórico (proporção 3:2 nativa 1024x682) */}
               {item.image && (
                 <div className="mt-5 overflow-hidden rounded-2xl border border-[var(--gold-light)] bg-[var(--surface)] p-3 shadow-xs">
-                  <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-neutral-100">
+                  <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-100">
                     <Image
                       src={item.image.src}
                       alt={item.image.alt}

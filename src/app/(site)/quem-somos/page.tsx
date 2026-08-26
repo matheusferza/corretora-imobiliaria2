@@ -269,7 +269,7 @@ export default function QuemSomosPage() {
             {/* Foto da Família em Proporção 3:2 Nativa (1024x682) */}
             <div className="lg:col-span-6">
               <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-4 md:p-5 shadow-lg space-y-4">
-                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm">
+                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm">
                   <Image
                     src="/images/institutional/valdete-familia.jpg"
                     alt="Valdete Gonçalves de Melo, seu filho Felipe Cesar e seu neto Kauan Enrique com vista panorâmica para o skyline de Balneário Camboriú"
