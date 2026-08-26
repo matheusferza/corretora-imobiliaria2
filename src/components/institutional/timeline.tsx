@@ -102,39 +102,61 @@ export function Timeline({
                 )}
               </div>
 
-              <h3 className="text-xl font-bold text-[var(--plum)] mb-2">
-                {item.title}
-              </h3>
+              {item.image ? (
+                <div className="grid gap-6 md:grid-cols-12 items-center">
+                  <div className="md:col-span-7 space-y-3">
+                    <h3 className="text-xl font-bold text-[var(--plum)]">
+                      {item.title}
+                    </h3>
 
-              <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
-                {item.description}
-              </p>
-
-              {/* Foto do Marco Histórico (proporção 3:2 nativa 1024x682) */}
-              {item.image && (
-                <div className="mt-5 overflow-hidden rounded-2xl border border-[var(--gold-light)] bg-[var(--surface)] p-3 shadow-xs">
-                  <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-100">
-                    <Image
-                      src={item.image.src}
-                      alt={item.image.alt}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 600px"
-                    />
-                  </div>
-                  {item.image.caption && (
-                    <p className="mt-2.5 text-center text-xs font-medium text-[var(--ink-soft)] italic">
-                      {item.image.caption}
+                    <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
+                      {item.description}
                     </p>
-                  )}
-                </div>
-              )}
 
-              {item.location && (
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-[var(--ink-soft)]">
-                  <MapPin size={13} className="text-[var(--gold)]" />
-                  <span>{item.location}</span>
+                    {item.location && (
+                      <div className="pt-1 flex items-center gap-1.5 text-xs text-[var(--ink-soft)]">
+                        <MapPin size={13} className="text-[var(--gold)]" />
+                        <span>{item.location}</span>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="md:col-span-5 flex justify-center">
+                    <div className="overflow-hidden rounded-2xl border border-[var(--gold-light)] bg-[var(--surface)] p-2.5 shadow-xs w-full max-w-[200px] md:max-w-[230px]">
+                      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-100 shadow-inner">
+                        <Image
+                          src={item.image.src}
+                          alt={item.image.alt}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 200px, 230px"
+                        />
+                      </div>
+                      {item.image.caption && (
+                        <p className="mt-2 text-center text-[0.68rem] font-medium text-[var(--ink-soft)] italic leading-tight">
+                          {item.image.caption}
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
+              ) : (
+                <>
+                  <h3 className="text-xl font-bold text-[var(--plum)] mb-2">
+                    {item.title}
+                  </h3>
+
+                  <p className="text-sm text-[var(--ink-soft)] leading-relaxed">
+                    {item.description}
+                  </p>
+
+                  {item.location && (
+                    <div className="mt-4 flex items-center gap-1.5 text-xs text-[var(--ink-soft)]">
+                      <MapPin size={13} className="text-[var(--gold)]" />
+                      <span>{item.location}</span>
+                    </div>
+                  )}
+                </>
               )}
             </div>
           </div>

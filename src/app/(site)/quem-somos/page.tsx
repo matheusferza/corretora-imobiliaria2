@@ -124,8 +124,8 @@ export default function QuemSomosPage() {
             </div>
 
             {/* Foto de Perfil Oficial & Identificação (Proporção 2:3 nativa 682x1024) */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-5 md:p-7 shadow-lg space-y-6">
+            <div className="lg:col-span-5 flex justify-center lg:block">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-gradient-to-br from-[var(--surface-muted)] to-[var(--surface)] p-5 md:p-6 shadow-lg space-y-5 w-full max-w-[360px] lg:max-w-none">
                 <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl bg-[var(--plum)]/10 shadow-inner">
                   <Image
                     src="/images/institutional/valdete-perfil.png"
@@ -133,25 +133,25 @@ export default function QuemSomosPage() {
                     fill
                     priority
                     className="object-cover object-top"
-                    sizes="(max-width: 768px) 100vw, 40vw"
+                    sizes="(max-width: 768px) 360px, 420px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/75 via-transparent to-transparent" />
-                  <div className="absolute bottom-5 left-5 right-5 text-white">
-                    <p className="display text-2xl md:text-3xl font-bold leading-tight">
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <p className="display text-2xl font-bold leading-tight">
                       Valdete Gonçalves de Melo
                     </p>
-                    <p className="text-xs font-extrabold tracking-wider text-[var(--gold-light)] uppercase mt-1">
+                    <p className="text-xs font-extrabold tracking-wider text-[var(--gold-light)] uppercase mt-0.5">
                       CRECI/SC 56372-F
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 pt-1">
-                  <div className="flex size-12 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)] shrink-0">
-                    <Award size={22} />
+                  <div className="flex size-11 items-center justify-center rounded-full bg-[var(--plum)] text-[var(--gold)] shrink-0">
+                    <Award size={20} />
                   </div>
                   <div>
-                    <h3 className="font-bold text-xl text-[var(--plum)]">
+                    <h3 className="font-bold text-lg text-[var(--plum)]">
                       Corretora Val
                     </h3>
                     <span className="text-xs text-[var(--gold)] font-bold uppercase tracking-wider block">
@@ -160,22 +160,22 @@ export default function QuemSomosPage() {
                   </div>
                 </div>
 
-                <div className="border-t pt-4 space-y-3">
+                <div className="border-t pt-3 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-bold text-[var(--plum)]">
-                    <MapPin size={16} className="text-[var(--gold)] shrink-0" />{" "}
+                    <MapPin size={15} className="text-[var(--gold)] shrink-0" />{" "}
                     Balneário Camboriú & Camboriú — SC
                   </div>
                   <div className="flex items-center gap-2 text-xs font-bold text-[var(--plum)]">
-                    <Shield size={16} className="text-[var(--gold)] shrink-0" />{" "}
+                    <Shield size={15} className="text-[var(--gold)] shrink-0" />{" "}
                     Administração, Locação Anual, Temporada e Vendas
                   </div>
                 </div>
 
-                <div className="rounded-2xl bg-white p-5 border text-center space-y-1 shadow-xs">
-                  <span className="display text-2xl font-bold text-[var(--plum)]">
+                <div className="rounded-2xl bg-white p-4 border text-center space-y-0.5 shadow-xs">
+                  <span className="display text-xl font-bold text-[var(--plum)]">
                     Confiança que abre portas.
                   </span>
-                  <p className="text-xs text-[var(--gold)] font-extrabold uppercase tracking-wider">
+                  <p className="text-[0.65rem] text-[var(--gold)] font-extrabold uppercase tracking-wider">
                     Slogan Institucional
                   </p>
                 </div>
@@ -261,41 +261,40 @@ export default function QuemSomosPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SEÇÃO 4 — Família (Composição sem cortes) (Antiga Seção 3)
+          SEÇÃO 4 — Família (Composição equilibrada em retrato 2:3)
           ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
-            {/* Foto da Família em Proporção 3:2 Nativa (1024x682) */}
-            <div className="lg:col-span-6">
-              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-4 md:p-5 shadow-lg space-y-4">
+            {/* Foto da Família em Proporção 2:3 Nativa com largura contida */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-4 shadow-lg space-y-3 w-full max-w-[340px] lg:max-w-sm">
                 <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm">
                   <Image
                     src="/images/institutional/valdete-familia.jpg"
                     alt="Valdete Gonçalves de Melo, seu filho Felipe Cesar e seu neto Kauan Enrique com vista panorâmica para o skyline de Balneário Camboriú"
                     fill
                     className="object-cover object-center"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                    sizes="(max-width: 768px) 340px, 380px"
                   />
                 </div>
                 <div className="px-2 pb-1 text-center">
                   <span className="eyebrow text-[var(--gold)] block">
                     Família & Continuidade
                   </span>
-                  <p className="display text-xl md:text-2xl text-[var(--plum)] font-bold mt-1">
+                  <p className="display text-xl text-[var(--plum)] font-bold mt-1">
                     Três gerações unidas pelo cuidado
                   </p>
-                  <p className="text-xs text-[var(--ink-soft)] mt-1 max-w-md mx-auto">
+                  <p className="text-xs text-[var(--ink-soft)] mt-1">
                     Valdete, seu filho Felipe e seu neto Kauan — unindo
-                    experiência, inovação e o compromisso ético da Corretora Val
-                    em Balneário Camboriú.
+                    experiência, inovação e compromisso ético.
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Texto da Seção Família */}
-            <div className="lg:col-span-6 space-y-5">
+            <div className="lg:col-span-7 space-y-5">
               <span className="text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase block">
                 Nossa Família
               </span>
