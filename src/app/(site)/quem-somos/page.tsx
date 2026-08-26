@@ -132,10 +132,10 @@ export default function QuemSomosPage() {
                     alt="Valdete Gonçalves de Melo, fundadora da Corretora Val, em traje profissional blazer preto e camisa branca"
                     fill
                     priority
-                    className="object-cover object-top"
+                    className="object-contain object-top"
                     sizes="(max-width: 768px) 360px, 420px"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/75 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/75 via-transparent to-transparent pointer-events-none" />
                   <div className="absolute bottom-4 left-4 right-4 text-white">
                     <p className="display text-2xl font-bold leading-tight">
                       Valdete Gonçalves de Melo
@@ -261,40 +261,41 @@ export default function QuemSomosPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SEÇÃO 4 — Família (Composição equilibrada em retrato 2:3)
+          SEÇÃO 4 — Família (Composição Completa Sem Cortes - 3:2 Nativo)
           ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 md:py-28 bg-[var(--surface-muted)] border-y">
         <div className="shell">
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
-            {/* Foto da Família em Proporção 2:3 Nativa com largura contida */}
-            <div className="lg:col-span-5 flex justify-center">
-              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-4 shadow-lg space-y-3 w-full max-w-[340px] lg:max-w-sm">
-                <div className="relative aspect-[2/3] w-full overflow-hidden rounded-2xl bg-neutral-100 shadow-sm">
+            {/* Foto da Família em Proporção 3:2 Nativa com object-contain */}
+            <div className="lg:col-span-6">
+              <div className="overflow-hidden rounded-3xl border border-[var(--gold-light)] bg-white p-4 md:p-5 shadow-lg space-y-3">
+                <div className="relative aspect-[3/2] w-full overflow-hidden rounded-2xl bg-neutral-50 shadow-inner">
                   <Image
                     src="/images/institutional/valdete-familia.jpg"
                     alt="Valdete Gonçalves de Melo, seu filho Felipe Cesar e seu neto Kauan Enrique com vista panorâmica para o skyline de Balneário Camboriú"
                     fill
-                    className="object-cover object-center"
-                    sizes="(max-width: 768px) 340px, 380px"
+                    className="object-contain"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   />
                 </div>
                 <div className="px-2 pb-1 text-center">
                   <span className="eyebrow text-[var(--gold)] block">
                     Família & Continuidade
                   </span>
-                  <p className="display text-xl text-[var(--plum)] font-bold mt-1">
+                  <p className="display text-xl md:text-2xl text-[var(--plum)] font-bold mt-1">
                     Três gerações unidas pelo cuidado
                   </p>
-                  <p className="text-xs text-[var(--ink-soft)] mt-1">
+                  <p className="text-xs text-[var(--ink-soft)] mt-1 max-w-md mx-auto">
                     Valdete, seu filho Felipe e seu neto Kauan — unindo
-                    experiência, inovação e compromisso ético.
+                    experiência, inovação e compromisso ético da Corretora Val
+                    em Balneário Camboriú.
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Texto da Seção Família */}
-            <div className="lg:col-span-7 space-y-5">
+            <div className="lg:col-span-6 space-y-5">
               <span className="text-xs font-extrabold tracking-[0.14em] text-[var(--gold)] uppercase block">
                 Nossa Família
               </span>

@@ -268,7 +268,7 @@ export default async function Home() {
                     src="/images/institutional/valdete-perfil.png"
                     alt="Valdete Gonçalves de Melo - Fundadora da Corretora Val"
                     fill
-                    className="object-cover object-top"
+                    className="object-contain object-top"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--plum)]/70 via-transparent to-transparent" />

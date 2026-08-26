@@ -26,7 +26,7 @@ const defaultTimelineData: TimelineItem[] = [
     icon: Home,
     image: {
       src: "/images/institutional/valdete-inicio-1989.png",
-      alt: "Valdete no início da carreira na Imobiliária Gonzaga em Curitiba (1989/1990)",
+      alt: "Valdete no início da carreira na Imobiliária Gonzaga em Curitiba (1989/1990), sentada à mesa de escritório com documentos",
       caption:
         "1989 — O convite que abriu a primeira porta, na Imobiliária Gonzaga em Curitiba.",
     },
@@ -122,14 +122,15 @@ export function Timeline({
                   </div>
 
                   <div className="md:col-span-5 flex justify-center">
-                    <div className="overflow-hidden rounded-2xl border border-[var(--gold-light)] bg-[var(--surface)] p-2.5 shadow-xs w-full max-w-[200px] md:max-w-[230px]">
-                      <div className="relative aspect-[2/3] w-full overflow-hidden rounded-xl bg-neutral-100 shadow-inner">
+                    <div className="overflow-hidden rounded-2xl border border-[var(--gold-light)] bg-[var(--surface)] p-2.5 shadow-xs w-full max-w-[280px] md:max-w-none">
+                      {/* Proporção 3:2 nativa da foto de 1989 com object-contain */}
+                      <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl bg-neutral-50 shadow-inner">
                         <Image
                           src={item.image.src}
                           alt={item.image.alt}
                           fill
-                          className="object-cover"
-                          sizes="(max-width: 768px) 200px, 230px"
+                          className="object-contain"
+                          sizes="(max-width: 768px) 280px, 340px"
                         />
                       </div>
                       {item.image.caption && (
